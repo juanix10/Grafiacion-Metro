@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <title>Dibujo de Líneas Ajustables</title>  
+  <meta charset="UTF-8">
+  <style>
+  </style>
+  <script type="text/javascript">
+
+    function retornarLienzo(x) {
+      var canvas = document.getElementById(x);
+      if (canvas.getContext) {
+        lienzo = canvas.getContext("2d");
+        return lienzo;
+      } else {
+        return false;
+      }
+    }
+
+    var lienzo;
+    var lineas = [
+      { x: 85, y: 457, angulo: Math.PI / 2.7, largo: 65, grosor: 2 },
+      { x: 118, y: 498, angulo: Math.PI / 6, largo: 49, grosor: 2 },
+      { x: 175, y: 510, angulo: Math.PI / 80, largo: 72, grosor: 2 },
+      { x: 215, y: 521, angulo: Math.PI / 2.6, largo: 23, grosor: 2 },
+      { x: 245, y: 535, angulo: Math.PI / 20, largo: 52, grosor: 2 },
+      { x: 278, y: 531, angulo: Math.PI / 1.4, largo: 20, grosor: 2 },
+      { x: 290, y: 518, angulo: Math.PI / 1.3, largo: 15, grosor: 2 },
+      { x: 315, y: 515, angulo: Math.PI / 30, largo: 40, grosor: 2 },
+      { x: 69, y: 425, angulo: Math.PI / 5, largo: 10, grosor: 2 },
+      { x: 65, y: 418, angulo: Math.PI / 2, largo: 10, grosor: 2 },
+      { x: 55, y: 410, angulo: Math.PI / 8, largo: 25, grosor: 2 },
+      { x: 45, y: 398, angulo: Math.PI / 0.63, largo: 18, grosor: 2 },
+      { x: 36, y: 387, angulo: Math.PI / 10, largo: 20, grosor: 2 },
+      { x: 33, y: 376, angulo: Math.PI / 1.4, largo: 20, grosor: 2 },
+      { x: 36, y: 366, angulo: Math.PI / 4, largo: 10, grosor: 2 },
+      { x: 43, y: 351, angulo: Math.PI / 1.4, largo: 30, grosor: 2 },
+      { x: 53, y: 334, angulo: Math.PI / 2, largo: 10, grosor: 2 },
+      { x: 64, y: 320, angulo: Math.PI / 1.3, largo: 30, grosor: 2 },
+      { x: 76, y: 316, angulo: Math.PI / 2.5, largo: 10, grosor: 2 },
+      { x: 107, y: 295, angulo: Math.PI / 1.3, largo: 80, grosor: 2 },
+      { x: 143, y: 258, angulo: Math.PI / 1.5, largo: 25, grosor: 2 },
+      { x: 143, y: 246, angulo: Math.PI / 20, largo: 10, grosor: 2 },
+      { x: 143, y: 230, angulo: Math.PI / 1.7, largo: 30, grosor: 2 },
+      { x: 167, y: 220, angulo: Math.PI / 18, largo: 40, grosor: 2 },
+      { x: 185, y: 218, angulo: Math.PI / 2.5, largo: 10, grosor: 2 },
+      { x: 179, y: 211, angulo: Math.PI / 9, largo: 10, grosor: 2 },
+      { x: 175, y: 206, angulo: Math.PI / 1.7, largo: 6, grosor: 2 },
+      { x: 180, y: 204, angulo: Math.PI / 15, largo: 10, grosor: 2 },
+      { x: 188, y: 198, angulo: Math.PI / 1.5, largo: 15, grosor: 2 },
+      { x: 188, y: 191, angulo: Math.PI / 8, largo: 10, grosor: 2 },
+      { x: 198, y: 171, angulo: Math.PI / 1.4, largo: 45, grosor: 2 },
+      { x: 219, y: 167, angulo: Math.PI / 3, largo: 30, grosor: 2 },
+      { x: 217, y: 190, angulo: Math.PI / 1.4, largo: 25, grosor: 2 },
+      { x: 209, y: 204, angulo: Math.PI / 2, largo: 10, grosor: 2 },
+      { x: 216, y: 213, angulo: Math.PI / 5, largo: 15, grosor: 2 },
+      { x: 229, y: 217, angulo: Math.PI / 1, largo: 14, grosor: 2 },
+      { x: 248, y: 222, angulo: Math.PI / 8, largo: 26, grosor: 2 },
+      { x: 268, y: 249, angulo: Math.PI / 2.6, largo: 50, grosor: 2 },
+      { x: 272, y: 282, angulo: Math.PI / 1.6, largo: 25, grosor: 2 },
+      { x: 295, y: 304, angulo: Math.PI / 9, largo: 60, grosor: 2 },
+      { x: 322, y: 320, angulo: Math.PI / 2, largo: 12, grosor: 2 },
+      { x: 336, y: 334, angulo: Math.PI / 5, largo: 35, grosor: 2 },
+      { x: 343, y: 370, angulo: Math.PI / 1.7, largo: 55, grosor: 2 },
+      { x: 339, y: 397, angulo: Math.PI / 10, largo: 8, grosor: 2 },
+      { x: 344, y: 404, angulo: Math.PI / 1.9, largo: 13, grosor: 2 },
+      { x: 354, y: 413, angulo: Math.PI / 10, largo: 22, grosor: 2 },
+      { x: 364, y: 419, angulo: Math.PI / 1.9, largo: 5, grosor: 2 },
+      { x: 354, y: 421, angulo: Math.PI / 0, largo: 20, grosor: 2 },
+      { x: 345, y: 432, angulo: Math.PI / 2, largo: 22, grosor: 2 },
+      { x: 350, y: 447, angulo: Math.PI / 4, largo: 15, grosor: 2 },
+      { x: 350, y: 455, angulo: Math.PI / 1.1, largo: 15, grosor: 2 },
+      { x: 350, y: 463, angulo: Math.PI / 4, largo: 15, grosor: 2 },
+      { x: 350, y: 470, angulo: Math.PI / 1.2, largo: 10, grosor: 2 },
+      { x: 350, y: 480, angulo: Math.PI / 2.8, largo: 20, grosor: 2 },
+      { x: 352, y: 498, angulo: Math.PI / 1.8, largo: 20, grosor: 2 },
+      { x: 343, y: 514, angulo: Math.PI / 1.3, largo: 20, grosor: 2 },
+      { x: 335, y: 518, angulo: Math.PI / 2, largo: 4, grosor: 2 },
+    ];
+
+    function dibujarLinea(x, y, angulo, largo, grosor) {
+      lienzo.strokeStyle = "black";
+      lienzo.lineWidth = grosor;
+      lienzo.save();
+      lienzo.translate(x, y);
+      lienzo.rotate(angulo);
+      lienzo.beginPath();
+      lienzo.moveTo(-largo / 2, 0);
+      lienzo.lineTo(largo / 2, 0);
+      lienzo.stroke();
+      lienzo.restore();
+    }
+
+    function dibujar() {
+      lienzo = retornarLienzo("lienzo1");
+      if (lienzo) {
+        lienzo.clearRect(0, 0, lienzo.canvas.width, lienzo.canvas.height);
+
+        for (var i = 0; i < lineas.length; i++) {
+          var linea = lineas[i];
+          dibujarLinea(linea.x, linea.y, linea.angulo, linea.largo, linea.grosor);
+        }
+      }
+    }
+  </script>
+</head>
+<body onload="dibujar()">
+  <canvas id="lienzo1" width="1000" height="1000">
+    Su navegador no permite utilizar canvas.
+  </canvas>
+</body>
+</html>
