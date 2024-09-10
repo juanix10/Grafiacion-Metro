@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dibujo de Líneas en SVG</title>
+    <style>
+        svg {
+            border: 1.5px solid black;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <svg id="miSVG">
+        <!-- Aquí se generarán las líneas -->
+    </svg>
+    <script>
+        // Función para calcular las coordenadas del punto final de una línea
+        function calcularPuntoFinal(x, y, angulo, largo) {
+            return {
+                x: x + largo * Math.cos(angulo),
+                y: y + largo * Math.sin(angulo)
+            };
+        }
+
+        // Datos de las líneas
+        const lineas = [
+            // Ejemplo de líneas. Añade las líneas completas aquí.
+            { x: 345, y: 432, angulo: Math.PI / 2, largo: 20, grosor: 2 },
+            { x: 350, y: 447, angulo: Math.PI / 4, largo: 15, grosor: 2 }
+            // Añade el resto de las líneas aquí.
+        ];
+
+        // Obtener el elemento SVG
+        const svg = document.getElementById('miSVG');
+
+        // Añadir las líneas al SVG
+        lineas.forEach(linea => {
+            const puntoFinal = calcularPuntoFinal(linea.x, linea.y, linea.angulo, linea.largo);
+
+            const lineElement = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            lineElement.setAttribute('x1', linea.x);
+            lineElement.setAttribute('y1', linea.y);
+            lineElement.setAttribute('x2', puntoFinal.x);
+            lineElement.setAttribute('y2', puntoFinal.y);
+            lineElement.setAttribute('stroke', 'black');
+            lineElement.setAttribute('stroke-width', linea.grosor);
+
+            svg.appendChild(lineElement);
+        });
+    </script>
+</body>
+</html>
