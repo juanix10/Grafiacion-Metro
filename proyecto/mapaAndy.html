@@ -10,9 +10,55 @@
             stroke: #000;
             stroke-width: 1px;
         }
+        .logoMetro{
+        position: absolute; /* Para posicionar la imagen de manera relativa a la ventana */
+        top: 5vh; /* Alinea la imagen en la parte superior */
+        left: 3vh; /* Alinea la imagen en la parte izquierda */
+        width: 100px; /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
+        height: auto; /* Mantiene la proporción de la imagen */
+        z-index: 1000; /* Asegura que la imagen esté por encima de otros elementos */
+      }
+      .logoCDMX{
+        position: absolute;
+        top: 22vh;
+        left: 3vh;
+        width: 100px;
+        height: auto;
+        z-index: 1000;
+      }
+      .logoUAEM{
+        position: absolute;
+        top: 83vh;
+        left: 3vh;
+        width: 100px;
+        height: auto;
+        z-index: 1000;
+      }
+      .fondo {
+        background-image: url("");/*URL de imagen de fondo*/
+        background-size: contain; /* Ajusta la imagen para que cubra toda la pantalla */
+        background-position: center; /* Centra la imagen en la pantalla */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        background-attachment: fixed; /* Hace que el fondo no se mueva cuando se desplaza la página */
+      }
     </style>
 </head>
 <body>
+    <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00medXKIsro8_W9vvB4gn4d215NH1ypEVXw&s"
+    class="logoMetro"
+    alt="LogoMetro"
+  />
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/CDMX_Logo.png"
+    class="logoCDMX"
+    alt="LogoCDMX"
+  />
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png"
+    class="logoUAEM"
+    alt="Escudo de la UAEM"
+  />
     <label for="yearSelect">Selecciona La Opcion:</label>
     <select id="yearSelect" onchange="updateColors(this.value)">
         <option value="Empty">Empty</option>
