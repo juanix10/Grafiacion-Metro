@@ -1,0 +1,67 @@
+Afluencia 2021
+
+LINEA 1
+
+Pantitlán 12,091,630
+Zaragoza 8,708,578
+Gómez Farías 7,337,725
+Blvd. Puerto Aéreo 5,468,560
+Balbuena 2,246,042
+Moctezuma 4,486,218
+San Lázaro 4,977,454
+Candelaria 6,457,461
+Merced 11,449,206
+Pino Suárez 8,849,949
+Isabel la Católica 4,608,832
+Salto del Agua 4,369,643
+Balderas 3,532,268
+Cuauhtémoc 4,054,718
+Insurgentes 6,879,516
+Sevilla 5,624,058
+Chapultepec 9,091,332
+Juanacatlán 1,859,621
+Tacubaya 7,381,863
+Observatorio 12,178,741
+
+AÑO 2020
+
+LINEA 1
+
+Pantitlán 3515769
+Zaragoza 2417692
+Gómez Farías 2010767
+Blvd. Puerto Aéreo 1326947
+Balbuena 653439
+Moctezuma 1231306
+San Lázaro 1198825
+Candelaria 2155256
+Merced 3245459
+Pino Suárez 2701577
+Isabel la Católica 1174197
+Salto del Agua 1258666
+Balderas 914334
+Cuauhtémoc 1026989
+Insurgentes 2606385
+Sevilla 1364048
+Chapultepec 9,091,332
+Juanacatlán 1,859,621
+Tacubaya 7,381,863
+Observatorio 12,178,741
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
