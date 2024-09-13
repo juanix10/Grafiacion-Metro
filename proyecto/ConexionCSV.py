@@ -58,7 +58,7 @@ with open('afluencia.csv', newline='', encoding='utf-8') as csvfile:
 
 # Confirmar la inserción de los datos
 conn.commit()
-
+#SELECT estacion, SUM(afluencia) AS afluencia_total FROM afluencia GROUP BY estacion;
 # Cerrar la conexión
 cursor.close()
 conn.close()

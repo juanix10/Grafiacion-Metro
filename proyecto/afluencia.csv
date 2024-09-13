@@ -1,4 +1,4 @@
-LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3
+LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3,SD,SD,SD
 Pantitlán,"2,400,619",SD,Cuatro Caminos,"2,722,297",SD,Indios Verdes,"3,540,768"
 Zaragoza,"1,549,104",SD,Panteones,"332,284",SD,Deptvo. 18 de Marzo,"901,713"
 Gómez Farías,"1,203,240",SD,Tacuba,"1,009,952",SD,Potrero,"461,215"
@@ -24,7 +24,7 @@ SD,SD,SD,Ermita,"386,483",SD,SD,SD
 SD,SD,SD,General Anaya,"400,631",SD,SD,SD
 SD,SD,SD,Tasqueña,"1,765,903",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6
+LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6,SD,SD,SD
 Santa Anita,"88,363",SD,Politécnico,"1,222,884",SD,El Rosario,"577,409"
 Jamaica,"295,616",SD,Inst. del Petróleo,"211,728",SD,Tezozómoc,"202,113"
 Fray Servando,"343,244",SD,Autobuses del Norte,"815,014",SD,Azcapotzalco,"308,873"
@@ -38,7 +38,7 @@ Martín Carrera,"669,700",SD,Oceanía,"438,326",SD,La Villa-Basilica,"361,968"
 SD,SD,SD,Terminal Aérea,"855,880",SD,Martín Carrera,"940,802"
 SD,SD,SD,Hangares,"186,190",SD,SD,SD
 SD,SD,SD,Pantitlán,"4,218,668",SD,SD,SD
-LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9
+LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9,SD,SD,SD
 El Rosario,"1,334,562",SD,Garibaldi/Lagunilla,"783,083",SD,Pantitlán,"4,783,435"
 Aquiles Serdán,"442,400",SD,Bellas Artes,"846,940",SD,Puebla,"1,532,406"
 Camarones,"590,503",SD,San Juan Letrán,"1,282,607",SD,Ciudad Deportiva,"229,466"
@@ -59,7 +59,7 @@ SD,SD,SD,Cerro de la Estrella,"517,213",SD,SD,SD
 SD,SD,SD,U A M  I,"1,028,172",SD,SD,SD
 SD,SD,SD,Constitución de 1917,"3,515,236",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA A,SD,LÍNEA B,SD,LINEA 12
+LÍNEA A,SD,LÍNEA B,SD,LINEA 12,SD,SD,SD
 Pantitlán,"8,347,563",SD,Buenavista,"2,658,298",SD,Tláhuac,"2,282,075"
 Agrícola Oriental,"667,329",SD,Guerrero,"393,088",SD,Tlaltenco,"215,759"
 Canal de San Juan,"740,060",SD,Garibaldi/Lagunilla,"230,614",SD,Zapotitlán,"686,717"
@@ -82,7 +82,7 @@ SD,SD,SD,Olímpica,"867,436",SD,Insurgentes Sur,"1,291,180"
 SD,SD,SD,Plaza Aragón,"904,462",SD,Mixcoac,"490,038"
 SD,SD,SD,Ciudad Azteca,"2,330,672",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3
+LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3,SD,SD,SD
 Pantitlán,"2,807,529",SD,Cuatro Caminos,"4,144,051",SD,Indios Verdes,"5,974,944"
 Zaragoza,"2,091,170",SD,Panteones,"550,592",SD,Deptvo. 18 de Marzo,"1,516,986"
 Gómez Farías,"1,861,026",SD,Tacuba,"1,811,469",SD,Potrero,"758,479"
@@ -110,7 +110,7 @@ SD,SD,SD,Tasqueña,"3,445,178",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6
+LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6,SD,SD,SD
 Santa Anita,"97,964",SD,Politécnico,"1,411,251",SD,El Rosario,"713,015"
 Jamaica,"347,735",SD,Inst. del Petróleo,"257,843",SD,Tezozómoc,"260,161"
 Fray Servando,"354,676",SD,Autobuses del Norte,"1,056,374",SD,Azcapotzalco,"378,487"
@@ -126,7 +126,7 @@ SD,SD,SD,Hangares,"223,069",SD,SD,SD
 SD,SD,SD,Pantitlán,"5,282,955",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9
+LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9,SD,SD,SD
 El Rosario,"1,526,717",SD,Garibaldi/Lagunilla,"808,876",SD,Pantitlán,"4,932,021"
 Aquiles Serdán,"518,245",SD,Bellas Artes,"793,331",SD,Puebla,"1,510,902"
 Camarones,"684,561",SD,San Juan Letrán,"1,444,395",SD,Ciudad Deportiva,"264,401"
@@ -147,7 +147,7 @@ SD,SD,SD,Cerro de la Estrella,"615,356",SD,SD,SD
 SD,SD,SD,U A M  I,"1,260,949",SD,SD,SD
 SD,SD,SD,Constitución de 1917,"4,669,976",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA A,SD,LÍNEA B,SD,LINEA 12
+LÍNEA A,SD,LÍNEA B,SD,LINEA 12,SD,SD,SD
 Pantitlán,"8,854,673",SD,Buenavista,"2,800,928",SD,Tláhuac,"963,788"
 Agrícola Oriental,"683,093",SD,Guerrero,"335,579",SD,Tlaltenco,"85,835"
 Canal de San Juan,"756,527",SD,Garibaldi/Lagunilla,"224,726",SD,Zapotitlán,"274,098"
@@ -172,7 +172,7 @@ SD,SD,SD,Ciudad Azteca,"2,560,956",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3
+LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3,SD,SD,SD
 Pantitlán,"3,225,105",SD,Cuatro Caminos,"4,031,296",SD,Indios Verdes,"6,564,871"
 Zaragoza,"2,361,207",SD,Panteones,"648,159",SD,Deptvo. 18 de Marzo,"1,635,921"
 Gómez Farías,"2,026,449",SD,Tacuba,"1,944,736",SD,Potrero,"822,159"
@@ -200,7 +200,7 @@ SD,SD,SD,Tasqueña,"4,288,452",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6
+LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6,SD,SD,SD
 Santa Anita,"85,097",SD,Politécnico,"1,500,125",SD,El Rosario,"768,356"
 Jamaica,"415,260",SD,Inst. del Petróleo,"305,986",SD,Tezozómoc,"283,359"
 Fray Servando,"442,828",SD,Autobuses del Norte,"1,103,353",SD,Azcapotzalco,"305,928"
@@ -216,7 +216,7 @@ SD,SD,SD,Hangares,"243,440",SD,SD,SD
 SD,SD,SD,Pantitlán,"5,527,687",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9
+LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9,SD,SD,SD
 El Rosario,"1,621,013",SD,Garibaldi/Lagunilla,"875,604",SD,Pantitlán,"6,134,160"
 Aquiles Serdán,"569,357",SD,Bellas Artes,"1,117,359",SD,Puebla,"1,903,908"
 Camarones,"784,460",SD,San Juan Letrán,"1,627,645",SD,Ciudad Deportiva,"340,855"
@@ -237,7 +237,7 @@ SD,SD,SD,Cerro de la Estrella,"671,598",SD,SD,SD
 SD,SD,SD,U A M  I,"1,367,450",SD,SD,SD
 SD,SD,SD,Constitución de 1917,"5,269,851",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA A,SD,LÍNEA B,SD,LINEA 12
+LÍNEA A,SD,LÍNEA B,SD,LINEA 12,SD,SD,SD
 Pantitlán,"8,145,948",SD,Buenavista,"3,053,416",SD,Tláhuac,0
 Agrícola Oriental,"726,039",SD,Guerrero,"348,278",SD,Tlaltenco,0
 Canal de San Juan,"811,274",SD,Garibaldi/Lagunilla,"351,273",SD,Zapotitlán,0
@@ -261,10 +261,10 @@ SD,SD,SD,Plaza Aragón,"1,171,562",SD,Mixcoac,0
 SD,SD,SD,Ciudad Azteca,"2,816,717",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-SD,SD,SD,JULIO - SEPTIEMBRE 2021,SD,SD,SD
+SD,SD,SD,JULIO - SEPTIEMBRE 2021,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3
+LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3,SD,SD,SD
 Pantitlán,"3,658,377",SD,Cuatro Caminos,"4,258,505",SD,Indios Verdes,"7,369,193"
 Zaragoza,"2,707,097",SD,Panteones,"704,541",SD,Deptvo. 18 de Marzo,"1,882,117"
 Gómez Farías,"2,247,010",SD,Tacuba,"2,228,140",SD,Potrero,"956,833"
@@ -292,7 +292,7 @@ SD,SD,SD,Tasqueña,"4,986,706",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6
+LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6,SD,SD,SD
 Santa Anita,"119,581",SD,Politécnico,"1,655,272",SD,El Rosario,"925,031"
 Jamaica,"491,869",SD,Inst. del Petróleo,"358,099",SD,Tezozómoc,"348,295"
 Fray Servando,"686,766",SD,Autobuses del Norte,"1,347,926",SD,Azcapotzalco,"446,697"
@@ -308,7 +308,7 @@ SD,SD,SD,Hangares,"294,295",SD,SD,SD
 SD,SD,SD,Pantitlán,"6,310,133",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9
+LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9,SD,SD,SD
 El Rosario,"1,762,821",SD,Garibaldi/Lagunilla,"972,016",SD,Pantitlán,"6,518,328"
 Aquiles Serdán,"669,471",SD,Bellas Artes,"1,446,931",SD,Puebla,"2,121,757"
 Camarones,"962,238",SD,San Juan Letrán,"1,965,508",SD,Ciudad Deportiva,"440,372"
@@ -329,7 +329,7 @@ SD,SD,SD,Cerro de la Estrella,"802,505",SD,SD,SD
 SD,SD,SD,U A M  I,"1,598,199",SD,SD,SD
 SD,SD,SD,Constitución de 1917,"7,045,246",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA A,SD,LÍNEA B,SD,LINEA 12
+LÍNEA A,SD,LÍNEA B,SD,LINEA 12,SD,SD,SD
 Pantitlán,"8,019,923",SD,Buenavista,"3,601,768",SD,Tláhuac,0
 Agrícola Oriental,"691,640",SD,Guerrero,"416,777",SD,Tlaltenco,0
 Canal de San Juan,"975,053",SD,Garibaldi/Lagunilla,"557,123",SD,Zapotitlán,0
@@ -353,10 +353,10 @@ SD,SD,SD,Plaza Aragón,"1,327,815",SD,Mixcoac,0
 SD,SD,SD,Ciudad Azteca,"3,244,486",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-SD,SD,SD,OCTUBRE - DICIEMBRE 2021,SD,SD,SD
+SD,SD,SD,OCTUBRE - DICIEMBRE 2021,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3
+LÍNEA 1,SD,LÍNEA 2,SD,LÍNEA 3,SD,SD,SD
 Pantitlán,"12,091,630",SD,Cuatro Caminos,"15,156,149",SD,Indios Verdes,"23,449,776"
 Zaragoza,"8,708,578",SD,Panteones,"2,235,576",SD,Deptvo. 18 de Marzo,"5,936,737"
 Gómez Farías,"7,337,725",SD,Tacuba,"6,994,297",SD,Potrero,"2,998,686"
@@ -385,7 +385,7 @@ SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6
+LÍNEA 4,SD,LÍNEA 5,SD,LÍNEA 6,SD,SD,SD
 Santa Anita,"391,005",SD,Politécnico,"5,789,532",SD,El Rosario,"2,983,811"
 Jamaica,"1,550,480",SD,Inst. del Petróleo,"1,133,656",SD,Tezozómoc,"1,093,928"
 Fray Servando,"1,827,514",SD,Autobuses del Norte,"4,322,667",SD,Azcapotzalco,"1,439,985"
@@ -401,7 +401,7 @@ SD,SD,SD,Hangares,"946,994",SD,SD,SD
 SD,SD,SD,Pantitlán,"21,339,443",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9
+LÍNEA 7,SD,LÍNEA 8,SD,LÍNEA 9,SD,SD,SD
 El Rosario,"6,245,113",SD,Garibaldi/Lagunilla,"3,439,579",SD,Pantitlán,"22,367,944"
 Aquiles Serdán,"2,199,473",SD,Bellas Artes,"4,204,561",SD,Puebla,"7,068,973"
 Camarones,"3,021,762",SD,San Juan Letrán,"6,320,155",SD,Ciudad Deportiva,"1,275,094"
@@ -423,7 +423,7 @@ SD,SD,SD,U A M  I,"5,254,770",SD,SD,SD
 SD,SD,SD,Constitución de 1917,"20,500,309",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-LÍNEA A,SD,LÍNEA B,SD,LINEA 12
+LÍNEA A,SD,LÍNEA B,SD,LINEA 12,SD,SD,SD
 Pantitlán,"33,368,107",SD,Buenavista,"12,114,410",SD,Tláhuac,"3,245,863"
 Agrícola Oriental,"2,768,101",SD,Guerrero,"1,493,722",SD,Tlaltenco,"301,594"
 Canal de San Juan,"3,282,914",SD,Garibaldi/Lagunilla,"1,363,736",SD,Zapotitlán,"960,815"
@@ -448,6 +448,6 @@ SD,SD,SD,Ciudad Azteca,"10,952,831",SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
-SD,SD,SD,ENERO - DICIEMBRE 2021,SD,SD,SD
+SD,SD,SD,ENERO - DICIEMBRE 2021,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
 SD,SD,SD,SD,SD,SD,SD,SD
