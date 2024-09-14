@@ -48,7 +48,7 @@ with open('afluencia.csv', 'w', newline='', encoding='utf-8') as csvfile:
                 processed_data.append("SD")  # Rellenar con "SD" si faltan columnas
 
             # Reemplazar celdas vacías o con comas vacías por "SD"
-            processed_data = [cell if cell else "SD" for cell in processed_data]
+            processed_data = [cell if cell else "|" for cell in processed_data]
             
             # Si la fila contiene una nota (marcada con asterisco), no la escribimos en el archivo CSV
             if not any(cell.startswith("*") for cell in processed_data):
