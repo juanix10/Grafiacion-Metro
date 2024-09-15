@@ -27,17 +27,33 @@ with open('afluencia.csv', 'w', newline='', encoding='utf-8') as csvfile:
             # Extraer el contenido de cada celda y eliminar espacios innecesarios
             row_data = [col.get_text(strip=True) for col in cols]
 
+            # Reemplazar "SD" con "Afluencia" solo después de "LÍNEA"
+            processed_data = []
+            skip_next = False
+            for cell in row_data:
+                if skip_next:
+                    skip_next = False
+                    continue
+                if "LÍNEA" in cell:
+                    processed_data.append(cell)
+                    processed_data.append("Afluencia")
+                else:
+                    processed_data.append(cell)
+                # Marcar para saltar el siguiente "SD" si es necesario
+                if "SD" in cell:
+                    skip_next = True
+
             # Asegurarse de que cada fila tenga el mismo número de columnas que la fila más larga
-            while len(row_data) < max_columns:
-                row_data.append("SD")  # Rellenar con "SD" si faltan columnas
-            
+            while len(processed_data) < max_columns:
+                processed_data.append("SD")  # Rellenar con "SD" si faltan columnas
+
             # Reemplazar celdas vacías o con comas vacías por "SD"
-            row_data = [cell if cell else "SD" for cell in row_data]
+            processed_data = [cell if cell else "|" for cell in processed_data]
             
             # Si la fila contiene una nota (marcada con asterisco), no la escribimos en el archivo CSV
-            if not any(cell.startswith("*") for cell in row_data):
+            if not any(cell.startswith("*") for cell in processed_data):
                 # Omitir cualquier fila que contenga "TOTAL" o "GRAN TOTAL" en cualquier columna
-                if not any("TOTAL" in cell or "GRAN TOTAL" in cell for cell in row_data):
-                    writer.writerow(row_data)
+                if not any("TOTAL" in cell or "GRAN TOTAL" in cell for cell in processed_data):
+                    writer.writerow(processed_data)
 
 print("Datos guardados en afluencia.csv")
