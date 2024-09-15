@@ -10,19 +10,86 @@
             stroke: #000;
             stroke-width: 1px;
         }
+        .logoMetro{
+        position: absolute; /* Para posicionar la imagen de manera relativa a la ventana */
+        top: 5vh; /* Alinea la imagen en la parte superior */
+        left: 3vh; /* Alinea la imagen en la parte izquierda */
+        width: 100px; /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
+        height: auto; /* Mantiene la proporción de la imagen */
+        z-index: 1000; /* Asegura que la imagen esté por encima de otros elementos */
+      }
+      .logoCDMX{
+        position: absolute;
+        top: 22vh;
+        left: 3vh;
+        width: 100px;
+        height: auto;
+        z-index: 1000;
+      }
+      .logoUAEM{
+        position: absolute;
+        top: 83vh;
+        left: 3vh;
+        width: 100px;
+        height: auto;
+        z-index: 1000;
+      }
+      .fondo {
+        background-image: url("");/*URL de imagen de fondo*/
+        background-size: contain; /* Ajusta la imagen para que cubra toda la pantalla */
+        background-position: center; /* Centra la imagen en la pantalla */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        background-attachment: fixed; /* Hace que el fondo no se mueva cuando se desplaza la página */
+      }
 
-        /* Estilo de la imagen */
-        #lineImage {
-            display: block;
-            margin-top: 20px;
-            max-width: 100%;
-            height: auto;
-        }
+      #mapa {
+        width: 300px;
+        height: 300px;
+        background-color: lightgray;
+        margin-top: 20px;
+    }
+
+    img {
+        max-width: 500px;
+        max-height: 300px;
+        position: absolute;
+        top: 100px; /* Ajusta la distancia desde la parte superior */
+        left: 300px;
+    }
+
+    /* Ejemplo de path del mapa */
+    .map-path {
+        stroke: #000;
+        stroke-width: 1px;
+    }
+    #chartContainer {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 10px;
+        left: 40px;
+    }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00medXKIsro8_W9vvB4gn4d215NH1ypEVXw&s"
+    class="logoMetro"
+    alt="LogoMetro"
+  />
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/CDMX_Logo.png"
+    class="logoCDMX"
+    alt="LogoCDMX"
+  />
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png"
+    class="logoUAEM"
+    alt="Escudo de la UAEM"
+  />
     <label for="yearSelect">Selecciona La Opcion:</label>
-    <select id="yearSelect" onchange="updateSelection(this.value)">
+    <select id="yearSelect" onchange="handleChange(this.value)">
         <option value="Empty">Empty</option>
         <option value="Linea 1">Linea 1</option>
         <option value="Linea 2">Linea 2</option>
@@ -34,35 +101,139 @@
         <option value="Linea 8">Linea 8</option>
         <option value="Linea 9">Linea 9</option>
         <option value="Linea 10">Linea 10</option>
+        <option value="Linea 12">Linea 12</option>
         <option value="Linea A">Linea A</option>
         <option value="Linea B">Linea B</option>
         <option value="2021">Todas las lineas</option>
+        
     </select>
+    </div>
+    <img id="displayImage" src="https://via.placeholder.com/300x300?text=Empty" alt="Imagen seleccionada">
 
     <svg id="map-area" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
-        <path id="path3227" class="map-area" d="M 317.14526,21.701934 L 330.94193,55.641737..." />
-        <path id="path3229" class="map-area" d="M 207.04785,125.72881 L 193.25119,174.56901..." />
-    </svg>
+        <path id="path3227" class="map-area" d="M 317.14526,21.701934 L 330.94193,55.641737 L 303.90046,91.513079 L 305.83199,115.51927 L 328.45853,126.00474 L 339.49586,126.28068 L 346.39419,122.41761 L 388.33607,140.07735 L 382.54147,151.94249 L 408.4792,205.47356 L 391.64727,211.82002 L 369.57259,202.99015 L 364.32987,207.95695 L 356.05187,202.99015 L 348.32573,202.71422 L 347.49793,204.64575 L 335.63279,202.43829 L 303.07266,183.95075 L 289.276,184.77855 L 272.44405,144.49228 L 265.26979,114.96742 L 248.98972,110.55248 L 249.54159,105.86161 L 238.50425,95.100207 L 266.09759,103.37821 L 271.06439,98.687345 L 265.26979,93.168669 L 274.37559,80.475739 L 265.54572,70.818072 L 271.89219,57.021403 L 279.61832,58.40107 L 288.72412,36.878267 L 303.62452,20.046333 L 317.14526,21.701934 z" />
 
-    <!-- Contenedor para la imagen -->
-    <img id="lineImage" src="" alt="Imagen de la opción seleccionada">
+    </svg>
+    <div id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </div>
 
     <script>
-        const valueData = {
-            "Empty": [{"id": "path3227", "value": 1}, {"id": "path3229", "value": 1}],
-            "2021": [{"id": "path3227", "value": 12091630}, {"id": "path3229", "value": 8708578}],
-            "Linea 1": [{"id": "path3227", "value": 0}, {"id": "path3229", "value": 0}],
-            "Linea 2": [{"id": "path3227", "value": 0}, {"id": "path3229", "value": 0}]
+         // Datos de valores por año
+         const valueData = {
+            "Empty": [
+                {"id": "path3227", "value": 1},
+                {"id": "path3229", "value": 1},
+                {"id": "path3231", "value": 1},
+                {"id": "path3233", "value": 1},
+                {"id": "path3235", "value": 1},
+                {"id": "path3237", "value": 1},
+                {"id": "path3239", "value": 1},
+                {"id": "path3241", "value": 1},
+                {"id": "path3243", "value": 1},
+                {"id": "path3245", "value": 1},
+                {"id": "path3247", "value": 1},
+                {"id": "path3249", "value": 1},
+                {"id": "path3251", "value": 1},
+                {"id": "path3253", "value": 1},
+                {"id": "path3255", "value": 1},
+                {"id": "path3257", "value": 1}
+            ],
+            
+            "2021": [
+                {"id": "path3227", "value": 12091630},
+                {"id": "path3229", "value": 8708578},
+                {"id": "path3231", "value": 7337725},
+                {"id": "path3233", "value": 5468560},
+                {"id": "path3235", "value": 2246042},
+                {"id": "path3237", "value": 4486218},
+                {"id": "path3239", "value": 4977454},
+                {"id": "path3241", "value": 6457461},
+                {"id": "path3243", "value": 11449206},//Cuajimalpa
+                {"id": "path3245", "value": 8849949},//Magdalena Contreras
+                {"id": "path3247", "value": 4608832},
+                {"id": "path3249", "value": 4369643},
+                {"id": "path3251", "value": 3532268},
+                {"id": "path3253", "value": 4054718},
+                {"id": "path3255", "value": 6879516},
+                {"id": "path3257", "value": 0}
+            ]
+            
         };
 
-        // Mapear opciones a las imágenes correspondientes
-        const imageMap = {
-            "Empty": "/imagenes/linea1.png",
-            "2021": "ruta_de_imagen_para_2021.jpg",
-            "Linea 1": "ruta_de_imagen_para_linea_1.jpg",
-            "Linea 2": "ruta_de_imagen_para_linea_2.jpg",
-            // Agrega las rutas de las demás imágenes según tus necesidades
+        const imageUrls = {
+            "Empty": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00medXKIsro8_W9vvB4gn4d215NH1ypEVXw&s",
+            "Linea 1": "https://www.mexicodesconocido.com.mx/wp-content/uploads/2022/08/mapa-linea-1-metro-cdmx.jpeg",
+            "Linea 2": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-2-metro-cdmx.jpg",
+            "Linea 3": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-3-metro-cdmx.jpg",
+            "Linea 4": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-4-metro-cdmx.jpg",
+            "Linea 5": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvSOhHAqSQVoCRXDjxoD_sZYKMMzLyEG5M1g&s",
+            "Linea 6": "https://www.infobae.com/new-resizer/tAnzYKSNU5kaj1TZQZdS0udYqso=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/QIGTOYNO35CZJH2YTJPVQLBZKM.jpg",
+            "Linea 7": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-7-metro-cdmx.jpg",
+            "Linea 8": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-8-metro-cdmx.jpg",
+            "Linea 9": "https://img.chilango.com/2024/09/mapa-linea-9-metro-cdmx-1069x720-1-1024x690.jpg",
+            "Linea 12": "https://animalpolitico.com/_next/image?url=https%3A%2F%2Fap-cdn.sfo3.cdn.digitaloceanspaces.com%2Fuploads%2F2022%2F09%2F36b81df9.jpg&w=3840&q=75",
+            "Linea A": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-a-metro-cdmx.jpg",
+            "Linea B": "https://img.chilango.com/2023/06/Linea-B-del-metro-1024x414.webp",
+            "2021": "https://www.metro.cdmx.gob.mx/storage/app/media/lared/MAPA_MI_3V.png"
         };
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function handleChange(value) {
+            updateChart(value);
+            updateColors(value);
+        }
+
+        function updateChart(option) {
+            let data;
+            switch(option) {
+                case 'Linea 1':
+                    data = [10, 20, 30, 40, 50, 60];
+                    break;
+                case 'Linea 2':
+                    data = [20, 20, 5, 5, 25, 25];
+                    break;
+                default:
+                    data = [12, 19, 3, 5, 2, 3];
+            }
+            myChart.data.datasets[0].data = data;
+            myChart.update();
+        }
 
         // Función para determinar el color basado en el valor
         function getColor(value) {
@@ -71,7 +242,6 @@
             if (value >= 500000) return '#FFF700'; // Amarillo
             return '#868686'; // Gris para valores menores
         }
-
         // Función para actualizar los colores de los paths
         function updateColors(year) {
             const paths = valueData[year];
@@ -81,22 +251,15 @@
                     pathElement.setAttribute('fill', getColor(value));
                 }
             });
+            // Cambia la imagen según la opción seleccionada
+            var image = document.getElementById("displayImage");
+            image.src = imageUrls[year] || imageUrls["Empty"];
         }
 
-        // Función para actualizar la selección de la opción
-        function updateSelection(year) {
-            updateColors(year);
-
-            // Actualizar imagen
-            const imgElement = document.getElementById('lineImage');
-            imgElement.src = imageMap[year] || ''; // Cambia el src de la imagen
-            imgElement.alt = `Imagen de la opción ${year}`;
-        }
-
-        // Inicializar con la opción 'Empty' seleccionada por defecto
+        // Inicializar con el año 2021 seleccionado por defecto
         window.onload = function() {
             document.getElementById('yearSelect').value = 'Empty';
-            updateSelection('Empty');
+            updateColors('Empty');
         };
     </script>
 </body>
