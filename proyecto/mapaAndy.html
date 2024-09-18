@@ -34,33 +34,64 @@
         height: auto;
         z-index: 1000;
       }
-      .fondo {
-        background-image: url("");/*URL de imagen de fondo*/
-        background-size: contain; /* Ajusta la imagen para que cubra toda la pantalla */
-        background-position: center; /* Centra la imagen en la pantalla */
-        background-repeat: no-repeat; /* Evita que la imagen se repita */
-        background-attachment: fixed; /* Hace que el fondo no se mueva cuando se desplaza la página */
-      }
-      img {
-        max-width: 400px;
-        max-height: 400px;
+      #background {
         position: absolute;
-        top: 30px; /* Ajusta la distancia desde la parte superior */
-        left: 600px;
+        width: 100%;
+        height: 100%;
+        background: url('https://www.eluniversal.com.mx/resizer/v2/EO6O6CVDXREZDLVRRGACU6G564.jpg?auth=c8324342379d144c34a13d6ce61a960406b4fb6339784f6fec8559e1ec3673d7&smart=true&width=1100&height=666') no-repeat center center fixed;
+        background-size: cover;
+        z-index: -1;
+    }
+      img {
+        position: absolute; /* Para posicionar la imagen de manera relativa a la ventana */
+        top: 0vh; /* Alinea la imagen en la parte superior */
+        left: 75vh; /* Alinea la imagen en la parte izquierda */
+        width: 350px; /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
+        height: auto; /* Mantiene la proporción de la imagen */
+        z-index: 1000;
     }
     #chartContainer {
         width: 400px;
         height: 400px;
         position: absolute;
-        top: 500px;
-        left: 600px;
+        top: 400px;
+        left: 560px;
+    }
+    #map-area {
+        position: relative;
+        z-index: 1;
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+    select {
+        background-color: #918d8d;
+        color: rgb(5, 5, 5);
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        appearance: none; /* Oculta la flecha predeterminada */
+        -webkit-appearance: none; /* Para navegadores WebKit */
+        -moz-appearance: none; /* Para navegadores Firefox */
+    }
+    select::after {
+        content: '▼';
+        position: absolute;
+        right: 10px;
+        pointer-events: none;
     }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body >
+    <div id="background"></div>
+    <div id="map-container">
     <img
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00medXKIsro8_W9vvB4gn4d215NH1ypEVXw&s"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg/600px-Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg.png"
     class="logoMetro"
     alt="LogoMetro"
   />
@@ -74,7 +105,7 @@
     class="logoUAEM"
     alt="Escudo de la UAEM" 
   />
-    <label for="yearSelect">Selecciona La Opcion:</label>
+    <label for="yearSelect" style="color: rgb(5, 5, 5);">Selecciona La Opcion:</label>
     <select id="yearSelect" onchange="handleChange(this.value)">
         <option value="Empty">Empty</option>
         <option value="Linea 1">Linea 1</option>
@@ -92,8 +123,9 @@
         <option value="2021">Todas las lineas</option>
         
     </select>
-    </div>
-    <img id="displayImage" src="https://via.placeholder.com/300x300?text=Empty" alt="Imagen seleccionada">
+    
+    <img id="displayImage" src="https://via.placeholder.com/300x300?text=Empty" alt="">
+    
 
     <svg id="map-area" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
         <path id="path3227" class="map-area" d="M 317.14526,21.701934 L 330.94193,55.641737 L 303.90046,91.513079 L 305.83199,115.51927 L 328.45853,126.00474 L 339.49586,126.28068 L 346.39419,122.41761 L 388.33607,140.07735 L 382.54147,151.94249 L 408.4792,205.47356 L 391.64727,211.82002 L 369.57259,202.99015 L 364.32987,207.95695 L 356.05187,202.99015 L 348.32573,202.71422 L 347.49793,204.64575 L 335.63279,202.43829 L 303.07266,183.95075 L 289.276,184.77855 L 272.44405,144.49228 L 265.26979,114.96742 L 248.98972,110.55248 L 249.54159,105.86161 L 238.50425,95.100207 L 266.09759,103.37821 L 271.06439,98.687345 L 265.26979,93.168669 L 274.37559,80.475739 L 265.54572,70.818072 L 271.89219,57.021403 L 279.61832,58.40107 L 288.72412,36.878267 L 303.62452,20.046333 L 317.14526,21.701934 z" />
@@ -172,10 +204,10 @@
                 {"id": "path3237", "value": 4486218},
                 {"id": "path3239", "value": 4977454},
                 {"id": "path3241", "value": 6457461},
-                {"id": "path3243", "value": 11449206},//Cuajimalpa
+                {"id": "path3243", "value": 0},//Cuajimalpa
                 {"id": "path3245", "value": 8849949},//Magdalena Contreras
-                {"id": "path3247", "value": 4608832},
-                {"id": "path3249", "value": 4369643},
+                {"id": "path3247", "value": 0},
+                {"id": "path3249", "value": 0},
                 {"id": "path3251", "value": 3532268},
                 {"id": "path3253", "value": 4054718},
                 {"id": "path3255", "value": 6879516},
@@ -192,7 +224,7 @@
                 {"id": "path3241", "value": 5000000},//Alvaro Obregon
                 {"id": "path3243", "value": 1},
                 {"id": "path3245", "value": 5000000},
-                {"id": "path3247", "value": 3000000},//Tlalpan
+                {"id": "path3247", "value": 0},//Tlalpan
                 {"id": "path3249", "value": 1},
                 {"id": "path3251", "value": 1},
                 {"id": "path3253", "value": 1},
@@ -298,7 +330,7 @@
                 {"id": "path3237", "value": 0},//Cuahutemoc
                 {"id": "path3239", "value": 3000000},//Benito juarez
                 {"id": "path3241", "value": 50000000},//Alvaro Obregon
-                {"id": "path3243", "value": 50000000},//Cuajimalpa
+                {"id": "path3243", "value": 0},//Cuajimalpa
                 {"id": "path3245", "value": 0},//Magdalena Contreras
                 {"id": "path3247", "value": 0},//Tlalpan
                 {"id": "path3249", "value": 0},//Milpa Alta
@@ -355,7 +387,7 @@
                 {"id": "path3243", "value": 0},//Cuajimalpa
                 {"id": "path3245", "value": 0},//Magdalena Contreras
                 {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 3000000},//Milpa Alta
+                {"id": "path3249", "value": 0},//Milpa Alta
                 {"id": "path3251", "value": 0},//Coyoacan
                 {"id": "path3253", "value": 3000000},//iztapalapa
                 {"id": "path3255", "value": 50000000},//Tlahuac
@@ -400,58 +432,62 @@
 
         };
 
-        const imageUrls = {
-            "Empty": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ00medXKIsro8_W9vvB4gn4d215NH1ypEVXw&s",
-            "Linea 1": "https://www.mexicodesconocido.com.mx/wp-content/uploads/2022/08/mapa-linea-1-metro-cdmx.jpeg",
-            "Linea 2": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-2-metro-cdmx.jpg",
-            "Linea 3": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-3-metro-cdmx.jpg",
-            "Linea 4": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-4-metro-cdmx.jpg",
-            "Linea 5": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvSOhHAqSQVoCRXDjxoD_sZYKMMzLyEG5M1g&s",
-            "Linea 6": "https://www.infobae.com/new-resizer/tAnzYKSNU5kaj1TZQZdS0udYqso=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/QIGTOYNO35CZJH2YTJPVQLBZKM.jpg",
-            "Linea 7": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-7-metro-cdmx.jpg",
-            "Linea 8": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-8-metro-cdmx.jpg",
-            "Linea 9": "https://img.chilango.com/2024/09/mapa-linea-9-metro-cdmx-1069x720-1-1024x690.jpg",
-            "Linea 12": "https://animalpolitico.com/_next/image?url=https%3A%2F%2Fap-cdn.sfo3.cdn.digitaloceanspaces.com%2Fuploads%2F2022%2F09%2F36b81df9.jpg&w=3840&q=75",
-            "Linea A": "https://metro-cdmx.com.mx/wp-content/uploads/2022/03/mapa-linea-a-metro-cdmx.jpg",
-            "Linea B": "https://img.chilango.com/2023/06/Linea-B-del-metro-1024x414.webp",
-            "2021": "https://www.metro.cdmx.gob.mx/storage/app/media/lared/MAPA_MI_3V.png"
-        };
+    
+
+    const imageUrls = {
+        "Empty": "",
+        "Linea 1": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_1.png",
+        "Linea 2": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_2.png",
+        "Linea 3": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_3.png",
+        "Linea 4": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_4.png",
+        "Linea 5": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_5.png",
+        "Linea 6": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_6.png",
+        "Linea 7": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_7.png",
+        "Linea 8": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_8.png",
+        "Linea 9": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_9.png",
+        "Linea 12": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_12.png",
+        "Linea A": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_A.png",
+        "Linea B": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_B.png",
+        "2021": "https://upload.wikimedia.org/wikipedia/commons/5/50/Mapa_del_Metro_de_la_Ciudad_de_M%C3%A9xico.png"
+    };
+
+
         
-        const ctx = document.getElementById('myChart').getContext('2d');
-let myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
+    const ctx = document.getElementById('myChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         datasets: [{
             label: 'Afluencia',
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)'
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)',
+                'rgba(255, 0, 0, 1)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 99, 132, 1)'
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)',
+                'rgba(255, 255, 255, 1)'
             ],
             borderWidth: 1
         }]
@@ -459,7 +495,28 @@ let myChart = new Chart(ctx, {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+            ticks: {
+                    color: 'black' // Cambia el color de las etiquetas del eje y a blanco
+                },
+                grid: {
+                    color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                }
+            },
+            x: {
+                ticks: {
+                    color: 'black' // Cambia el color de las etiquetas del eje x a blanco
+                },
+                grid: {
+                    color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'black' // Cambia el color de las etiquetas de la leyenda a blanco
+                }
             }
         }
     }
@@ -467,55 +524,56 @@ let myChart = new Chart(ctx, {
         function handleChange(value) {
             updateChart(value);
             updateColors(value);
+            console.log("Selected value: " + value);
         }
 
         function updateChart(option) {
             let data;
             switch(option) {
                 case 'Empty':
-                    data = [0, 0, 0, 0, 0, 0,0,0,0,0,0];
+                    data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                     break;
                 case 'Linea 1':
-                    data = [10, 80, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [22478385,22478385,22478385, 31709870,31709870,31709870, 37190915,37190915,37190915, 40274245,40274245,40274245];
                     break;
                 case 'Linea 2':
-                    data = [20, 70, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [16288868,16288868,16288868, 28138915,28138915,28138915, 31388259,31388259,31388259, 37715411,37715411,37715411];
                     break;
                 case 'Linea 3':
-                    data = [30, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [15971452,15971452,15971452, 26478247,26478247,26478247, 30235377,30235377,30235377, 34849508,34849508,34849508];
                     break;
                 case 'Linea 4':
-                    data = [40, 50, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [3078276,3078276,3078276, 3381775,3381775,3381775, 4291572,4291572,4291572, 5181019,5181019,5181019];
                     break;
                 case 'Linea 5':
-                    data = [50, 40, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [9872396,9872396,9872396, 11897163,11897163,11897163, 12726317,12726317,12726317, 14595077,14595077,14595077];
                     break;
                 case 'Linea 6':
-                    data = [60, 30, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [4374468,4374468,4374468, 5653367,5653367,5653367, 6131265,6131265,6131265, 7374345,7374345,7374345];
                     break;
                 case 'Linea 7':
-                    data = [70, 20, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [10786822,10786822,10786822, 12402188,12402188,12402188, 13545219,13545219,13545219, 15180868,15180868,15180868];
                     break;
                 case 'Linea 8':
-                    data = [80, 10, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [16031484,16031484,16031484, 18861014,18861014,18861014, 21455407,21455407,21455407, 26387043,26387043,26387043];
                     break;
                 case 'Linea 9':
-                    data = [10, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [15762841,15762841,15762841, 15574018,15574018,15574018, 19473027,19473027,19473027, 21588534,21588534,21588534];
                     break;
                 case 'Linea 12':
-                    data = [20, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [15940452,15940452,15940452, 6130906,6130906,6130906, 0,0,0, 0,0,0];
                     break;
                 case 'Linea A':
-                    data = [30, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [18208226,18208226,18208226, 19738024,19738024,19738024, 20048628,20048628,20048628, 21563218,21563218,21563218];
                     break;
                 case 'Linea B':
-                    data = [40, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [18175760,18175760,18175760, 19569033,19569033,19569033, 22405666,22405666,22405666, 27368543,27368543,27368543];
                     break;
                 case 'Todas las lineas':
-                    data = [50, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [166969430,166969430,166969430, 199534520,199534520,199534520, 218891652,218891652,218891652, 252077811,252077811,252077811];
                     break;
                 default:
-                    data = [10, 60, 80, 20, 50, 10,20,30,40,50,70];
+                    data = [166969430,166969430,166969430, 199534520,199534520,199534520, 218891652,218891652,218891652, 252077811,252077811,252077811];
             }
             myChart.data.datasets[0].data = data;
             myChart.update();
