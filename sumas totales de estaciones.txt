@@ -1,53 +1,227 @@
 Afluencia 2021
 
-LINEA 1
+LÍNEA 1
+Pantitlán: 12,091,630
+Zaragoza: 8,708,578
+Gómez Farías: 7,337,725
+Blvd. Puerto Aéreo: 5,468,560
+Balbuena: 2,246,042
+Moctezuma: 4,486,218
+San Lázaro: 4,977,454
+Candelaria: 6,457,461
+Merced: 11,449,206
+Pino Suárez: 8,849,949
+Isabel la Católica: 4,608,832
+Salto del Agua: 4,369,643
+Balderas: 3,532,268
+Cuauhtémoc: 4,054,718
+Insurgentes: 6,879,516
+Sevilla: 5,624,058
+Chapultepec: 9,091,332
+Juanacatlán: 1,859,621
+Tacubaya: 7,381,863
+Observatorio: 12,178,741
 
-Pantitlán 12,091,630
-Zaragoza 8,708,578
-Gómez Farías 7,337,725
-Blvd. Puerto Aéreo 5,468,560
-Balbuena 2,246,042
-Moctezuma 4,486,218
-San Lázaro 4,977,454
-Candelaria 6,457,461
-Merced 11,449,206
-Pino Suárez 8,849,949
-Isabel la Católica 4,608,832
-Salto del Agua 4,369,643
-Balderas 3,532,268
-Cuauhtémoc 4,054,718
-Insurgentes 6,879,516
-Sevilla 5,624,058
-Chapultepec 9,091,332
-Juanacatlán 1,859,621
-Tacubaya 7,381,863
-Observatorio 12,178,741
+LÍNEA 2
+Cuatro Caminos: 15,156,149
+Panteones: 2,235,576
+Tacuba: 6,994,297
+Cuitláhuac: 3,213,123
+Popotla: 1,390,202
+Colegio Militar: 2,118,471
+Normal: 5,211,134
+San Cosme: 3,407,301
+Revolución: 4,495,227
+Hidalgo: 5,473,990
+Bellas Artes: 4,305,045
+Allende: 4,250,192
+Zócalo: 6,390,406
+Pino Suárez: 3,366,820
+San Antonio Abad: 3,533,270
+Chabacano: 4,497,267
+Viaducto: 3,287,377
+Xola: 3,267,474
+Villa de Cortés: 2,926,908
+Nativitas: 3,190,651
+Portales: 3,691,622
+Ermita: 3,363,619
+General Anaya: 3,279,093
+Tasqueña: 14,486,239
 
-AÑO 2020
+LÍNEA 3
+Indios Verdes: 23,449,776
+Deptvo. 18 de Marzo: 5,936,737
+Potrero: 2,998,686
+La Raza: 6,278,397
+Tlatelolco: 3,424,240
+Guerrero: 2,134,844
+Hidalgo: 2,578,964
+Juárez: 2,956,795
+Balderas: 1,290,882
+Niños Héroes/PJCDMX: 3,626,376
+Hospital General: 3,421,978
+Centro Médico: 3,695,180
+Etiopía/Plaza de la Trans.: 4,693,331
 
-LINEA 1
+LÍNEA 4
+Santa Anita: 391,005
+Jamaica: 1,550,480
+Fray Servando: 1,827,514
+Candelaria: 1,912,281
+Morelos: 1,770,575
+Canal del Norte: 1,714,787
+Consulado: 757,318
+Bondojito: 1,242,891
+Talismán: 895,738
+Martín Carrera: 3,870,053
 
-Pantitlán 3515769
-Zaragoza 2417692
-Gómez Farías 2010767
-Blvd. Puerto Aéreo 1326947
-Balbuena 653439
-Moctezuma 1231306
-San Lázaro 1198825
-Candelaria 2155256
-Merced 3245459
-Pino Suárez 2701577
-Isabel la Católica 1174197
-Salto del Agua 1258666
-Balderas 914334
-Cuauhtémoc 1026989
-Insurgentes 2606385
-Sevilla 1364048
-Chapultepec 9,091,332
-Juanacatlán 1,859,621
-Tacubaya 7,381,863
-Observatorio 12,178,741
+LÍNEA 5
+Politécnico: 5,789,532
+Inst. del Petróleo: 1,133,656
+Autobuses del Norte: 4,322,667
+La Raza: 2,414,062
+Misterios: 1,696,494
+Valle Gómez: 912,959
+Eduardo Molina: 1,293,750
+Aragón: 1,605,655
+Oceanía: 2,002,185
+Terminal Aérea: 4,419,693
+Hangares: 946,994
+Pantitlán: 21,339,443
 
+LÍNEA 6
+El Rosario: 2,983,811
+Tezozómoc: 1,093,928
+Azcapotzalco: 1,439,985
+Ferrería/Arena CDMX: 3,524,534
+Norte 45: 1,619,693
+Vallejo: 1,955,966
+Inst. del Petróleo: 506,888
+Lindavista: 2,411,708
+Deptvo. 18 de Marzo: 323,811
+La Villa-Basilica: 2,292,984
+Martín Carrera: 5,380,137
+
+LÍNEA 7
+El Rosario: 6,245,113
+Aquiles Serdán: 2,199,473
+Camarones: 3,021,762
+Refinería: 2,206,048
+Tacuba: 2,081,340
+San Joaquín: 4,896,923
+Polanco: 5,373,504
+Auditorio: 5,474,627
+Constituyentes: 1,153,246
+Tacubaya: 1,144,856
+San Pedro los Pinos: 2,399,129
+San Antonio: 2,429,723
+Mixcoac: 5,957,730
+Barranca del Muerto: 7,331,623
+
+LÍNEA 8
+Garibaldi/Lagunilla: 3,439,579
+Bellas Artes: 4,204,561
+San Juan Letrán: 6,320,155
+Salto del Agua: 3,098,577
+Doctores: 2,988,875
+Obrera: 3,182,282
+Chabacano: 988,177
+La Viga: 1,599,439
+Santa Anita: 1,025,639
+Coyuya: 5,581,291
+Iztacalco: 4,365,189
+Apatlaco: 3,676,323
+Aculco: 2,316,884
+Escuadrón 201: 4,527,035
+Atlalilco: 4,615,611
+Iztapalapa: 2,443,580
+Cerro de la Estrella: 2,606,672
+UAM I: 5,254,770
+Constitución de 1917: 20,500,309
+
+LÍNEA 9
+Pantitlán: 22,367,944
+Puebla: 7,068,973
+Ciudad Deportiva: 1,275,094
+Velódromo: 1,770,000
+Mixiuhca: 4,387,575
+Jamaica: 2,621,993
+Chabacano: 2,813,390
+Lázaro Cárdenas: 2,951,608
+Centro Médico: 3,348,060
+Chilpancingo: 9,430,276
+Tacubaya: 10,567,781
+
+LÍNEA A
+Pantitlán: 33,368,107
+Agrícola Oriental: 2,768,101
+Canal de San Juan: 3,282,914
+Tepalcates: 5,328,315
+Guelatao: 3,840,759
+Peñón Viejo: 3,310,816
+Acatitla: 3,640,691
+Santa Marta: 8,697,084
+Los Reyes: 4,949,098
+La Paz: 10,372,211
+
+LÍNEA B
+Buenavista: 12,114,410
+Guerrero: 1,493,722
+Garibaldi/Lagunilla: 1,363,736
+Lagunilla: 4,862,989
+Tepito: 5,518,062
+Morelos: 995,579
+San Lázaro: 3,217,040
+Ricardo Flores Magón: 1,406,335
+Romero Rubio: 2,257,035
+Oceanía: 2,109,569
+Deportivo Oceanía: 2,903,706
+Bosque de Aragón: 1,069,381
+Villa de Aragón: 2,590,343
+Nezahualcóyotl: 4,258,836
+Impulsora: 5,109,318
+Río de los Remedios: 4,785,870
+Múzquiz: 7,202,836
+Ecatepec: 4,853,732
+Olímpica: 4,040,957
+Plaza Aragón: 4,412,715
+Ciudad Azteca: 10,952,831
+
+LÍNEA 12
+Tláhuac: 3,245,863
+Tlaltenco: 301,594
+Zapotitlán: 960,815
+Nopalera: 1,619,653
+Olivos: 1,105,981
+Tezonco: 1,623,999
+Periférico Oriente: 1,916,407
+Calle 11: 994,257
+Lomas Estrella: 545,971
+San Andrés Tomatlán: 628,588
+Culhuacán: 1,179,625
+Atlalilco: 847,723
+Mexicaltzingo: 1,030,856
+Ermita: 847,698
+Eje Central: 664,899
+Parque de los Venados: 567,984
+Zapata: 895,128
+20 de Noviembre: 593,128
+Insurgentes Sur: 1,807,375
+Mixcoac: 693,814
+
+TodasLasLineas
+Linea1: 131,653,415
+Linea2: 113,531,453
+Linea3: 107,534,584
+Linea4: 15,932,642
+Linea5: 49,090,953
+Linea6: 23,533,445
+Linea7: 51,915,097
+Linea8: 82,734,948
+Linea9: 72,398,420
+LineaA: 79,558,096
+LineaB: 87,519,002
+Linea12: 22,071,358
 
 
 url lineas del metro png
@@ -69,8 +243,264 @@ url lineas del metro png
 
 
 
+create database metro;
+use metro
 
+create table linea1(
+id INT AUTO_INCREMENT PRIMARY KEY,
+Observatorio Long,
+Tacubaya Long,
+Juanacatlan Long,
+Chapultepec Long,
+Sevilla Long,
+Insurgentes Long,
+Cuauhtemoc Long,
+Balderas Long,
+SaltoDelAgua Long,
+IsabelLaCatólica Long,
+PinoSuarez Long,
+Merced Long,
+Candelaria Long,
+SanLazaro Long,
+Moctezuma Long,
+Balbuena Long,
+BoulevardPuertoAereo Long,
+GomezFarias Long,
+Zaragoza Long,
+Pantitlan Long);
 
+CREATE TABLE Linea2 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    CuatroCaminos LONG,
+    Panteones LONG,
+    Tacuba LONG,
+    Cuitlahuac LONG,
+    Popotla LONG,
+    ColegioMilitar LONG,
+    Normal LONG,
+    SanCosme LONG,
+    Revolucion LONG,
+    Hidalgo LONG,
+    BellasArtes LONG,
+    Allende LONG,
+    Zocalo LONG,
+    PinoSuarez LONG,
+    SanAntonioAbad LONG,
+    Chabacano LONG,
+    Viaducto LONG,
+    Xola LONG,
+    VillaDeCortes LONG,
+    Nativitas LONG,
+    Portero LONG,
+    Ermita LONG,
+    GeneralAnaya LONG,
+    Tasquena LONG
+);
+
+CREATE TABLE Linea3 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    IndiosVerdes LONG,
+    Deportivo18DeMarzo LONG,
+    Potrero LONG,
+    LaRaza LONG,
+    Tlatelolco LONG,
+    Guerrero LONG,
+    Hidalgo LONG,
+    Juarez LONG,
+    Balderas LONG,
+    NiñosHeroes LONG,
+    HospitalGeneral LONG,
+    CentroMedico LONG,
+    Etiopia LONG,
+    Eugenia LONG,
+    DivisionDelNorte LONG,
+    Zapata LONG,
+    Coyoacan LONG,
+    Viveros LONG,
+    MiguelAngelDeQuevedo LONG,
+    Copilco LONG,
+    Universidad LONG
+);
+
+CREATE TABLE Linea4 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    MartinCarrera LONG,
+    Talismán LONG,
+    Bondojito LONG,
+    Consulado LONG,
+    CanalDelNorte LONG,
+    Morelos LONG,
+    Candelaria LONG,
+    FrayServando LONG,
+    Jamaica LONG,
+    SantaAnita LONG
+);
+
+CREATE TABLE Linea5 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Pantitlan LONG,
+    Hangares LONG,
+    TerminalAerea LONG,
+    Oceanía LONG,
+    Aragón LONG,
+    EduardoMolina LONG,
+    Consulado LONG,
+    ValleGomez LONG,
+    Misterios LONG,
+    LaRaza LONG,
+    AutobusesDelNorte LONG,
+    InstitutoDelPetroleo LONG,
+    Politecnico LONG
+);
+
+CREATE TABLE Linea6 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ElRosario LONG,
+    Tezozomoc LONG,
+    UamAzcapotzalco LONG,
+    Ferreria LONG,
+    Norte45 LONG,
+    Vallejo LONG,
+    InstitutoDelPetroleo LONG,
+    Lindavista LONG,
+    Deportivo18DeMarzo LONG,
+    LaVillaBasílica LONG,
+    MartinCarrera LONG
+);
+
+CREATE TABLE Linea7 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ElRosario LONG,
+    AquilesSerdan LONG,
+    Camarones LONG,
+    Refineria LONG,
+    Tacuba LONG,
+    SanJoaquin LONG,
+    Polanco LONG,
+    Auditorio LONG,
+    Constituyentes LONG,
+    Tacubaya LONG,
+    SanPedroDeLosPinos LONG,
+    SanAntonio LONG,
+    Mixcoac LONG,
+    BarrancaDelMuerto LONG
+);
+
+CREATE TABLE Linea8 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Garibaldi LONG,
+    BellasArtes LONG,
+    SanJuanDeLetran LONG,
+    SaltoDelAgua LONG,
+    Doctores LONG,
+    Obrera LONG,
+    Chabacano LONG,
+    LaViga LONG,
+    SantaAnita LONG,
+    Coyuya LONG,
+    Iztacalco LONG,
+    Apatlaco LONG,
+    Aculco LONG,
+    Escuadron201 LONG,
+    Atlalilco LONG,
+    Iztapalapa LONG,
+    CerroDeLaEstrella LONG,
+    UamI LONG,
+    ConstitucionDe1917 LONG
+);
+
+CREATE TABLE Linea9 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Pantitlan LONG,
+    Puebla LONG,
+    CiudadDeportiva LONG,
+    Velodromo LONG,
+    Mixiuhca LONG,
+    Jamaica LONG,
+    Chabacano LONG,
+    LazaroCardenas LONG,
+    CentroMedico LONG,
+    Chilpancingo LONG,
+    Patriotismo LONG,
+    Tacubaya LONG
+);
+
+CREATE TABLE Linea12 (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Mixcoac LONG,
+    InsurgentesSur LONG,
+    Hospital20DeNoviembre LONG,
+    Zapata LONG,
+    ParqueDeLosVenados LONG,
+    EjeCentral LONG,
+    Ermita LONG,
+    Mexicaltzingo LONG,
+    Atlalilco LONG,
+    Culhuacan LONG,
+    SanAndresTomatlan LONG,
+    LomasEstrella LONG,
+    Calle11 LONG,
+    PerifericoOriente LONG,
+    Tezonco LONG,
+    Olivos LONG,
+    Nopalera LONG,
+    Zapotitlan LONG,
+    Tlaltenco LONG,
+    Tlahuac LONG
+);
+
+CREATE TABLE LineaA (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Pantitlan LONG,
+    AgricolasOrientales LONG,
+    CanalDeSanJuan LONG,
+    Tepalcates LONG,
+    Guelatao LONG,
+    PeñonViejo LONG,
+    Acatitla LONG,
+    SantaMarta LONG,
+    LosReyes LONG,
+    LaPaz LONG
+);
+
+CREATE TABLE LineaB (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Buenavista LONG,
+    Guerrero LONG,
+    Garibaldi LONG,
+    Lagunilla LONG,
+    Tepito LONG,
+    Morelos LONG,
+    SanLazaro LONG,
+    RicardoFloresMagon LONG,
+    RomeroRubio LONG,
+    Oceanía LONG,
+    DeportivoOceanía LONG,
+    BosqueDeAragon LONG,
+    VillaDeAragon LONG,
+    Nezahualcóyotl LONG,
+    Impulsora LONG,
+    RioDeLosRemedios LONG,
+    Muzquiz LONG,
+    Ecatepec LONG,
+    Olimpica LONG,
+    PlazaAragon LONG,
+    CiudadAzteca LONG
+);
+
+create table Todas(id int primary key auto_increment, 
+Linea1 Long, 
+Linea2 Long, 
+Linea3 Long, 
+Linea4 Long, 
+Linea5 Long, 
+Linea6 Long, 
+Linea7 Long, 
+Linea8 Long, 
+Linea9 Long, 
+LineaA Long, 
+LineaB Long,
+Linea12 Long);
 
 
 

@@ -1,172 +1,829 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Mapping</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* Para que sea visible el resultado en una demo */
         svg path {
             stroke: #000;
             stroke-width: 1px;
         }
-        .logoMetro{
-        position: absolute; /* Para posicionar la imagen de manera relativa a la ventana */
-        top: 5vh; /* Alinea la imagen en la parte superior */
-        left: 3vh; /* Alinea la imagen en la parte izquierda */
-        width: 100px; /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
-        height: auto; /* Mantiene la proporción de la imagen */
-        z-index: 1000; /* Asegura que la imagen esté por encima de otros elementos */
-      }
-      .logoCDMX{
-        position: absolute;
-        top: 22vh;
-        left: 3vh;
-        width: 100px;
-        height: auto;
-        z-index: 1000;
-      }
-      .logoUAEM{
-        position: absolute;
-        top: 83vh;
-        left: 3vh;
-        width: 100px;
-        height: auto;
-        z-index: 1000;
-      }
-      #background {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: url('https://www.eluniversal.com.mx/resizer/v2/EO6O6CVDXREZDLVRRGACU6G564.jpg?auth=c8324342379d144c34a13d6ce61a960406b4fb6339784f6fec8559e1ec3673d7&smart=true&width=1100&height=666') no-repeat center center fixed;
-        background-size: cover;
-        z-index: -1;
-    }
-      img {
-        position: absolute; /* Para posicionar la imagen de manera relativa a la ventana */
-        top: 0vh; /* Alinea la imagen en la parte superior */
-        left: 75vh; /* Alinea la imagen en la parte izquierda */
-        width: 350px; /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
-        height: auto; /* Mantiene la proporción de la imagen */
-        z-index: 1000;
-    }
-    #chartContainer {
-        width: 400px;
-        height: 400px;
-        position: absolute;
-        top: 400px;
-        left: 560px;
-    }
-    #map-area {
-        position: relative;
-        z-index: 1;
-    }
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-    }
-    select {
-        background-color: #918d8d;
-        color: rgb(5, 5, 5);
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        appearance: none; /* Oculta la flecha predeterminada */
-        -webkit-appearance: none; /* Para navegadores WebKit */
-        -moz-appearance: none; /* Para navegadores Firefox */
-    }
-    select::after {
-        content: '▼';
-        position: absolute;
-        right: 10px;
-        pointer-events: none;
-    }
+
+        .logoMetro {
+            position: absolute;
+            /* Para posicionar la imagen de manera relativa a la ventana */
+            top: 5vh;
+            /* Alinea la imagen en la parte superior */
+            left: 3vh;
+            /* Alinea la imagen en la parte izquierda */
+            width: 100px;
+            /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
+            z-index: 1000;
+            /* Asegura que la imagen esté por encima de otros elementos */
+        }
+
+        .logoCDMX {
+            position: absolute;
+            top: 22vh;
+            left: 3vh;
+            width: 100px;
+            height: auto;
+            z-index: 1000;
+        }
+
+        .logoUAEM {
+            position: absolute;
+            top: 83vh;
+            left: 3vh;
+            width: 100px;
+            height: auto;
+            z-index: 1000;
+        }
+
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.eluniversal.com.mx/resizer/v2/EO6O6CVDXREZDLVRRGACU6G564.jpg?auth=c8324342379d144c34a13d6ce61a960406b4fb6339784f6fec8559e1ec3673d7&smart=true&width=1100&height=666') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        img {
+            position: absolute;
+            /* Para posicionar la imagen de manera relativa a la ventana */
+            top: 0vh;
+            /* Alinea la imagen en la parte superior */
+            left: 75vh;
+            /* Alinea la imagen en la parte izquierda */
+            width: 350px;
+            /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
+            z-index: 1000;
+        }
+
+        #chartContainer {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 400px;
+            left: 560px;
+        }
+
+        #map-area {
+            position: relative;
+            z-index: 1;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        select {
+            position: relative;
+            background-color: #8888884b;
+            backdrop-filter: blur(100px);
+            color: rgb(5, 5, 5);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            appearance: none;
+            -webkit-appearance: none; /* Para navegadores WebKit */
+            -moz-appearance: none; /* Para navegadores Firefox */
+        }
+
+        select::after {
+            content: '▼';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .modal {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            left: 68%;
+            top: 0%;
+            width: 30%;
+            height: 100%;
+            overflow: hidden;
+            padding-top: 0%;
+            
+            
+        }
+
+        .modal-content  {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            margin: 2% auto;
+            padding: 20px;
+            border: 1px solid #7c7b7b;
+            width: 80%;
+            height: 96%; /* Asegúrate de que ocupe el 100% de altura */
+            overflow-y: scroll;
+        }
+                /* Ocultar barra de desplazamiento en navegadores WebKit */
+.modal-content::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+   
+     .close {
+            color: #000000;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        input {
+            width: calc(100% - 20px); /* Ancho total menos el padding */
+            padding: 10px;
+            margin: 5px 0; /* Espaciado entre campos */
+            border: 2px solid #000000; /* Borde gris claro */
+            border-radius: 20px; /* Bordes redondeados */
+            transition: border 0.3s; 
+            background: transparent;
+
+        }
+        button {
+            background: transparent; /* Color de fondo azul */
+            color: rgb(0, 0, 0); /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 10px 15px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+            transition: background-color 0.3s;
+            border: 2px solid #000000;
+            border-radius: 20px;
+        }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body >
+
+<body>
     <div id="background"></div>
     <div id="map-container">
-    <img
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg/600px-Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg.png"
-    class="logoMetro"
-    alt="LogoMetro"
-  />
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/b/bb/CDMX_Logo.png"
-    class="logoCDMX"
-    alt="LogoCDMX"
-  />
-  <img
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png"
-    class="logoUAEM"
-    alt="Escudo de la UAEM" 
-  />
-    <label for="yearSelect" style="color: rgb(5, 5, 5);">Selecciona La Opcion:</label>
-    <select id="yearSelect" onchange="handleChange(this.value)">
-        <option value="Empty">Empty</option>
-        <option value="Linea 1">Linea 1</option>
-        <option value="Linea 2">Linea 2</option>
-        <option value="Linea 3">Linea 3</option>
-        <option value="Linea 4">Linea 4</option>
-        <option value="Linea 5">Linea 5</option>
-        <option value="Linea 6">Linea 6</option>
-        <option value="Linea 7">Linea 7</option>
-        <option value="Linea 8">Linea 8</option>
-        <option value="Linea 9">Linea 9</option>
-        <option value="Linea 12">Linea 12</option>
-        <option value="Linea A">Linea A</option>
-        <option value="Linea B">Linea B</option>
-        <option value="2021">Todas las lineas</option>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg/600px-Logo_del_Metro_de_la_Ciudad_de_M%C3%A9xico.svg.png"
+            class="logoMetro" alt="LogoMetro" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/CDMX_Logo.png" class="logoCDMX" alt="LogoCDMX" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png"
+            class="logoUAEM" alt="Escudo de la UAEM" />
+        <label for="yearSelect" style="color: rgb(5, 5, 5);">Selecciona La Opcion:</label>
+        <select id="yearSelect" onchange="handleChange(this.value)">
+            <option value="Empty">Empty</option>
+            <option value="Linea 1">Linea 1</option>
+            <option value="Linea 2">Linea 2</option>
+            <option value="Linea 3">Linea 3</option>
+            <option value="Linea 4">Linea 4</option>
+            <option value="Linea 5">Linea 5</option>
+            <option value="Linea 6">Linea 6</option>
+            <option value="Linea 7">Linea 7</option>
+            <option value="Linea 8">Linea 8</option>
+            <option value="Linea 9">Linea 9</option>
+            <option value="Linea 12">Linea 12</option>
+            <option value="Linea A">Linea A</option>
+            <option value="Linea B">Linea B</option>
+            <option value="2021">Todas las lineas</option>
+
+        </select>
+        <div id="modalLinea1" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea1')">&times;</span>
+                <form id="modalLinea1">
+                    <label for="Linea1">LINEA 1 PANTITLAN / OBSERVATORIO</label><br>
+                    <label for="Pantitlan">Pantitlan:</label><br>
+                    <input type="text" id="Pantitlan" name="Pantitlan" ><br>
+                    <label for="Zaragoza">Zaragoza:</label><br>
+                    <input type="text" id="Zaragoza" name="Zaragoza"><br>
+                    <label for="GomezFarias">Gómez Farías:</label><br>
+                    <input type="text" id="GomezFarias" name="GomezFarias"><br>
+                    <label for="BoulevardPuertoAereo">Boulevard Puerto Aéreo:</label><br>
+                    <input type="text" id="BoulevardPuertoAereo" name="BoulevardPuertoAereo"><br>
+                    <label for="Balbuena">Balbuena:</label><br>
+                    <input type="text" id="Balbuena" name="Balbuena"><br>
+                    <label for="Moctezuma">Moctezuma:</label><br>
+                    <input type="text" id="Moctezuma" name="Moctezuma"><br>
+                    <label for="SanLazaro">San Lázaro:</label><br>
+                    <input type="text" id="SanLazaro" name="SanLazaro"><br>
+                    <label for="Candelaria">Candelaria:</label><br>
+                    <input type="text" id="Candelaria" name="Candelaria"><br>
+                    <label for="Merced">Merced:</label><br>
+                    <input type="text" id="Merced" name="Merced"><br>
+                    <label for="PinoSuarez">Pino Suarez:</label><br>
+                    <input type="text" id="PinoSuarez" name="PinoSuarez"><br>
+                    <label for="IsabelLaCatolica">Isabel La Catolica:</label><br>
+                    <input type="text" id="IsabelLaCatolica" name="IsabelLaCatolica"><br>
+                    <label for="SaltoDelAgua">Salto Del Agua:</label><br>
+                    <input type="text" id="SaltoDelAgua" name="SaltoDelAgua"><br>
+                    <label for="Balderas">Balderas:</label><br>
+                    <input type="text" id="Balderas" name="Balderas"><br>
+                    <label for="Cuauhtemoc">Cuauhtémoc:</label><br>
+                    <input type="text" id="Cuauhtemoc" name="Cuauhtemoc"><br>
+                    <label for="Insurgentes">Insurgentes:</label><br>
+                    <input type="text" id="Insurgentes" name="Insurgentes"><br>
+                    <label for="Sevilla">Sevilla:</label><br>
+                    <input type="text" id="Sevilla" name="Sevilla"><br>
+                    <label for="Chapultepec">Chapultepec:</label><br>
+                    <input type="text" id="Chapultepec" name="Chapultepec"><br>
+                    <label for="Juanacatlan">Juanacatlán:</label><br>
+                    <input type="text" id="Juanacatlan" name="Juanacatlan"><br>
+                    <label for="Tacubaya">Tacubaya:</label><br>
+                    <input type="text" id="Tacubaya" name="Tacubaya"><br>
+                    <label for="Observatorio">Observatorio:</label><br>
+                    <input type="text" id="Observatorio" name="Observatorio"><br>
+                    <button type="button" onclick="enviarDatos()">Enviar Datos</button><br>
+                </form>
+            </div>
+        </div>
         
-    </select>
-    
+        <div id="modalLinea2" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea2')">&times;</span>
+                <form id="formularioLinea2">
+                    <label for="Linea2">LINEA 2 TASQUEÑA / CUATRO CAMINOS</label><br>
+                    <label for="CuatroCaminos">Cuatro Caminos:</label><br>
+                    <input type="text" id="CuatroCaminos" name="CuatroCaminos"><br>
+                    <label for="Panteones">Panteones:</label><br>
+                    <input type="text" id="Panteones" name="Panteones"><br>
+                    <label for="Tacuba">Tacuba:</label><br>
+                    <input type="text" id="Tacuba" name="Tacuba"><br>
+                    <label for="Cuitlahuac">Cuitlahuac:</label><br>
+                    <input type="text" id="Cuitlahuac" name="Cuitlahuac"><br>
+                    <label for="Popotla">Popotla:</label><br>
+                    <input type="text" id="Popotla" name="Popotla"><br>
+                    <label for="ColegioMilitar">Colegio Militar:</label><br>
+                    <input type="text" id="ColegioMilitar" name="ColegioMilitar"><br>
+                    <label for="Normal">Normal:</label><br>
+                    <input type="text" id="Normal" name="Normal"><br>
+                    <label for="SanCosme">San Cosme:</label><br>
+                    <input type="text" id="SanCosme" name="SanCosme"><br>
+                    <label for="Revolucion">Revolucion:</label><br>
+                    <input type="text" id="Revolucion" name="Revolucion"><br>
+                    <label for="Hidalgo">Hidalgo:</label><br>
+                    <input type="text" id="Hidalgo" name="Hidalgo"><br>
+                    <label for="BellasArtes">Bellas Artes:</label><br>
+                    <input type="text" id="BellasArtes" name="BellasArtes"><br>
+                    <label for="Allende">Allende:</label><br>
+                    <input type="text" id="Allende" name="Allende"><br>
+                    <label for="Zocalo">Zocalo:</label><br>
+                    <input type="text" id="Zocalo" name="Zocalo"><br>
+                    <label for="PinoSuarez1">Pino Suarez:</label><br>
+                    <input type="text" id="PinoSuarez1" name="PinoSuarez1"><br>
+                    <label for="SanAntonioAbad">San Antonio Abad:</label><br>
+                    <input type="text" id="SanAntonioAbad" name="SanAntonioAbad"><br>
+                    <label for="Chabacano">Chabacano:</label><br>
+                    <input type="text" id="Chabacano" name="Chabacano"><br>
+                    <label for="Viaducto">Viaducto:</label><br>
+                    <input type="text" id="Viaducto" name="Viaducto"><br>
+                    <label for="Xola">Xola:</label><br>
+                    <input type="text" id="Xola" name="Xola"><br>
+                    <label for="VillaDeCortes">Villa de Cortes:</label><br>
+                    <input type="text" id="VillaDeCortes" name="VillaDeCortes"><br>
+                    <label for="Nativitas">Nativitas:</label><br>
+                    <input type="text" id="Nativitas" name="Nativitas"><br>
+                    <label for="Portales">Portales:</label><br>
+                    <input type="text" id="Portales" name="Portales"><br>
+                    <label for="Ermita">Ermita:</label><br>
+                    <input type="text" id="Ermita" name="Ermita"><br>
+                    <label for="GeneralAnaya">General Anaya:</label><br>
+                    <input type="text" id="GeneralAnaya" name="GeneralAnaya"><br>
+                    <label for="Tasquena">Tasqueña:</label><br>
+                    <input type="text" id="Tasquena" name="Tasquena"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea3" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea3')">&times;</span>
+                <form id="formularioLinea3">
+                    <label for="linea3">LINEA 3 UNIVERSIDAD / INDIOS VERDES</label><br>
+                    <label for="IndiosVerdes">Indios Verdes:</label><br>
+                    <input type="text" id="IndiosVerdes" name="IndiosVerdes"><br>
+                    <label for="Deportivo18DeMarzo">Deportivo 18 de Marzo:</label><br>
+                    <input type="text" id="Deportivo18DeMarzo" name="Deportivo18DeMarzo"><br>
+                    <label for="Potrero">Potrero:</label><br>
+                    <input type="text" id="Potrero" name="Potrero"><br>
+                    <label for="LaRaza">La Raza:</label><br>
+                    <input type="text" id="LaRaza" name="LaRaza"><br>
+                    <label for="Tlatelolco">Tlatelolco:</label><br>
+                    <input type="text" id="Tlatelolco" name="Tlatelolco"><br>
+                    <label for="Guerrero">Guerrero:</label><br>
+                    <input type="text" id="Guerrero" name="Guerrero"><br>
+                    <label for="Hidalgo1">Hidalgo:</label><br>
+                    <input type="text" id="Hidalgo1" name="Hidalgo1"><br>
+                    <label for="Juarez">Juárez:</label><br>
+                    <input type="text" id="Juarez" name="Juarez"><br>
+                    <label for="Balderas1">Balderas:</label><br>
+                    <input type="text" id="Balderas1" name="Balderas1"><br>
+                    <label for="NinosHeroes">Niños Héroes-Poder Judicial CDMX:</label><br>
+                    <input type="text" id="NinosHeroes" name="NinosHeroes"><br>
+                    <label for="HospitalGeneral">Hospital General:</label><br>
+                    <input type="text" id="HospitalGeneral" name="HospitalGeneral"><br>
+                    <label for="CentroMedico">Centro Médico:</label><br>
+                    <input type="text" id="CentroMedico" name="CentroMedico"><br>
+                    <label for="Etiopia">Etiopía-Plaza de la Transparencia:</label><br>
+                    <input type="text" id="Etiopia" name="Etiopia"><br>
+                    <label for="Eugenia">Eugenia:</label><br>
+                    <input type="text" id="Eugenia" name="Eugenia"><br>
+                    <label for="DivisionDelNorte">División del Norte:</label><br>
+                    <input type="text" id="DivisionDelNorte" name="DivisionDelNorte"><br>
+                    <label for="zapata">Zapata:</label><br>
+                    <input type="text" id="Zapata" name="Zapata"><br>
+                    <label for="coyoacan">Coyoacán:</label><br>
+                    <input type="text" id="Coyoacan" name="Coyoacan"><br>
+                    <label for="viveros">Viveros-Derechos Humanos:</label><br>
+                    <input type="text" id="Viveros" name="Viveros"><br>
+                    <label for="MiguelAngelDeQuevedo">Miguel Ángel de Quevedo:</label><br>
+                    <input type="text" id="MiguelAngelDeQuevedo" name="MiguelAngelDeQuevedo"><br>
+                    <label for="Copilco">Copilco:</label><br>
+                    <input type="text" id="Copilco" name="Copilco"><br>
+                    <label for="Universidad">Universidad:</label><br>
+                    <input type="text" id="Universidad" name="Universidad"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea4" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea4')">&times;</span>
+                <form id="formularioLinea4">
+                    <label for="linea4">Línea 4 MARTÍN CARRERA / SANTA ANITA</label><br>
+                    <label for="MartinCarrera">Martín Carrera:</label><br>
+                    <input type="text" id="MartinCarrera" name="MartinCarrera"><br>
+                    <label for="Talisman">Talismán:</label><br>
+                    <input type="text" id="Talisman" name="Talisman"><br>
+                    <label for="Bondojito">Bondojito:</label><br>
+                    <input type="text" id="Bondojito" name="Bondojito"><br>
+                    <label for="Consulado">Consulado:</label><br>
+                    <input type="text" id="Consulado" name="Consulado"><br>
+                    <label for="CanalDelNorte">Canal del Norte:</label><br>
+                    <input type="text" id="CanalDelNorte" name="CanalDelNorte"><br>
+                    <label for="Morelos">Morelos:</label><br>
+                    <input type="text" id="Morelos" name="Morelos"><br>
+                    <label for="Candelaria1">Candelaria/Palacio Legislativo:</label><br>
+                    <input type="text" id="Candelaria1" name="Candelaria1"><br>
+                    <label for="FrayServando">Fray Servando:</label><br>
+                    <input type="text" id="FrayServando" name="FrayServando"><br>
+                    <label for="Jamaica">Jamaica:</label><br>
+                    <input type="text" id="Jamaica" name="Jamaica"><br>
+                    <label for="SantaAnita">Santa Anita:</label><br>
+                    <input type="text" id="SantaAnita" name="SantaAnita"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea5" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea5')">&times;</span>
+                <form id="formularioLinea5">
+                    <label for="linea5">Línea 5 PANTITLÁN / POLITÉCNICO</label><br>
+                    <label for="Pantitlan1">Pantitlán:</label><br>
+                    <input type="text" id="Pantitlan1" name="Pantitlan1"><br>
+                    <label for="Hangares">Hangares:</label><br>
+                    <input type="text" id="Hangares" name="Hangares"><br>
+                    <label for="TerminalAerea">Terminal Aérea:</label><br>
+                    <input type="text" id="TerminalAerea" name="TerminalAerea"><br>
+                    <label for="Oceania">Oceanía:</label><br>
+                    <input type="text" id="Oceania" name="Oceania"><br>
+                    <label for="Aragon">Aragón:</label><br>
+                    <input type="text" id="Aragon" name="Aragon"><br>
+                    <label for="EduardoMolina">Eduardo Molina:</label><br>
+                    <input type="text" id="EduardoMolina" name="EduardoMolina"><br>
+                    <label for="Consulado1">Consulado:</label><br>
+                    <input type="text" id="Consulado1" name="Consulado1"><br>
+                    <label for="ValleGomez">Valle Gómez:</label><br>
+                    <input type="text" id="ValleGomez" name="ValleGomez"><br>
+                    <label for="Misterios">Misterios:</label><br>
+                    <input type="text" id="Misterios" name="Misterios"><br>
+                    <label for="LaRaza1">La Raza:</label><br>
+                    <input type="text" id="LaRaza1" name="LaRaza1"><br>
+                    <label for="AutobusesDelNorte">Autobuses del Norte:</label><br>
+                    <input type="text" id="AutobusesDelNorte" name="AutobusesDelNorte"><br>
+                    <label for="InstitutoDelPetroleo">Instituto del Petróleo:</label><br>
+                    <input type="text" id="InstitutoDelPetroleo" name="InstitutoDelPetroleo"><br>
+                    <label for="Politecnico">Politécnico:</label><br>
+                    <input type="text" id="Politecnico" name="Politecnico"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea6" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea6')">&times;</span>
+                <form id="formularioLinea6">
+                    <label for="linea6">Línea 6 EL ROSARIO / MARTÍN CARRERA</label><br>
+                    <label for="ElRosario">El Rosario:</label><br>
+                    <input type="text" id="ElRosario" name="ElRosario"><br>
+                    <label for="Tezozomoc">Tezozómoc:</label><br>
+                    <input type="text" id="Tezozomoc" name="Tezozomoc"><br>
+                    <label for="Azcapotzalco">UAM-Azcapotzalco:</label><br>
+                    <input type="text" id="Azcapotzalco" name="Azcapotzalco"><br>
+                    <label for="Ferreria">Ferrería/Arena Ciudad de México:</label><br>
+                    <input type="text" id="Ferreria" name="Ferreria"><br>
+                    <label for="Norte45">Norte 45:</label><br>
+                    <input type="text" id="Norte45" name="Norte45"><br>
+                    <label for="Vallejo">Vallejo:</label><br>
+                    <input type="text" id="Vallejo" name="Vallejo"><br>
+                    <label for="InstDelPetroleo">Instituto del Petróleo:</label><br>
+                    <input type="text" id="InstDelPetroleo" name="InstDelPetroleo"><br>
+                    <label for="Lindavista">Lindavista:</label><br>
+                    <input type="text" id="Lindavista" name="Lindavista"><br>
+                    <label for="Deportivo18DeMarzo1">Deportivo 18 de Marzo:</label><br>
+                    <input type="text" id="Deportivo18DeMarzo1" name="Deportivo18DeMarzo1"><br>
+                    <label for="LaVillaBasilica">La Villa-Basílica:</label><br>
+                    <input type="text" id="LaVillaBasilica" name="LaVillaBasilica"><br>
+                    <label for="MartinCarrera1">Martín Carrera:</label><br>
+                    <input type="text" id="MartinCarrera1" name="MartinCarrera1"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea7" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea7')">&times;</span>
+                <form id="formularioLinea7">
+                    <label for="linea7">Línea 7 El Rosario / Barranca del Muerto</label><br>
+                    <label for="ElRosario7">El Rosario:</label><br>
+                    <input type="text" id="ElRosario7" name="ElRosario7"><br>
+                    <label for="AquilesSerdan">Aquiles Serdán:</label><br>
+                    <input type="text" id="AquilesSerdan" name="AquilesSerdan"><br>
+                    <label for="Camarones">Camarones:</label><br>
+                    <input type="text" id="Camarones" name="Camarones"><br>
+                    <label for="Refineria">Refinería:</label><br>
+                    <input type="text" id="Refineria" name="Refineria"><br>
+                    <label for="Tacuba7">Tacuba:</label><br>
+                    <input type="text" id="Tacuba7" name="Tacuba7"><br>
+                    <label for="SanJoaquin">San Joaquín:</label><br>
+                    <input type="text" id="SanJoaquin" name="SanJoaquin"><br>
+                    <label for="Polanco">Polanco:</label><br>
+                    <input type="text" id="Polanco" name="Polanco"><br>
+                    <label for="Auditorio">Auditorio:</label><br>
+                    <input type="text" id="Auditorio" name="Auditorio"><br>
+                    <label for="Constituyentes">Constituyentes:</label><br>
+                    <input type="text" id="Constituyentes" name="Constituyentes"><br>
+                    <label for="Tacubaya7">Tacubaya:</label><br>
+                    <input type="text" id="Tacubaya7" name="Tacubaya7"><br>
+                    <label for="SanPedroDeLosPinos">San Pedro de los Pinos:</label><br>
+                    <input type="text" id="SanPedroDeLosPinos" name="SanPedroDeLosPinos"><br>
+                    <label for="SanAntonio">San Antonio:</label><br>
+                    <input type="text" id="SanAntonio" name="SanAntonio7"><br>
+                    <label for="Mixcoac">Mixcoac:</label><br>
+                    <input type="text" id="Mixcoac" name="Mixcoac"><br>
+                    <label for="BarrancaDelMuerto">Barranca del Muerto:</label><br>
+                    <input type="text" id="BarrancaDelMuerto" name="BarrancaDelMuerto"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea8" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea8')">&times;</span>
+                <form id="formularioLinea8">
+                    <label for="Linea8">LÍNEA 8 GARIBALDI / CONSTITUCIÓN</label><br>
+                    <label for="Garibaldi">Garibaldi-Lagunilla:</label><br>
+                    <input type="text" id="Garibaldi" name="Garibaldi"><br>
+                    <label for="BellasArtes8">Bellas Artes:</label><br>
+                    <input type="text" id="BellasArtes8" name="BellasArtes8"><br>
+                    <label for="SanJuanDeLetran">San Juan de Letrán:</label><br>
+                    <input type="text" id="SanJuanDeLetran" name="SanJuanDeLetran"><br>
+                    <label for="SaltoDelAgua8">Salto del Agua:</label><br>
+                    <input type="text" id="SaltoDelAgua8" name="SaltoDelAgua8"><br>
+                    <label for="Doctores">Doctores:</label><br>
+                    <input type="text" id="Doctores" name="Doctores"><br>
+                    <label for="Obrera">Obrera:</label><br>
+                    <input type="text" id="Obrera" name="Obrera"><br>
+                    <label for="Chabacano8">Chabacano:</label><br>
+                    <input type="text" id="Chabacano8" name="Chabacano8"><br>
+                    <label for="LaViga">La Viga:</label><br>
+                    <input type="text" id="LaViga" name="LaViga"><br>
+                    <label for="SantaAnita8">Santa Anita:</label><br>
+                    <input type="text" id="SantaAnita8" name="SantaAnita8"><br>
+                    <label for="Coyuya">Coyuya:</label><br>
+                    <input type="text" id="Coyuya" name="Coyuya"><br>
+                    <label for="Iztacalco">Iztacalco:</label><br>
+                    <input type="text" id="Iztacalco" name="Iztacalco"><br>
+                    <label for="Apatlaco">Apatlaco:</label><br>
+                    <input type="text" id="Apatlaco" name="Apatlaco"><br>
+                    <label for="Aculco">Aculco:</label><br>
+                    <input type="text" id="Aculco" name="Aculco"><br>
+                    <label for="Escuadron201">Escuadrón 201:</label><br>
+                    <input type="text" id="Escuadron201" name="Escuadron201"><br>
+                    <label for="Atlalilco">Atlalilco:</label><br>
+                    <input type="text" id="Atlalilco" name="Atlalilco"><br>
+                    <label for="Iztapalapa">Iztapalapa:</label><br>
+                    <input type="text" id="Iztapalapa" name="Iztapalapa"><br>
+                    <label for="CerroDeLaEstrella">Cerro de la Estrella:</label><br>
+                    <input type="text" id="CerroDeLaEstrella" name="CerroDeLaEstrella"><br>
+                    <label for="UAMI">UAM-I:</label><br>
+                    <input type="text" id="UAMI" name="UAMI"><br>
+                    <label for="ConstitucionDe1917">Constitución de 1917:</label><br>
+                    <input type="text" id="ConstitucionDe1917" name="ConstitucionDe1917"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea9" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea9')">&times;</span>
+                <form id="formularioLinea9">
+                    <label for="linea9">Línea 9 Tacubaya / Pantitlán</label><br>
+                    <label for="Pantitlan9">Pantitlán:</label><br>
+                    <input type="text" id="Pantitlan9" name="Pantitlan9"><br>
+                    <label for="Puebla">Puebla:</label><br>
+                    <input type="text" id="Puebla" name="Puebla"><br>
+                    <label for="CiudadDeportiva">Ciudad Deportiva:</label><br>
+                    <input type="text" id="CiudadDeportiva" name="CiudadDeportiva"><br>
+                    <label for="Velodromo">Velódromo:</label><br>
+                    <input type="text" id="Velodromo" name="Velodromo"><br>
+                    <label for="Mixiuhca">Mixiuhca:</label><br>
+                    <input type="text" id="Mixiuhca" name="Mixiuhca"><br>
+                    <label for="Jamaica9">Jamaica:</label><br>
+                    <input type="text" id="Jamaica9" name="Jamaica9"><br>
+                    <label for="Chabacano9">Chabacano:</label><br>
+                    <input type="text" id="Chabacano9" name="Chabacano9"><br>
+                    <label for="LazaroCardenas">Lázaro Cárdenas:</label><br>
+                    <input type="text" id="LazaroCardenas" name="LazaroCardenas"><br>
+                    <label for="CentroMedico9">Centro Médico:</label><br>
+                    <input type="text" id="CentroMedico9" name="CentroMedico9"><br>
+                    <label for="Chilpancingo">Chilpancingo:</label><br>
+                    <input type="text" id="Chilpancingo" name="Chilpancingo"><br>
+                    <label for="Patriotismo">Patriotismo:</label><br>
+                    <input type="text" id="Patriotismo" name="Patriotismo"><br>
+                    <label for="Tacubaya9">Tacubaya:</label><br>
+                    <input type="text" id="Tacubaya9" name="Tacubaya9"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLinea12" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLinea12')">&times;</span>
+                <form id="modalLinea12">
+                    <label for="linea12">Línea 12 Mixcoac / Tláhuac</label><br>
+                    <label for="Mixcoac12">Mixcoac:</label><br>
+                    <input type="text" id="Mixcoac12" name="Mixcoac12"><br>
+                    <label for="InsurgentesSur">Insurgentes Sur:</label><br>
+                    <input type="text" id="InsurgentesSur" name="InsurgentesSur"><br>
+                    <label for="Hospital20DeNoviembre">Hospital 20 De Noviembre:</label><br>
+                    <input type="text" id="Hospital20DeNoviembre" name="Hospital20DeNoviembre"><br>
+                    <label for="Zapata12">Zapata:</label><br>
+                    <input type="text" id="Zapata12" name="Zapata12"><br>
+                    <label for="ParqueDeLosVenados">Parque De Los Venados:</label><br>
+                    <input type="text" id="ParqueDeLosVenados" name="ParqueDeLosVenados"><br>
+                    <label for="EjeCentral">Eje Central:</label><br>
+                    <input type="text" id="EjeCentral" name="EjeCentral"><br>
+                    <label for="Ermita12">Ermita:</label><br>
+                    <input type="text" id="Ermita12" name="Ermita12"><br>
+                    <label for="Mexicaltzingo">Mexicaltzingo:</label><br>
+                    <input type="text" id="Mexicaltzingo" name="Mexicaltzingo"><br>
+                    <label for="Atlalilco12">Atlalilco:</label><br>
+                    <input type="text" id="Atlalilco12" name="Atlalilco12"><br>
+                    <label for="Culhuacan">Culhuacán:</label><br>
+                    <input type="text" id="Culhuacan" name="Culhuacan"><br>
+                    <label for="SanAndresTomatlan">San Andrés Tomatlán:</label><br>
+                    <input type="text" id="SanAndresTomatlan" name="SanAndresTomatlan"><br>
+                    <label for="LomasEstrella">Lomas Estrella:</label><br>
+                    <input type="text" id="LomasEstrella" name="LomasEstrella"><br>
+                    <label for="Calle11">Calle 11:</label><br>
+                    <input type="text" id="Calle11" name="Calle11"><br>
+                    <label for="PerifericoOriente">Periférico Oriente:</label><br>
+                    <input type="text" id="PerifericoOriente" name="PerifericoOriente"><br>
+                    <label for="Tezonco">Tezonco:</label><br>
+                    <input type="text" id="Tezonco" name="Tezonco"><br>
+                    <label for="Olivos">Olivos:</label><br>
+                    <input type="text" id="Olivos" name="Olivos"><br>
+                    <label for="Nopalera">Nopalera:</label><br>
+                    <input type="text" id="Nopalera" name="Nopalera"><br>
+                    <label for="Zapotitlan">Zapotitlán:</label><br>
+                    <input type="text" id="Zapotitlan" name="Zapotitlan"><br>
+                    <label for="Tlaltenco">Tlaltenco:</label><br>
+                    <input type="text" id="Tlaltenco" name="Tlaltenco"><br>
+                    <label for="Tlahuac">Tláhuac:</label><br>
+                    <input type="text" id="Tlahuac" name="Tlahuac"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLineaA" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLineaA')">&times;</span>
+                <form id="formularioLineatodaA">
+                    <label for="LineaA">Línea A Pantitlán / La Paz</label><br>
+                    <label for="PantitlanA">Pantitlán:</label><br>
+                    <input type="text" id="PantitlanA" name="PantitlanA"><br>
+                    <label for="AgricolaOriental">Agrícola Oriental:</label><br>
+                    <input type="text" id="AgricolaOriental" name="AgricolaOriental"><br>
+                    <label for="CanalDeSanJuan">Canal de San Juan:</label><br>
+                    <input type="text" id="CanalDeSanJuan" name="CanalDeSanJuan"><br>
+                    <label for="Tepalcates">Tepalcates:</label><br>
+                    <input type="text" id="Tepalcates" name="Tepalcates"><br>
+                    <label for="Guelatao">Guelatao:</label><br>
+                    <input type="text" id="Guelatao" name="Guelatao"><br>
+                    <label for="PenonViejo">Peñón Viejo:</label><br>
+                    <input type="text" id="PenonViejo" name="PenonViejo"><br>
+                    <label for="Acatitla">Acatitla:</label><br>
+                    <input type="text" id="Acatitla" name="Acatitla"><br>
+                    <label for="SantaMarta">Santa Marta:</label><br>
+                    <input type="text" id="SantaMarta" name="SantaMarta"><br>
+                    <label for="LosReyes">Los Reyes:</label><br>
+                    <input type="text" id="LosReyes" name="LosReyes"><br>
+                    <label for="LaPaz">La Paz:</label><br>
+                    <input type="text" id="LaPaz" name="LaPaz"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalLineaB" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modalLineaB')">&times;</span>
+                <form id="formularioLineaB">
+                    <label for="LineaB">Línea B Ciudad Azteca / Buenavista</label><br>
+                    <label for="Buenavista">Buenavista:</label><br>
+                    <input type="text" id="Buenavista" name="Buenavista"><br>
+                    <label for="GuerreroB">Guerrero:</label><br>
+                    <input type="text" id="GuerreroB" name="GuerreroB"><br>
+                    <label for="GaribaldiB">Garibaldi:</label><br>
+                    <input type="text" id="GaribaldiB" name="GaribaldiB"><br>
+                    <label for="Lagunilla">Lagunilla:</label><br>
+                    <input type="text" id="Lagunilla" name="Lagunilla"><br>
+                    <label for="Tepito">Tepito:</label><br>
+                    <input type="text" id="Tepito" name="Tepito"><br>
+                    <label for="MorelosB">Morelos:</label><br>
+                    <input type="text" id="MorelosB" name="MorelosB"><br>
+                    <label for="SanLazaroB">San Lázaro:</label><br>
+                    <input type="text" id="SanLazaroB" name="SanLazaroB"><br>
+                    <label for="RicardoFloresMagon">Ricardo Flores Magón:</label><br>
+                    <input type="text" id="RicardoFloresMagon" name="RicardoFloresMagon"><br>
+                    <label for="RomeroRubio">Romero Rubio:</label><br>
+                    <input type="text" id="RomeroRubio" name="RomeroRubio"><br>
+                    <label for="OceaniaB">Oceanía:</label><br>
+                    <input type="text" id="OceaniaB" name="OceaniaB"><br>
+                    <label for="DeportivoOceania">Deportivo Oceanía:</label><br>
+                    <input type="text" id="DeportivoOceania" name="DeportivoOceania"><br>
+                    <label for="BosqueDeAragon">Bosque de Aragón:</label><br>
+                    <input type="text" id="BosqueDeAragon" name="BosqueDeAragon"><br>
+                    <label for="VillaDeAragon">Villa de Aragón:</label><br>
+                    <input type="text" id="VillaDeAragon" name="VillaDeAragon"><br>
+                    <label for="Nezahualcoyotl">Nezahualcóyotl:</label><br>
+                    <input type="text" id="Nezahualcoyotl" name="Nezahualcoyotl"><br>
+                    <label for="Impulsora">Impulsora:</label><br>
+                    <input type="text" id="Impulsora" name="Impulsora"><br>
+                    <label for="RioDeLosRemedios">Río de los Remedios:</label><br>
+                    <input type="text" id="RioDeLosRemedios" name="RioDeLosRemedios"><br>
+                    <label for="Muzquiz">Múzquiz:</label><br>
+                    <input type="text" id="Muzquiz" name="Muzquiz"><br>
+                    <label for="Ecatepec">Ecatepec:</label><br>
+                    <input type="text" id="Ecatepec" name="Ecatepec"><br>
+                    <label for="Olimpica">Olímpica:</label><br>
+                    <input type="text" id="Olimpica" name="Olimpica"><br>
+                    <label for="PlazaAragon">Plaza Aragón:</label><br>
+                    <input type="text" id="PlazaAragon" name="PlazaAragon"><br>
+                    <label for="CiudadAzteca">Ciudad Azteca:</label><br>
+                    <input type="text" id="CiudadAzteca" name="CiudadAzteca"><br>
+                </form>
+            </div>
+        </div>
+
+        <div id="modal2021" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal2021')">&times;</span>
+                <form id="formulario2021">
+                    <label for="TodasLasLineas">TodasLasLineas:</label><br>
+                    <label for="Linea1">Linea1:</label><br>
+                    <input type="text" id="Linea1" name="Linea1"><br>
+                    <label for="Linea2">Linea2:</label><br>
+                    <input type="text" id="Linea2" name="Linea2"><br>
+                    <label for="Linea3">Linea3:</label><br>
+                    <input type="text" id="Linea3" name="Linea3"><br>
+                    <label for="Linea4">Linea4:</label><br>
+                    <input type="text" id="Linea4" name="Linea4"><br>
+                    <label for="Linea5">Linea5:</label><br>
+                    <input type="text" id="Linea5" name="Linea5"><br>
+                    <label for="Linea6">Linea6:</label><br>
+                    <input type="text"id="Linea6" name="Linea6"><br>
+                    <label for="Linea7">Linea7:</label><br>
+                    <input type="text" id="Linea7" name="Linea7"><br>
+                    <label for="Linea8">Linea8:</label><br>
+                    <input type="text" id="Linea8" name="Linea8"><br>
+                    <label for="Linea9">Linea9:</label><br>
+                    <input type="text" id="Linea9" name="Linea9"><br>
+                    <label for="LineaA">LineaA:</label><br>
+                    <input type="text" id="LineaA" name="LineaA"><br>
+                    <label for="LineaB">LineaB:</label><br>
+                    <input type="text" id="LineaB" name="LineaB"><br>
+                    <label for="Linea12">Linea12:</label><br>
+                    <input type="text" id="Linea12" name="Linea12"><br>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
     <img id="displayImage" src="https://via.placeholder.com/300x300?text=Empty" alt="">
-    
+
 
     <svg id="map-area" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
-        <path id="path3227" class="map-area" d="M 317.14526,21.701934 L 330.94193,55.641737 L 303.90046,91.513079 L 305.83199,115.51927 L 328.45853,126.00474 L 339.49586,126.28068 L 346.39419,122.41761 L 388.33607,140.07735 L 382.54147,151.94249 L 408.4792,205.47356 L 391.64727,211.82002 L 369.57259,202.99015 L 364.32987,207.95695 L 356.05187,202.99015 L 348.32573,202.71422 L 347.49793,204.64575 L 335.63279,202.43829 L 303.07266,183.95075 L 289.276,184.77855 L 272.44405,144.49228 L 265.26979,114.96742 L 248.98972,110.55248 L 249.54159,105.86161 L 238.50425,95.100207 L 266.09759,103.37821 L 271.06439,98.687345 L 265.26979,93.168669 L 274.37559,80.475739 L 265.54572,70.818072 L 271.89219,57.021403 L 279.61832,58.40107 L 288.72412,36.878267 L 303.62452,20.046333 L 317.14526,21.701934 z" />
-        <path id="path3229" class="map-area" d="M 207.04785,125.72881 L 193.25119,174.56901 L 207.32378,180.08769 L 205.94412,183.12296 L 208.97938,183.12296 L 208.70345,179.53582 L 229.39845,178.98394 L 229.12252,186.71008 L 234.36525,190.84908 L 246.50633,195.81589 L 254.78432,195.53995 L 255.33619,198.29928 L 262.23452,197.74742 L 262.23452,195.26401 L 269.96066,186.98602 L 276.03119,187.26195 L 278.23865,189.74535 L 281.54986,190.02129 L 286.51666,184.77855 L 269.68472,143.66448 L 268.30506,137.04208 L 214.49805,122.69354 L 207.04785,125.72881 z" />
-        <path id="path3231" class="map-area" d="M 409.03107,207.12915 L 392.19913,214.02749 L 370.12447,205.47356 L 364.32987,210.99223 L 355.77593,204.64575 L 349.98133,204.36982 L 349.42946,207.12915 L 334.805,204.09389 L 317.97306,195.26401 L 314.10999,208.78475 L 318.80086,214.02749 L 313.83406,263.69549 L 333.1494,263.69549 L 337.56433,259.55649 L 363.50207,259.00462 L 366.53733,261.21209 L 372.60786,260.93616 L 381.1618,244.93202 L 385.85266,241.89676 L 400.20121,241.89676 L 412.89414,214.30343 L 409.03107,207.12915 z" />
-        <path id="path3233" class="map-area" d="M 304.1764,299.56683 L 315.7656,301.7743 L 315.7656,295.1519 L 351.63694,297.6353 L 359.08714,282.18303 L 364.88174,281.90709 L 365.70953,279.4237 L 390.2676,292.6685 L 396.06221,291.28883 L 400.20121,243.55236 L 386.68047,243.55236 L 382.26553,246.58763 L 374.26346,262.31582 L 365.98547,263.14363 L 362.9502,260.66023 L 338.66806,260.66023 L 333.42533,265.90296 L 311.6266,265.62703 L 307.21166,265.90296 L 306.10792,272.24942 L 309.971,272.52536 L 304.1764,299.56683 z"/>
-        <path id="path3235" class="map-area" d="M 198.49391,203.54202 L 205.39224,184.77855 L 211.18684,183.95075 L 210.91092,181.19142 L 228.29472,180.63955 L 227.74285,187.26195 L 234.36525,192.78062 L 246.23039,197.47148 L 253.40466,197.74742 L 253.68059,200.23082 L 262.23452,199.67895 L 263.06232,209.06068 L 256.16399,225.89263 L 251.47312,229.75569 L 250.36939,237.48183 L 246.78225,238.30962 L 247.33412,249.62289 L 237.40052,260.66023 L 239.60798,266.73076 L 246.23039,266.1789 L 251.74905,267.55857 L 253.40466,272.24942 L 236.29678,279.69962 L 232.70965,277.49216 L 226.91505,266.73076 L 220.84452,272.24942 L 204.56445,272.80129 L 202.63291,276.66437 L 194.90678,275.00876 L 189.38811,280.52743 L 170.90058,281.63116 L 168.69311,290.46103 L 159.58731,290.73697 L 158.20764,289.63323 L 161.79478,282.45897 L 152.13711,282.45897 L 150.20558,280.80336 L 150.75744,269.49009 L 158.75951,262.31582 L 173.65992,259.00462 L 187.73251,241.34489 L 186.62878,222.58142 L 193.80304,217.89056 L 195.18271,203.81796 L 198.49391,203.54202 z"/>
-        <path id="path3237" class="map-area" d="M 315.48966,193.88435 L 303.07266,186.15822 L 288.44819,186.71008 L 283.75732,191.40095 L 276.85899,191.95282 L 274.37559,189.19349 L 271.06439,189.46941 L 264.44198,196.36775 L 264.71792,210.71629 L 258.37146,226.72042 L 253.40466,231.41129 L 252.02499,238.58556 L 249.26566,240.24115 L 249.26566,251.2785 L 239.60798,260.38429 L 240.98765,264.24736 L 246.23039,263.97143 L 253.68059,266.45482 L 255.06026,271.42163 L 275.20339,264.24736 L 294.51872,265.62703 L 312.17846,263.14363 L 316.59339,214.30343 L 310.79879,209.33662 L 315.48966,193.88435 z"/>
-        <path id="path3239" class="map-area" d="M 295.34653,327.98797 L 256.43992,327.71204 L 248.43785,320.8137 L 242.91919,323.57303 L 237.95238,323.57303 L 234.08932,321.6415 L 234.08932,317.22657 L 230.77811,315.29503 L 231.60592,294.3241 L 235.74492,291.8407 L 236.29678,281.90709 L 276.03119,265.90296 L 297.00212,267.83449 L 304.45232,266.73076 L 303.62452,273.6291 L 307.21166,274.4569 L 295.34653,327.98797 z"/>
-        <path id="path3241" class="map-area" d="M 243.33309,341.64666 L 249.26566,339.57717 L 248.71379,332.4029 L 253.95652,330.7473 L 253.68059,328.2639 L 248.43785,322.4693 L 244.29885,325.50457 L 236.02086,325.22864 L 231.88185,323.2971 L 232.15778,319.1581 L 228.29472,316.95063 L 229.12252,293.77223 L 233.53745,290.46103 L 234.64119,281.35523 L 231.32999,279.4237 L 225.81132,270.04196 L 221.94825,274.18096 L 206.77191,274.4569 L 204.56445,279.14777 L 195.73458,277.21622 L 191.31965,282.18303 L 172.28025,283.5627 L 170.03401,291.97866 L 160.41511,292.11663 L 161.51884,293.77223 L 156.82797,301.22243 L 148.82591,300.67056 L 146.06657,304.80956 L 146.61844,311.98383 L 136.40891,309.50043 L 132.54585,313.3635 L 137.2367,315.01911 L 138.34044,325.78049 L 145.51471,326.88424 L 143.30724,335.43817 L 140.82384,335.43817 L 148.54998,340.95683 L 136.68485,355.5813 L 122.88817,359.99624 L 122.3363,364.13523 L 113.78237,363.0315 L 108.26371,368.27424 L 107.15998,381.24311 L 101.91724,387.31364 L 94.467035,386.48584 L 93.915175,380.69124 L 92.535509,382.0709 L 94.191101,386.76177 L 98.330109,389.24517 L 98.330109,393.10824 L 88.672438,400.55845 L 81.498171,400.28251 L 77.083237,409.66425 L 77.911037,439.46505 L 68.805235,454.36545 L 55.836368,491.06459 L 59.147568,491.89238 L 59.147568,495.20359 L 63.010636,496.58325 L 63.838434,499.06665 L 76.255436,468.43805 L 97.778239,460.98785 L 116.81764,440.56878 L 117.36951,430.08331 L 125.37157,432.56671 L 127.85498,427.59991 L 124.26784,424.56465 L 131.71804,403.31777 L 134.47737,400.28251 L 130.89025,398.90284 L 130.61431,391.17671 L 138.61637,392.28044 L 152.96491,370.48171 L 170.07278,368.55016 L 170.62465,374.34477 L 175.86738,375.44851 L 178.07485,369.65391 L 199.32171,358.34063 L 214.49805,358.89251 L 208.97938,364.96304 L 206.22005,373.51697 L 196.83831,382.0709 L 196.01052,389.24517 L 200.14952,393.93604 L 209.80718,397.79911 L 213.11838,397.79911 L 227.46691,377.10411 L 227.46691,365.23897 L 221.94825,361.3759 L 227.19099,357.2369 L 233.53745,357.51284 L 236.29678,350.06263 L 240.98765,349.23483 L 243.33309,341.64666 z"/>
-        <path id="path3243" class="map-area" d="M 148.54998,271.14569 L 145.79065,272.80129 L 145.51471,278.87183 L 139.44418,278.87183 L 133.64958,289.90917 L 128.40684,289.90917 L 128.40684,302.6021 L 122.88817,310.60417 L 117.92137,303.15397 L 114.0583,303.15397 L 113.78237,308.3967 L 103.57284,312.25976 L 96.122637,319.70996 L 93.363305,318.88216 L 91.983639,308.67263 L 89.224305,306.46516 L 83.98157,313.08756 L 78.462903,319.98589 L 69.633035,325.22864 L 68.253368,327.16016 L 70.460835,332.95476 L 67.149636,335.43817 L 61.630969,334.0585 L 57.767901,337.64563 L 58.043835,342.06056 L 62.458767,344.26804 L 62.182835,355.30537 L 57.491967,355.5813 L 56.664167,363.0315 L 53.904833,366.06677 L 55.008568,372.1373 L 50.869568,369.10204 L 49.765833,369.10204 L 49.765833,373.51697 L 51.1455,375.17257 L 33.485765,389.79704 L 33.761699,394.21197 L 30.174565,394.21197 L 29.070831,392.8323 L 28.24303,396.41944 L 29.346765,399.17878 L 25.759631,400.83438 L 23.828098,400.83438 L 23.27623,402.76591 L 25.759631,407.18084 L 30.174565,407.45678 L 32.382033,420.14972 L 27.691164,424.01278 L 28.24303,427.59991 L 26.035563,429.53144 L 22.724364,429.25551 L 16.653831,436.15385 L 16.377897,441.67251 L 35.693232,442.50032 L 35.417298,446.63932 L 39.004432,446.63932 L 45.074967,452.43392 L 44.799033,457.67664 L 50.317699,458.22852 L 50.869568,461.26378 L 45.626833,464.85091 L 45.626833,488.58118 L 49.765833,489.68492 L 49.765833,492.44425 L 53.352967,490.78865 L 66.873702,452.15798 L 75.70357,439.18911 L 74.87577,408.83644 L 80.67037,398.07505 L 88.396504,398.6269 L 96.122637,392.55637 L 96.122637,390.62484 L 92.259575,388.41737 L 90.328037,381.51904 L 95.570767,376.82817 L 95.846701,384.00244 L 100.81351,384.83023 L 105.50438,379.58751 L 106.6081,366.61864 L 113.50644,360.5481 L 120.12884,361.65183 L 121.23257,358.06471 L 135.02924,354.20164 L 145.51471,340.95683 L 137.2367,334.33444 L 141.37571,333.78257 L 143.0313,328.53983 L 136.96078,327.16016 L 135.30518,316.39877 L 129.7865,314.46723 L 136.96078,307.29296 L 144.96284,310.0523 L 144.13504,303.70583 L 147.72217,299.01496 L 155.44831,299.56683 L 158.48358,293.49629 L 155.17238,289.3573 L 158.48358,284.39049 L 150.75744,284.39049 L 148.27404,280.2515 L 148.54998,271.14569 z"/>
-        <path id="path3245" class="map-area" d="M 103.57284,518.10605 L 96.950443,517.83012 L 78.738835,508.72432 L 78.186969,505.96499 L 74.599835,502.92972 L 73.496103,500.44631 L 68.253368,500.44631 L 67.977436,501.27412 L 65.218101,501.27412 L 77.635103,470.09365 L 99.433841,462.64345 L 119.02511,441.39657 L 119.02511,432.84265 L 126.75123,435.32604 L 131.16617,427.04805 L 126.75123,424.01278 L 133.37364,404.97338 L 137.51264,399.17878 L 133.37364,397.79911 L 132.26991,393.10824 L 139.99604,393.6601 L 154.34458,371.86137 L 168.69311,370.48171 L 169.24498,376.82817 L 176.97112,377.65597 L 179.17858,371.30951 L 199.87358,359.99624 L 211.46278,360.27217 L 206.22005,365.51491 L 205.11632,372.68918 L 194.90678,381.24311 L 194.90678,391.45264 L 189.66405,391.45264 L 182.76572,399.45471 L 182.76572,404.14557 L 179.17858,412.69951 L 168.41717,414.63104 L 167.86532,422.63311 L 171.17651,425.11651 L 164.27818,435.05012 L 164.55411,474.23265 L 156.55204,484.99405 L 156.82797,495.20359 L 139.72011,503.75752 L 129.51058,512.58739 L 126.47531,521.69319 L 106.88404,521.96912 L 104.67657,518.38199 L 103.57284,518.10605 z"/>
-        <path id="path3247" class="map-area" d="M 78.462903,510.93178 L 78.186969,513.69112 L 74.87577,515.34671 L 92.535509,525.28033 L 99.433841,567.77406 L 127.57904,634.274 L 196.01052,677.3196 L 306.93573,685.87354 L 303.34859,678.1474 L 271.61626,648.62253 L 286.79259,614.40679 L 288.44819,588.745 L 308.59133,603.92134 L 311.35066,561.42759 L 314.38593,556.18486 L 313.28219,527.76372 L 309.971,525.83218 L 307.76353,528.31559 L 286.51666,528.59152 L 275.47932,519.20979 L 276.03119,515.62265 L 279.61832,512.58739 L 280.17019,507.34465 L 274.65153,501.55005 L 274.65153,483.89032 L 278.51459,483.61439 L 278.23865,474.50859 L 285.96479,474.78452 L 289.00006,476.99198 L 288.72412,480.57912 L 291.75939,480.57912 L 300.31332,469.81772 L 302.24486,454.91731 L 295.62245,448.57084 L 295.0706,429.53144 L 333.42533,419.32191 L 346.94607,410.49204 L 346.94607,406.90491 L 335.35687,407.18084 L 305.55606,394.76385 L 297.27806,405.52523 L 287.89633,404.97338 L 282.92952,412.42358 L 275.47932,411.59577 L 269.68472,404.97338 L 229.39845,404.69744 C 229.39845,404.69744 217.53332,399.73063 216.42959,399.73063 C 215.32586,399.73063 209.53126,399.73063 209.53126,399.73063 L 198.76985,396.14351 L 196.56238,393.38418 L 190.76778,394.21197 L 184.97318,400.00657 L 185.24912,404.14557 L 180.83418,414.63104 L 170.07278,416.0107 L 169.79684,421.8053 L 173.65992,425.11651 L 166.20971,436.15385 L 166.76157,474.50859 L 158.20764,485.54591 L 158.48358,496.85918 L 141.37571,505.13718 L 130.89025,514.24298 L 128.40684,524.17659 L 106.05624,524.17659 L 103.02097,520.03758 L 95.846701,520.03758 L 78.462903,510.93178 z"/>
-        <path id="path3249" class="map-area" d="M 309.41912,685.5976 L 407.09954,737.47307 L 424.20741,700.77394 L 446.28208,685.04574 L 494.57041,691.3922 L 509.74675,702.42954 L 521.88782,685.04574 L 529.88988,629.3072 L 519.40441,610.54373 L 535.96041,590.95246 L 519.68035,581.84666 L 534.30482,575.77613 L 534.85668,565.29066 L 517.47288,552.04586 L 518.57662,539.07699 L 510.29861,537.42138 L 505.05588,528.31559 L 499.53722,528.86745 L 498.70941,520.58946 L 504.22809,514.51892 L 490.70735,502.10192 L 440.48748,502.10192 L 353.8444,525.28033 L 309.971,607.7844 L 289.82785,592.33213 L 288.72412,615.51054 L 274.37559,647.79474 L 305.83199,677.87148 L 309.41912,685.5976 z"/>
-        <path id="path3251" class="map-area" d="M 297.00212,329.64357 L 255.88805,329.64357 L 255.61212,332.4029 L 250.64532,334.61037 L 251.19718,341.78464 L 245.40258,343.44023 L 242.91919,351.4423 L 237.12459,352.2701 L 235.19305,359.7203 L 228.01878,359.7203 L 224.70758,361.3759 L 230.22626,365.79084 L 229.39845,377.38004 L 215.04992,398.07505 L 219.74079,398.07505 L 228.57065,402.21404 L 271.06439,403.04184 L 276.03119,409.11237 L 280.72205,409.94018 L 287.62039,402.76591 L 296.45026,403.04184 L 305.55606,391.72857 L 335.63279,405.24931 L 346.94607,405.24931 L 348.0498,374.06884 L 344.18673,374.89664 L 329.0104,356.68503 L 329.0104,350.33857 L 317.69712,336.81784 L 318.52493,328.2639 L 307.76353,327.16016 L 306.65979,329.91951 L 297.00212,329.64357 z"/>
-        <path id="path3253" class="map-area" d="M 304.1764,301.7743 L 297.27806,327.98797 L 305.55606,327.98797 L 307.76353,324.9527 L 321.00832,326.6083 L 319.90459,335.99003 L 330.666,349.7867 L 330.666,355.5813 L 344.7386,372.9651 L 350.80913,371.58544 L 350.25726,380.96717 L 380.60993,418.21818 L 387.23234,422.63311 L 396.06221,413.80324 L 396.06221,411.87171 L 394.13067,411.04391 L 392.47507,395.3157 L 398.82154,397.52317 L 407.37547,385.93397 L 411.79041,390.62484 L 414.54974,386.76177 L 417.585,388.69331 L 429.1742,378.75971 L 473.04762,364.68711 L 501.46874,365.51491 L 502.84841,368.27424 L 506.71148,368.8261 L 507.81521,367.1705 L 522.43968,366.3427 L 481.60155,322.74523 L 484.91275,310.88009 L 399.92527,274.18096 L 398.26967,292.6685 L 390.2676,294.3241 L 366.81326,281.63116 L 365.98547,284.11456 L 360.4668,284.11456 L 352.46473,299.56683 L 317.14526,296.8075 L 316.86933,304.2577 L 304.1764,301.7743 z"/>
-        <path id="path3255" class="map-area" d="M 450.14514,487.20152 L 440.7634,500.44631 L 492.36295,500.72225 L 506.98742,515.07079 L 500.64095,520.86539 L 500.91688,526.93591 L 506.43555,526.65999 L 510.85048,535.7658 L 518.57662,537.42138 L 521.88782,535.21392 L 520.23222,517.00232 L 525.19901,517.00232 L 526.85461,512.31145 L 537.61602,513.41519 L 540.92722,508.17245 L 549.75709,514.24298 L 552.24048,501.55005 L 518.02475,493.82392 L 517.74881,465.40278 L 506.71148,465.40278 L 515.81729,391.72857 L 519.40441,392.55637 L 522.99155,389.79704 C 522.99155,389.79704 521.33595,376.2763 522.99155,376.55224 C 524.64715,376.82817 529.61395,377.65597 529.61395,377.65597 L 525.75088,373.79291 L 527.13055,372.41324 L 523.26748,368.55016 L 508.91894,368.8261 L 506.71148,371.58544 L 500.91688,369.10204 L 500.36501,366.89458 L 472.77168,366.61864 L 429.72607,381.24311 L 418.68874,390.34891 L 415.10161,389.79704 L 411.51447,393.38418 L 407.92734,389.5211 L 399.64933,399.17878 L 394.40661,398.07505 L 395.78627,410.2161 L 398.5456,411.59577 L 398.5456,415.45885 L 389.16386,422.90904 L 407.09954,434.49824 L 426.13893,438.08537 L 437.72813,450.22645 L 455.38787,453.26171 L 454.83601,455.46918 L 462.01027,455.19325 L 459.52688,460.16005 L 462.56215,460.43598 L 466.70114,456.29698 L 470.01235,457.40071 L 468.08081,483.33845 L 460.90654,485.54591 L 460.07874,480.02725 L 457.31941,480.30319 L 455.66381,488.58118 L 450.14514,487.20152 z"/>
-        <path id="path3257" class="map-area" d="M 350.25726,384.27838 L 348.87759,411.87171 L 333.70126,421.25345 L 297.27806,431.18704 L 297.27806,447.19117 L 304.72826,455.74512 L 301.69299,471.47331 L 292.31126,483.33845 L 287.06852,483.06251 L 287.06852,478.09571 L 285.41292,476.71605 L 279.61832,476.16418 L 280.17019,486.09778 L 276.58305,486.37372 L 276.58305,500.72225 L 281.82579,507.34465 L 281.27392,514.51892 L 277.96272,516.72638 L 277.96272,518.93385 L 286.51666,526.10812 L 306.93573,526.10812 L 309.69506,523.34879 L 316.04153,527.48779 L 316.59339,556.73672 L 313.00626,562.80725 L 311.07473,602.54166 L 353.29252,522.79692 L 439.1078,500.17039 L 449.59327,484.71812 L 453.73228,486.37372 L 455.93974,477.81979 L 460.63061,477.81979 L 462.83807,483.33845 L 466.70114,481.40692 L 467.52894,459.05631 L 466.42521,458.22852 L 463.38994,461.81564 L 457.31941,461.81564 L 459.25094,457.67664 L 451.80074,457.67664 L 453.45634,454.91731 L 436.34847,452.15798 L 424.75927,439.74098 L 405.99581,436.42978 L 378.6784,420.14972 L 350.25726,384.27838 z"/> 
-        <text id="text1" x="305" y="160" fill="black" font-size="15" font-family="Arial" class="draggable">Gustavo</text>
-        <text id="text2" x="300" y="175" fill="black" font-size="15" font-family="Arial" class="draggable">A.Madero</text>
-        <text id="text3" x="200" y="160" fill="black" font-size="12" font-family="Arial" class="draggable">Azcapotzalco</text>
+        <path id="path3227" class="map-area"
+            d="M 317.14526,21.701934 L 330.94193,55.641737 L 303.90046,91.513079 L 305.83199,115.51927 L 328.45853,126.00474 L 339.49586,126.28068 L 346.39419,122.41761 L 388.33607,140.07735 L 382.54147,151.94249 L 408.4792,205.47356 L 391.64727,211.82002 L 369.57259,202.99015 L 364.32987,207.95695 L 356.05187,202.99015 L 348.32573,202.71422 L 347.49793,204.64575 L 335.63279,202.43829 L 303.07266,183.95075 L 289.276,184.77855 L 272.44405,144.49228 L 265.26979,114.96742 L 248.98972,110.55248 L 249.54159,105.86161 L 238.50425,95.100207 L 266.09759,103.37821 L 271.06439,98.687345 L 265.26979,93.168669 L 274.37559,80.475739 L 265.54572,70.818072 L 271.89219,57.021403 L 279.61832,58.40107 L 288.72412,36.878267 L 303.62452,20.046333 L 317.14526,21.701934 z" />
+        <path id="path3229" class="map-area"
+            d="M 207.04785,125.72881 L 193.25119,174.56901 L 207.32378,180.08769 L 205.94412,183.12296 L 208.97938,183.12296 L 208.70345,179.53582 L 229.39845,178.98394 L 229.12252,186.71008 L 234.36525,190.84908 L 246.50633,195.81589 L 254.78432,195.53995 L 255.33619,198.29928 L 262.23452,197.74742 L 262.23452,195.26401 L 269.96066,186.98602 L 276.03119,187.26195 L 278.23865,189.74535 L 281.54986,190.02129 L 286.51666,184.77855 L 269.68472,143.66448 L 268.30506,137.04208 L 214.49805,122.69354 L 207.04785,125.72881 z" />
+        <path id="path3231" class="map-area"
+            d="M 409.03107,207.12915 L 392.19913,214.02749 L 370.12447,205.47356 L 364.32987,210.99223 L 355.77593,204.64575 L 349.98133,204.36982 L 349.42946,207.12915 L 334.805,204.09389 L 317.97306,195.26401 L 314.10999,208.78475 L 318.80086,214.02749 L 313.83406,263.69549 L 333.1494,263.69549 L 337.56433,259.55649 L 363.50207,259.00462 L 366.53733,261.21209 L 372.60786,260.93616 L 381.1618,244.93202 L 385.85266,241.89676 L 400.20121,241.89676 L 412.89414,214.30343 L 409.03107,207.12915 z" />
+        <path id="path3233" class="map-area"
+            d="M 304.1764,299.56683 L 315.7656,301.7743 L 315.7656,295.1519 L 351.63694,297.6353 L 359.08714,282.18303 L 364.88174,281.90709 L 365.70953,279.4237 L 390.2676,292.6685 L 396.06221,291.28883 L 400.20121,243.55236 L 386.68047,243.55236 L 382.26553,246.58763 L 374.26346,262.31582 L 365.98547,263.14363 L 362.9502,260.66023 L 338.66806,260.66023 L 333.42533,265.90296 L 311.6266,265.62703 L 307.21166,265.90296 L 306.10792,272.24942 L 309.971,272.52536 L 304.1764,299.56683 z" />
+        <path id="path3235" class="map-area"
+            d="M 198.49391,203.54202 L 205.39224,184.77855 L 211.18684,183.95075 L 210.91092,181.19142 L 228.29472,180.63955 L 227.74285,187.26195 L 234.36525,192.78062 L 246.23039,197.47148 L 253.40466,197.74742 L 253.68059,200.23082 L 262.23452,199.67895 L 263.06232,209.06068 L 256.16399,225.89263 L 251.47312,229.75569 L 250.36939,237.48183 L 246.78225,238.30962 L 247.33412,249.62289 L 237.40052,260.66023 L 239.60798,266.73076 L 246.23039,266.1789 L 251.74905,267.55857 L 253.40466,272.24942 L 236.29678,279.69962 L 232.70965,277.49216 L 226.91505,266.73076 L 220.84452,272.24942 L 204.56445,272.80129 L 202.63291,276.66437 L 194.90678,275.00876 L 189.38811,280.52743 L 170.90058,281.63116 L 168.69311,290.46103 L 159.58731,290.73697 L 158.20764,289.63323 L 161.79478,282.45897 L 152.13711,282.45897 L 150.20558,280.80336 L 150.75744,269.49009 L 158.75951,262.31582 L 173.65992,259.00462 L 187.73251,241.34489 L 186.62878,222.58142 L 193.80304,217.89056 L 195.18271,203.81796 L 198.49391,203.54202 z" />
+        <path id="path3237" class="map-area"
+            d="M 315.48966,193.88435 L 303.07266,186.15822 L 288.44819,186.71008 L 283.75732,191.40095 L 276.85899,191.95282 L 274.37559,189.19349 L 271.06439,189.46941 L 264.44198,196.36775 L 264.71792,210.71629 L 258.37146,226.72042 L 253.40466,231.41129 L 252.02499,238.58556 L 249.26566,240.24115 L 249.26566,251.2785 L 239.60798,260.38429 L 240.98765,264.24736 L 246.23039,263.97143 L 253.68059,266.45482 L 255.06026,271.42163 L 275.20339,264.24736 L 294.51872,265.62703 L 312.17846,263.14363 L 316.59339,214.30343 L 310.79879,209.33662 L 315.48966,193.88435 z" />
+        <path id="path3239" class="map-area"
+            d="M 295.34653,327.98797 L 256.43992,327.71204 L 248.43785,320.8137 L 242.91919,323.57303 L 237.95238,323.57303 L 234.08932,321.6415 L 234.08932,317.22657 L 230.77811,315.29503 L 231.60592,294.3241 L 235.74492,291.8407 L 236.29678,281.90709 L 276.03119,265.90296 L 297.00212,267.83449 L 304.45232,266.73076 L 303.62452,273.6291 L 307.21166,274.4569 L 295.34653,327.98797 z" />
+        <path id="path3241" class="map-area"
+            d="M 243.33309,341.64666 L 249.26566,339.57717 L 248.71379,332.4029 L 253.95652,330.7473 L 253.68059,328.2639 L 248.43785,322.4693 L 244.29885,325.50457 L 236.02086,325.22864 L 231.88185,323.2971 L 232.15778,319.1581 L 228.29472,316.95063 L 229.12252,293.77223 L 233.53745,290.46103 L 234.64119,281.35523 L 231.32999,279.4237 L 225.81132,270.04196 L 221.94825,274.18096 L 206.77191,274.4569 L 204.56445,279.14777 L 195.73458,277.21622 L 191.31965,282.18303 L 172.28025,283.5627 L 170.03401,291.97866 L 160.41511,292.11663 L 161.51884,293.77223 L 156.82797,301.22243 L 148.82591,300.67056 L 146.06657,304.80956 L 146.61844,311.98383 L 136.40891,309.50043 L 132.54585,313.3635 L 137.2367,315.01911 L 138.34044,325.78049 L 145.51471,326.88424 L 143.30724,335.43817 L 140.82384,335.43817 L 148.54998,340.95683 L 136.68485,355.5813 L 122.88817,359.99624 L 122.3363,364.13523 L 113.78237,363.0315 L 108.26371,368.27424 L 107.15998,381.24311 L 101.91724,387.31364 L 94.467035,386.48584 L 93.915175,380.69124 L 92.535509,382.0709 L 94.191101,386.76177 L 98.330109,389.24517 L 98.330109,393.10824 L 88.672438,400.55845 L 81.498171,400.28251 L 77.083237,409.66425 L 77.911037,439.46505 L 68.805235,454.36545 L 55.836368,491.06459 L 59.147568,491.89238 L 59.147568,495.20359 L 63.010636,496.58325 L 63.838434,499.06665 L 76.255436,468.43805 L 97.778239,460.98785 L 116.81764,440.56878 L 117.36951,430.08331 L 125.37157,432.56671 L 127.85498,427.59991 L 124.26784,424.56465 L 131.71804,403.31777 L 134.47737,400.28251 L 130.89025,398.90284 L 130.61431,391.17671 L 138.61637,392.28044 L 152.96491,370.48171 L 170.07278,368.55016 L 170.62465,374.34477 L 175.86738,375.44851 L 178.07485,369.65391 L 199.32171,358.34063 L 214.49805,358.89251 L 208.97938,364.96304 L 206.22005,373.51697 L 196.83831,382.0709 L 196.01052,389.24517 L 200.14952,393.93604 L 209.80718,397.79911 L 213.11838,397.79911 L 227.46691,377.10411 L 227.46691,365.23897 L 221.94825,361.3759 L 227.19099,357.2369 L 233.53745,357.51284 L 236.29678,350.06263 L 240.98765,349.23483 L 243.33309,341.64666 z" />
+        <path id="path3243" class="map-area"
+            d="M 148.54998,271.14569 L 145.79065,272.80129 L 145.51471,278.87183 L 139.44418,278.87183 L 133.64958,289.90917 L 128.40684,289.90917 L 128.40684,302.6021 L 122.88817,310.60417 L 117.92137,303.15397 L 114.0583,303.15397 L 113.78237,308.3967 L 103.57284,312.25976 L 96.122637,319.70996 L 93.363305,318.88216 L 91.983639,308.67263 L 89.224305,306.46516 L 83.98157,313.08756 L 78.462903,319.98589 L 69.633035,325.22864 L 68.253368,327.16016 L 70.460835,332.95476 L 67.149636,335.43817 L 61.630969,334.0585 L 57.767901,337.64563 L 58.043835,342.06056 L 62.458767,344.26804 L 62.182835,355.30537 L 57.491967,355.5813 L 56.664167,363.0315 L 53.904833,366.06677 L 55.008568,372.1373 L 50.869568,369.10204 L 49.765833,369.10204 L 49.765833,373.51697 L 51.1455,375.17257 L 33.485765,389.79704 L 33.761699,394.21197 L 30.174565,394.21197 L 29.070831,392.8323 L 28.24303,396.41944 L 29.346765,399.17878 L 25.759631,400.83438 L 23.828098,400.83438 L 23.27623,402.76591 L 25.759631,407.18084 L 30.174565,407.45678 L 32.382033,420.14972 L 27.691164,424.01278 L 28.24303,427.59991 L 26.035563,429.53144 L 22.724364,429.25551 L 16.653831,436.15385 L 16.377897,441.67251 L 35.693232,442.50032 L 35.417298,446.63932 L 39.004432,446.63932 L 45.074967,452.43392 L 44.799033,457.67664 L 50.317699,458.22852 L 50.869568,461.26378 L 45.626833,464.85091 L 45.626833,488.58118 L 49.765833,489.68492 L 49.765833,492.44425 L 53.352967,490.78865 L 66.873702,452.15798 L 75.70357,439.18911 L 74.87577,408.83644 L 80.67037,398.07505 L 88.396504,398.6269 L 96.122637,392.55637 L 96.122637,390.62484 L 92.259575,388.41737 L 90.328037,381.51904 L 95.570767,376.82817 L 95.846701,384.00244 L 100.81351,384.83023 L 105.50438,379.58751 L 106.6081,366.61864 L 113.50644,360.5481 L 120.12884,361.65183 L 121.23257,358.06471 L 135.02924,354.20164 L 145.51471,340.95683 L 137.2367,334.33444 L 141.37571,333.78257 L 143.0313,328.53983 L 136.96078,327.16016 L 135.30518,316.39877 L 129.7865,314.46723 L 136.96078,307.29296 L 144.96284,310.0523 L 144.13504,303.70583 L 147.72217,299.01496 L 155.44831,299.56683 L 158.48358,293.49629 L 155.17238,289.3573 L 158.48358,284.39049 L 150.75744,284.39049 L 148.27404,280.2515 L 148.54998,271.14569 z" />
+        <path id="path3245" class="map-area"
+            d="M 103.57284,518.10605 L 96.950443,517.83012 L 78.738835,508.72432 L 78.186969,505.96499 L 74.599835,502.92972 L 73.496103,500.44631 L 68.253368,500.44631 L 67.977436,501.27412 L 65.218101,501.27412 L 77.635103,470.09365 L 99.433841,462.64345 L 119.02511,441.39657 L 119.02511,432.84265 L 126.75123,435.32604 L 131.16617,427.04805 L 126.75123,424.01278 L 133.37364,404.97338 L 137.51264,399.17878 L 133.37364,397.79911 L 132.26991,393.10824 L 139.99604,393.6601 L 154.34458,371.86137 L 168.69311,370.48171 L 169.24498,376.82817 L 176.97112,377.65597 L 179.17858,371.30951 L 199.87358,359.99624 L 211.46278,360.27217 L 206.22005,365.51491 L 205.11632,372.68918 L 194.90678,381.24311 L 194.90678,391.45264 L 189.66405,391.45264 L 182.76572,399.45471 L 182.76572,404.14557 L 179.17858,412.69951 L 168.41717,414.63104 L 167.86532,422.63311 L 171.17651,425.11651 L 164.27818,435.05012 L 164.55411,474.23265 L 156.55204,484.99405 L 156.82797,495.20359 L 139.72011,503.75752 L 129.51058,512.58739 L 126.47531,521.69319 L 106.88404,521.96912 L 104.67657,518.38199 L 103.57284,518.10605 z" />
+        <path id="path3247" class="map-area"
+            d="M 78.462903,510.93178 L 78.186969,513.69112 L 74.87577,515.34671 L 92.535509,525.28033 L 99.433841,567.77406 L 127.57904,634.274 L 196.01052,677.3196 L 306.93573,685.87354 L 303.34859,678.1474 L 271.61626,648.62253 L 286.79259,614.40679 L 288.44819,588.745 L 308.59133,603.92134 L 311.35066,561.42759 L 314.38593,556.18486 L 313.28219,527.76372 L 309.971,525.83218 L 307.76353,528.31559 L 286.51666,528.59152 L 275.47932,519.20979 L 276.03119,515.62265 L 279.61832,512.58739 L 280.17019,507.34465 L 274.65153,501.55005 L 274.65153,483.89032 L 278.51459,483.61439 L 278.23865,474.50859 L 285.96479,474.78452 L 289.00006,476.99198 L 288.72412,480.57912 L 291.75939,480.57912 L 300.31332,469.81772 L 302.24486,454.91731 L 295.62245,448.57084 L 295.0706,429.53144 L 333.42533,419.32191 L 346.94607,410.49204 L 346.94607,406.90491 L 335.35687,407.18084 L 305.55606,394.76385 L 297.27806,405.52523 L 287.89633,404.97338 L 282.92952,412.42358 L 275.47932,411.59577 L 269.68472,404.97338 L 229.39845,404.69744 C 229.39845,404.69744 217.53332,399.73063 216.42959,399.73063 C 215.32586,399.73063 209.53126,399.73063 209.53126,399.73063 L 198.76985,396.14351 L 196.56238,393.38418 L 190.76778,394.21197 L 184.97318,400.00657 L 185.24912,404.14557 L 180.83418,414.63104 L 170.07278,416.0107 L 169.79684,421.8053 L 173.65992,425.11651 L 166.20971,436.15385 L 166.76157,474.50859 L 158.20764,485.54591 L 158.48358,496.85918 L 141.37571,505.13718 L 130.89025,514.24298 L 128.40684,524.17659 L 106.05624,524.17659 L 103.02097,520.03758 L 95.846701,520.03758 L 78.462903,510.93178 z" />
+        <path id="path3249" class="map-area"
+            d="M 309.41912,685.5976 L 407.09954,737.47307 L 424.20741,700.77394 L 446.28208,685.04574 L 494.57041,691.3922 L 509.74675,702.42954 L 521.88782,685.04574 L 529.88988,629.3072 L 519.40441,610.54373 L 535.96041,590.95246 L 519.68035,581.84666 L 534.30482,575.77613 L 534.85668,565.29066 L 517.47288,552.04586 L 518.57662,539.07699 L 510.29861,537.42138 L 505.05588,528.31559 L 499.53722,528.86745 L 498.70941,520.58946 L 504.22809,514.51892 L 490.70735,502.10192 L 440.48748,502.10192 L 353.8444,525.28033 L 309.971,607.7844 L 289.82785,592.33213 L 288.72412,615.51054 L 274.37559,647.79474 L 305.83199,677.87148 L 309.41912,685.5976 z" />
+        <path id="path3251" class="map-area"
+            d="M 297.00212,329.64357 L 255.88805,329.64357 L 255.61212,332.4029 L 250.64532,334.61037 L 251.19718,341.78464 L 245.40258,343.44023 L 242.91919,351.4423 L 237.12459,352.2701 L 235.19305,359.7203 L 228.01878,359.7203 L 224.70758,361.3759 L 230.22626,365.79084 L 229.39845,377.38004 L 215.04992,398.07505 L 219.74079,398.07505 L 228.57065,402.21404 L 271.06439,403.04184 L 276.03119,409.11237 L 280.72205,409.94018 L 287.62039,402.76591 L 296.45026,403.04184 L 305.55606,391.72857 L 335.63279,405.24931 L 346.94607,405.24931 L 348.0498,374.06884 L 344.18673,374.89664 L 329.0104,356.68503 L 329.0104,350.33857 L 317.69712,336.81784 L 318.52493,328.2639 L 307.76353,327.16016 L 306.65979,329.91951 L 297.00212,329.64357 z" />
+        <path id="path3253" class="map-area"
+            d="M 304.1764,301.7743 L 297.27806,327.98797 L 305.55606,327.98797 L 307.76353,324.9527 L 321.00832,326.6083 L 319.90459,335.99003 L 330.666,349.7867 L 330.666,355.5813 L 344.7386,372.9651 L 350.80913,371.58544 L 350.25726,380.96717 L 380.60993,418.21818 L 387.23234,422.63311 L 396.06221,413.80324 L 396.06221,411.87171 L 394.13067,411.04391 L 392.47507,395.3157 L 398.82154,397.52317 L 407.37547,385.93397 L 411.79041,390.62484 L 414.54974,386.76177 L 417.585,388.69331 L 429.1742,378.75971 L 473.04762,364.68711 L 501.46874,365.51491 L 502.84841,368.27424 L 506.71148,368.8261 L 507.81521,367.1705 L 522.43968,366.3427 L 481.60155,322.74523 L 484.91275,310.88009 L 399.92527,274.18096 L 398.26967,292.6685 L 390.2676,294.3241 L 366.81326,281.63116 L 365.98547,284.11456 L 360.4668,284.11456 L 352.46473,299.56683 L 317.14526,296.8075 L 316.86933,304.2577 L 304.1764,301.7743 z" />
+        <path id="path3255" class="map-area"
+            d="M 450.14514,487.20152 L 440.7634,500.44631 L 492.36295,500.72225 L 506.98742,515.07079 L 500.64095,520.86539 L 500.91688,526.93591 L 506.43555,526.65999 L 510.85048,535.7658 L 518.57662,537.42138 L 521.88782,535.21392 L 520.23222,517.00232 L 525.19901,517.00232 L 526.85461,512.31145 L 537.61602,513.41519 L 540.92722,508.17245 L 549.75709,514.24298 L 552.24048,501.55005 L 518.02475,493.82392 L 517.74881,465.40278 L 506.71148,465.40278 L 515.81729,391.72857 L 519.40441,392.55637 L 522.99155,389.79704 C 522.99155,389.79704 521.33595,376.2763 522.99155,376.55224 C 524.64715,376.82817 529.61395,377.65597 529.61395,377.65597 L 525.75088,373.79291 L 527.13055,372.41324 L 523.26748,368.55016 L 508.91894,368.8261 L 506.71148,371.58544 L 500.91688,369.10204 L 500.36501,366.89458 L 472.77168,366.61864 L 429.72607,381.24311 L 418.68874,390.34891 L 415.10161,389.79704 L 411.51447,393.38418 L 407.92734,389.5211 L 399.64933,399.17878 L 394.40661,398.07505 L 395.78627,410.2161 L 398.5456,411.59577 L 398.5456,415.45885 L 389.16386,422.90904 L 407.09954,434.49824 L 426.13893,438.08537 L 437.72813,450.22645 L 455.38787,453.26171 L 454.83601,455.46918 L 462.01027,455.19325 L 459.52688,460.16005 L 462.56215,460.43598 L 466.70114,456.29698 L 470.01235,457.40071 L 468.08081,483.33845 L 460.90654,485.54591 L 460.07874,480.02725 L 457.31941,480.30319 L 455.66381,488.58118 L 450.14514,487.20152 z" />
+        <path id="path3257" class="map-area"
+            d="M 350.25726,384.27838 L 348.87759,411.87171 L 333.70126,421.25345 L 297.27806,431.18704 L 297.27806,447.19117 L 304.72826,455.74512 L 301.69299,471.47331 L 292.31126,483.33845 L 287.06852,483.06251 L 287.06852,478.09571 L 285.41292,476.71605 L 279.61832,476.16418 L 280.17019,486.09778 L 276.58305,486.37372 L 276.58305,500.72225 L 281.82579,507.34465 L 281.27392,514.51892 L 277.96272,516.72638 L 277.96272,518.93385 L 286.51666,526.10812 L 306.93573,526.10812 L 309.69506,523.34879 L 316.04153,527.48779 L 316.59339,556.73672 L 313.00626,562.80725 L 311.07473,602.54166 L 353.29252,522.79692 L 439.1078,500.17039 L 449.59327,484.71812 L 453.73228,486.37372 L 455.93974,477.81979 L 460.63061,477.81979 L 462.83807,483.33845 L 466.70114,481.40692 L 467.52894,459.05631 L 466.42521,458.22852 L 463.38994,461.81564 L 457.31941,461.81564 L 459.25094,457.67664 L 451.80074,457.67664 L 453.45634,454.91731 L 436.34847,452.15798 L 424.75927,439.74098 L 405.99581,436.42978 L 378.6784,420.14972 L 350.25726,384.27838 z" />
+        <text id="text1" x="305" y="160" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Gustavo</text>
+        <text id="text2" x="300" y="175" fill="black" font-size="15" font-family="Arial"
+            class="draggable">A.Madero</text>
+        <text id="text3" x="200" y="160" fill="black" font-size="12" font-family="Arial"
+            class="draggable">Azcapotzalco</text>
         <text id="text4" x="204" y="230" fill="black" font-size="12" font-family="Arial" class="draggable">Miguel</text>
-        <text id="text5" x="200" y="242" fill="black" font-size="12" font-family="Arial" class="draggable">Hidalgo</text>
-        <text id="text6" x="255" y="240" fill="black" font-size="10" font-family="Arial" class="draggable">Cuahutemoc</text>
-        <text id="text7" x="325" y="230" fill="black" font-size="12" font-family="Arial" class="draggable">Venuztiano</text>
-        <text id="text8" x="325" y="243" fill="black" font-size="12" font-family="Arial" class="draggable">Carranza</text>
-        <text id="text9" x="317" y="280" fill="black" font-size="15" font-family="Arial" class="draggable">Iztacalco</text>
-        <text id="text10" x="252" y="290" fill="black" font-size="15" font-family="Arial" class="draggable">Benito</text>
-        <text id="text11" x="250" y="303" fill="black" font-size="15" font-family="Arial" class="draggable">Juarez</text>
-        <text id="text12" x="175" y="320" fill="black" font-size="15" font-family="Arial" class="draggable">Alvaro</text>
-        <text id="text13" x="170" y="335" fill="black" font-size="15" font-family="Arial" class="draggable">Obregon</text>
-        <text id="text14" x="80" y="336" fill="black" font-size="11" font-family="Arial" class="draggable">Cuajimalpa</text>
-        <text id="text15" x="80" y="348" fill="black" font-size="11" font-family="Arial" class="draggable">De Morelos</text>
-        <text id="text16" x="113" y="460" fill="black" font-size="10" font-family="Arial" class="draggable">Magdalena</text>
-        <text id="text17" x="116" y="470" fill="black" font-size="10" font-family="Arial" class="draggable">Contreras</text>
-        <text id="text18" x="250" y="370" fill="black" font-size="15" font-family="Arial" class="draggable">Coyoacan</text>
-        <text id="text19" x="380" y="350" fill="black" font-size="15" font-family="Arial" class="draggable">Iztapalapa</text>
-        <text id="text20" x="445" y="430" fill="black" font-size="15" font-family="Arial" class="draggable">Tlahuac</text>
-        <text id="text21" x="330" y="480" fill="black" font-size="15" font-family="Arial" class="draggable">Xochimilco</text>
-        <text id="text22" x="200" y="550" fill="black" font-size="15" font-family="Arial" class="draggable">Tlalpan</text>
-        <text id="text23" x="390" y="610" fill="black" font-size="15" font-family="Arial" class="draggable">Milpa Alta</text>
+        <text id="text5" x="200" y="242" fill="black" font-size="12" font-family="Arial"
+            class="draggable">Hidalgo</text>
+        <text id="text6" x="255" y="240" fill="black" font-size="10" font-family="Arial" class="draggable">Bellas Artes
+        </text>
+        <text id="text7" x="325" y="230" fill="black" font-size="12" font-family="Arial"
+            class="draggable">Venuztiano</text>
+        <text id="text8" x="325" y="243" fill="black" font-size="12" font-family="Arial"
+            class="draggable">Carranza</text>
+        <text id="text9" x="317" y="280" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Iztacalco</text>
+        <text id="text10" x="252" y="290" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Benito</text>
+        <text id="text11" x="250" y="303" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Juarez</text>
+        <text id="text12" x="175" y="320" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Alvaro</text>
+        <text id="text13" x="170" y="335" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Obregon</text>
+        <text id="text14" x="80" y="336" fill="black" font-size="11" font-family="Arial"
+            class="draggable">Cuajimalpa</text>
+        <text id="text15" x="80" y="348" fill="black" font-size="11" font-family="Arial" class="draggable">De
+            Morelos</text>
+        <text id="text16" x="113" y="460" fill="black" font-size="10" font-family="Arial"
+            class="draggable">Magdalena</text>
+        <text id="text17" x="116" y="470" fill="black" font-size="10" font-family="Arial"
+            class="draggable">Contreras</text>
+        <text id="text18" x="250" y="370" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Coyoacan</text>
+        <text id="text19" x="380" y="350" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Iztapalapa</text>
+        <text id="text20" x="445" y="430" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Tlahuac</text>
+        <text id="text21" x="330" y="480" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Xochimilco</text>
+        <text id="text22" x="200" y="550" fill="black" font-size="15" font-family="Arial"
+            class="draggable">Tlalpan</text>
+        <text id="text23" x="390" y="610" fill="black" font-size="15" font-family="Arial" class="draggable">Milpa
+            Alta</text>
     </svg>
 
     <div id="chartContainer">
@@ -174,406 +831,639 @@
     </div>
 
     <script>
-         // Datos de valores por año
-         const valueData = {
-            "Empty": [
-                {"id": "path3227", "value": 1},
-                {"id": "path3229", "value": 1},
-                {"id": "path3231", "value": 1},
-                {"id": "path3233", "value": 1},
-                {"id": "path3235", "value": 1},
-                {"id": "path3237", "value": 1},
-                {"id": "path3239", "value": 1},
-                {"id": "path3241", "value": 1},
-                {"id": "path3243", "value": 1},
-                {"id": "path3245", "value": 1},
-                {"id": "path3247", "value": 1},
-                {"id": "path3249", "value": 1},
-                {"id": "path3251", "value": 1},
-                {"id": "path3253", "value": 1},
-                {"id": "path3255", "value": 1},
-                {"id": "path3257", "value": 1}
-            ],
+        const datosLinea1 = {
+            Pantitlan: "12,091,630",
+            Zaragoza: "8,708,578",
+            GomezFarias: "7,337,725",
+            BoulevardPuertoAereo: "5,468,560",
+            Balbuena: "2,246,042",
+            Moctezuma: "4,486,218",
+            SanLazaro: "4,977,454",
+            Candelaria: "6,457,461",
+            Merced: "11,449,206",
+            PinoSuarez: "8,849,949",
+            IsabelLaCatolica: "4,608,832",
+            SaltoDelAgua: "4,369,643",
+            Balderas: "3,532,268",
+            Cuauhtemoc: "4,054,718",
+            Insurgentes: "6,879,516",
+            Sevilla: "5,624,058",
+            Chapultepec: "9,091,332",
+            Juanacatlan: "1,859,621",
+            Tacubaya: "7,381,863",
+            Observatorio: "12,178,741"
+        };
+        const datosLinea2 = {
+            CuatroCaminos: "15,156,149",
+            Panteones: "2,235,576",
+            Tacuba: "6,994,297",
+            Cuitlahuac: "3,213,123",
+            Popotla: "1,390,202",
+            ColegioMilitar: "2,118,471",
+            Normal: "5,211,134",
+            SanCosme: "3,407,301",
+            Revolucion: "4,495,227",
+            Hidalgo: "5,473,990",
+            BellasArtes: "4,305,045",
+            Allende: "4,250,192",
+            Zocalo: "6,390,406",
+            PinoSuarez1: "3,366,820",  
+            SanAntonioAbad: "3,533,270",
+            Chabacano: "4,497,267",
+            Viaducto: "3,287,377",
+            Xola: "3,267,474",
+            VillaDeCortes: "2,926,908",
+            Nativitas: "3,190,651",
+            Portales: "3,691,622",
+            Ermita: "3,363,619",
+            GeneralAnaya: "3,279,093",
+            Tasquena: "14,486,239"
+        };
+        const datosLinea3 = {
+            IndiosVerdes: "23,449,776",
+            Deportivo18DeMarzo: "5,936,737",
+            Potrero: "2,998,686",
+            LaRaza: "6,278,397",
+            Tlatelolco: "3,424,240",
+            Guerrero: "2,134,844",
+            Hidalgo1: "2,578,964",
+            Juarez: "2,956,795",
+            Balderas1: "1,290,882",
+            NinosHeroes: "3,626,376",
+            HospitalGeneral: "3,421,978",
+            CentroMedico: "3,695,180",
+            Etiopia: "4,693,331",
+            Eugenia: "2,823,476",
+            DivisionDelNorte:"2,815,721",
+            Zapata: "6,909,278",
+            Coyoacan:"3,793,860",
+            Viveros: "4,009,630",
+            MiguelAngelDeQuevedo:"6,631,245",
+            Copilco:"4,626,936",
+            Universidad: "9,438,252"
+        };
+        const datosLinea4 = {
+            MartinCarrera: "3,870,053",
+            Talisman: "895,738",
+            Bondojito: "1,242,891",
+            Consulado: "757,318",
+            CanalDelNorte: "1,714,787",
+            Morelos: "1,770,575",
+            Candelaria1: "1,912,281",
+            FrayServando: "1,827,514",
+            Jamaica: "1,550,480",
+            SantaAnita: "391,005"
+        };
+        const datosLinea5 = {
+            Pantitlan1: "21,339,443",
+            Hangares: "946,994",
+            TerminalAerea: "4,419,693",
+            Oceania: "2,002,185",
+            Aragon: "1,605,655",
+            EduardoMolina: "1,293,750",
+            Consulado1:"1,213,863",
+            ValleGomez: "912,959",
+            Misterios: "1,696,494",
+            LaRaza1: "2,414,062",
+            AutobusesDelNorte: "4,322,667",
+            InstitutoDelPetroleo: "1,133,656",
+            Politecnico: "5,789,532",
+        };
+        const datosLinea6 = {
+            ElRosario: "2,983,811",
+            Tezozomoc: "1,093,928",
+            Azcapotzalco: "1,439,985",
+            Ferreria: "3,524,534",
+            Norte45: "1,619,693",
+            Vallejo: "1,955,966",
+            InstDelPetroleo: "506,888",
+            Lindavista: "2,411,708",
+            Deportivo18DeMarzo1: "323,811",
+            LaVillaBasilica: "2,292,984",
+            MartinCarrera1: "5,380,137"
+        };
+        const datosLinea7 = {
+            ElRosario7: "6,245,113",
+            AquilesSerdan: "2,199,473",
+            Camarones: "3,021,762",
+            Refineria: "2,206,048",
+            Tacuba7: "2,081,340",
+            SanJoaquin: "4,896,923",
+            Polanco: "5,373,504",
+            Auditorio: "5,474,627",
+            Constituyentes: "1,153,246",
+            Tacubaya7: "1,144,856",
+            SanPedroDeLosPinos: "2,399,129",
+            SanAntonio: "2,429,723",
+            Mixcoac: "5,957,730",
+            BarrancaDelMuerto: "7,331,623"
+        };
+        const datosLinea8 = {
+            Garibaldi: "3,439,579",
+            BellasArtes8: "4,204,561",
+            SanJuanDeLetran: "6,320,155",
+            SaltoDelAgua8: "3,098,577",
+            Doctores: "2,988,875",
+            Obrera: "3,182,282",
+            Chabacano8: "988,177",
+            LaViga: "1,599,439",
+            SantaAnita8: "1,025,639",
+            Coyuya: "5,581,291",
+            Iztacalco: "4,365,189",
+            Apatlaco: "3,676,323",
+            Aculco: "2,316,884",
+            Escuadron201: "4,527,035",
+            Atlalilco: "4,615,611",
+            Iztapalapa: "2,443,580",
+            CerroDeLaEstrella: "2,606,672",
+            UAMI: "5,254,770",
+            ConstitucionDe1917: "20,500,309"
+        };
+        const datosLinea9 = {
+            Pantitlan9: "22,367,944",
+            Puebla: "7,068,973",
+            CiudadDeportiva: "1,275,094",
+            Velodromo: "1,770,000",
+            Mixiuhca: "4,387,575",
+            Jamaica9: "2,621,993",
+            Chabacano9: "2,813,390",
+            LazaroCardenas: "2,951,608",
+            CentroMedico9: "3,348,060",
+            Chilpancingo: "9,430,276",
+            Patriotismo:"3,795,726",
+            Tacubaya9: "10,567,781"
+        };
+        const datosLineaA = {
+            PantitlanA: "33,368,107",
+            AgricolaOriental: "2,768,101",
+            CanalDeSanJuan: "3,282,914",
+            Tepalcates: "5,328,315",
+            Guelatao: "3,840,759",
+            PenonViejo: "3,310,816",
+            Acatitla: "3,640,691",
+            SantaMarta: "8,697,084",
+            LosReyes: "4,949,098",
+            LaPaz: "10,372,211"
+        };
+        const datosLineaB = {
+            Buenavista: "12,114,410",
+            GuerreroB: "1,493,722",
+            GaribaldiB: "1,363,736",
+            Lagunilla: "4,862,989",
+            Tepito: "5,518,062",
+            MorelosB: "995,579",
+            SanLazaroB: "3,217,040",
+            RicardoFloresMagon: "1,406,335",
+            RomeroRubio: "2,257,035",
+            OceaniaB: "2,109,569",
+            DeportivoOceania: "2,903,706",
+            BosqueDeAragon: "1,069,381",
+            VillaDeAragon: "2,590,343",
+            Nezahualcoyotl: "4,258,836",
+            Impulsora: "5,109,318",
+            RioDeLosRemedios: "4,785,870",
+            Muzquiz: "7,202,836",
+            Ecatepec: "4,853,732",
+            Olimpica: "4,040,957",
+            PlazaAragon: "4,412,715",
+            CiudadAzteca: "10,952,831"
+        };
+        const datosLinea12 = {
+            Mixcoac12: "693,814",
+            InsurgentesSur: "1,807,375",
+            Hospital20DeNoviembre: "593,128",
+            Zapata12: "895,128",
+            ParqueDeLosVenados: "567,984",
+            EjeCentral: "664,899",
+            Ermita12: "847,698",
+            Mexicaltzingo: "1,030,856",
+            Atlalilco12: "847,723",
+            Culhuacan: "1,179,625",
+            SanAndresTomatlan: "628,588",
+            LomasEstrella: "545,971",
+            Calle11: "994,257",
+            PerifericoOriente: "1,916,407",
+            Tezonco: "1,623,999",
+            Olivos: "1,105,981",
+            Nopalera: "1,619,653",
+            Zapotitlan: "960,815",
+            Tlaltenco: "301,594",
+            Tlahuac: "3,245,863"
+        };
+        const DatosTodas = {
+
+              Linea1: "131653415",
+              Linea2: "113531453",
+              Linea3: "107534584",
+              Linea4: "15932642",
+              Linea5: "49090953",
+              Linea6: "23533445",
+              Linea7: "51915097",
+              Linea8: "82734948",
+              Linea9: "72398420",
+              LineaA: "79558096",
+              LineaB: "87519002",
+              Linea12: "22071358"
             
+          };
+
+
+        // Datos de valores por año
+        const valueData = {
+            "Empty": [
+                { "id": "path3227", "value": 1 },
+                { "id": "path3229", "value": 1 },
+                { "id": "path3231", "value": 1 },
+                { "id": "path3233", "value": 1 },
+                { "id": "path3235", "value": 1 },
+                { "id": "path3237", "value": 1 },
+                { "id": "path3239", "value": 1 },
+                { "id": "path3241", "value": 1 },
+                { "id": "path3243", "value": 1 },
+                { "id": "path3245", "value": 1 },
+                { "id": "path3247", "value": 1 },
+                { "id": "path3249", "value": 1 },
+                { "id": "path3251", "value": 1 },
+                { "id": "path3253", "value": 1 },
+                { "id": "path3255", "value": 1 },
+                { "id": "path3257", "value": 1 }
+            ],
+
             "2021": [
-                {"id": "path3227", "value": 12091630},
-                {"id": "path3229", "value": 8708578},
-                {"id": "path3231", "value": 7337725},
-                {"id": "path3233", "value": 5468560},
-                {"id": "path3235", "value": 2246042},
-                {"id": "path3237", "value": 4486218},
-                {"id": "path3239", "value": 4977454},
-                {"id": "path3241", "value": 6457461},
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 8849949},//Magdalena Contreras
-                {"id": "path3247", "value": 0},
-                {"id": "path3249", "value": 0},
-                {"id": "path3251", "value": 3532268},
-                {"id": "path3253", "value": 4054718},
-                {"id": "path3255", "value": 6879516},
-                {"id": "path3257", "value": 0}
+                { "id": "path3227", "value": 12091630 },
+                { "id": "path3229", "value": 8708578 },
+                { "id": "path3231", "value": 7337725 },
+                { "id": "path3233", "value": 5468560 },
+                { "id": "path3235", "value": 2246042 },
+                { "id": "path3237", "value": 4486218 },
+                { "id": "path3239", "value": 4977454 },
+                { "id": "path3241", "value": 6457461 },
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 8849949 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },
+                { "id": "path3249", "value": 0 },
+                { "id": "path3251", "value": 3532268 },
+                { "id": "path3253", "value": 4054718 },
+                { "id": "path3255", "value": 6879516 },
+                { "id": "path3257", "value": 0 }
             ],
             "Linea 1": [
-                {"id": "path3227", "value": 0},
-                {"id": "path3229", "value": 0},
-                {"id": "path3231", "value": 5000000},// Venustiano carranza
-                {"id": "path3233", "value": 0},
-                {"id": "path3235", "value": 500000},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 0},
-                {"id": "path3241", "value": 5000000},//Alvaro Obregon
-                {"id": "path3243", "value": 1},
-                {"id": "path3245", "value": 5000000},
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 1},
-                {"id": "path3251", "value": 1},
-                {"id": "path3253", "value": 1},
-                {"id": "path3255", "value": 1},
-                {"id": "path3257", "value": 1}
+                { "id": "path3227", "value": 0 },
+                { "id": "path3229", "value": 0 },
+                { "id": "path3231", "value": 5000000 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },
+                { "id": "path3235", "value": 500000 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },
+                { "id": "path3241", "value": 5000000 },//Alvaro Obregon
+                { "id": "path3243", "value": 1 },
+                { "id": "path3245", "value": 5000000 },
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 1 },
+                { "id": "path3251", "value": 1 },
+                { "id": "path3253", "value": 1 },
+                { "id": "path3255", "value": 1 },
+                { "id": "path3257", "value": 1 }
             ],
             "Linea 2": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 30000000},//Iztacalco
-                {"id": "path3235", "value": 500000},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 3000000},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 3000000},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 30000000 },//Iztacalco
+                { "id": "path3235", "value": 500000 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 3000000 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 3000000 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 3": [
-                {"id": "path3227", "value": 5000000},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 0},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 3000000},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 3000000},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 5000000 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 3000000 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 3000000 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 4": [
-                {"id": "path3227", "value": 5000000},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 5000000},// Venustiano carranza
-                {"id": "path3233", "value": 5000000},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 5000000 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 5000000 },// Venustiano carranza
+                { "id": "path3233", "value": 5000000 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 5": [
-                {"id": "path3227", "value": 5000000},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 5000000},// Venustiano carranza
-                {"id": "path3233", "value": 0},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 5000000 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 5000000 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 6": [
-                {"id": "path3227", "value": 5000000},//Gustavo A. Madero
-                {"id": "path3229", "value": 5000000},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 0},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 5000000 },//Gustavo A. Madero
+                { "id": "path3229", "value": 5000000 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 7": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 5000000},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 0},//Iztacalco
-                {"id": "path3235", "value": 500000},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 3000000},//Benito juarez
-                {"id": "path3241", "value": 50000000},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 5000000 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },//Iztacalco
+                { "id": "path3235", "value": 500000 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 3000000 },//Benito juarez
+                { "id": "path3241", "value": 50000000 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 8": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 50000000},// Venustiano carranza
-                {"id": "path3233", "value": 50000000},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 3000000},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 50000000 },// Venustiano carranza
+                { "id": "path3233", "value": 50000000 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 3000000 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 9": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 50000000},// Venustiano carranza
-                {"id": "path3233", "value": 50000000},//Iztacalco
-                {"id": "path3235", "value": 500000},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 0},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 50000000 },// Venustiano carranza
+                { "id": "path3233", "value": 50000000 },//Iztacalco
+                { "id": "path3235", "value": 500000 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 0 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea 12": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 0},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 3000000},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 3000000},//iztapalapa
-                {"id": "path3255", "value": 50000000},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 3000000 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 3000000 },//iztapalapa
+                { "id": "path3255", "value": 50000000 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea A": [
-                {"id": "path3227", "value": 0},//Gustavo A. Madero
-                {"id": "path3229", "value": 0},//Azcapotzalco
-                {"id": "path3231", "value": 0},// Venustiano carranza
-                {"id": "path3233", "value": 50000000},//Iztacalco
-                {"id": "path3235", "value": 0},//Miguel Hidalgo
-                {"id": "path3237", "value": 0},//Cuahutemoc
-                {"id": "path3239", "value": 0},//Benito juarez
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 0},//Cuajimalpa
-                {"id": "path3245", "value": 0},//Magdalena Contreras
-                {"id": "path3247", "value": 0},//Tlalpan
-                {"id": "path3249", "value": 0},//Milpa Alta
-                {"id": "path3251", "value": 0},//Coyoacan
-                {"id": "path3253", "value": 3000000},//iztapalapa
-                {"id": "path3255", "value": 0},//Tlahuac
-                {"id": "path3257", "value": 0}//xochimilco
+                { "id": "path3227", "value": 0 },//Gustavo A. Madero
+                { "id": "path3229", "value": 0 },//Azcapotzalco
+                { "id": "path3231", "value": 0 },// Venustiano carranza
+                { "id": "path3233", "value": 50000000 },//Iztacalco
+                { "id": "path3235", "value": 0 },//Miguel Hidalgo
+                { "id": "path3237", "value": 0 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },//Benito juarez
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 0 },//Cuajimalpa
+                { "id": "path3245", "value": 0 },//Magdalena Contreras
+                { "id": "path3247", "value": 0 },//Tlalpan
+                { "id": "path3249", "value": 0 },//Milpa Alta
+                { "id": "path3251", "value": 0 },//Coyoacan
+                { "id": "path3253", "value": 3000000 },//iztapalapa
+                { "id": "path3255", "value": 0 },//Tlahuac
+                { "id": "path3257", "value": 0 }//xochimilco
             ],
             "Linea B": [
-                {"id": "path3227", "value": 5000000},
-                {"id": "path3229", "value": 0},
-                {"id": "path3231", "value": 5000000},// Venustiano carranza
-                {"id": "path3233", "value": 0},
-                {"id": "path3235", "value": 500000},//Miguel Hidalgo
-                {"id": "path3237", "value": 3000000},//Cuahutemoc
-                {"id": "path3239", "value": 0},
-                {"id": "path3241", "value": 0},//Alvaro Obregon
-                {"id": "path3243", "value": 1},
-                {"id": "path3245", "value": 1},
-                {"id": "path3247", "value": 1},
-                {"id": "path3249", "value": 1},
-                {"id": "path3251", "value": 1},
-                {"id": "path3253", "value": 1},
-                {"id": "path3255", "value": 1},
-                {"id": "path3257", "value": 1}
+                { "id": "path3227", "value": 5000000 },
+                { "id": "path3229", "value": 0 },
+                { "id": "path3231", "value": 5000000 },// Venustiano carranza
+                { "id": "path3233", "value": 0 },
+                { "id": "path3235", "value": 500000 },//Miguel Hidalgo
+                { "id": "path3237", "value": 3000000 },//Bellas Artes 
+                { "id": "path3239", "value": 0 },
+                { "id": "path3241", "value": 0 },//Alvaro Obregon
+                { "id": "path3243", "value": 1 },
+                { "id": "path3245", "value": 1 },
+                { "id": "path3247", "value": 1 },
+                { "id": "path3249", "value": 1 },
+                { "id": "path3251", "value": 1 },
+                { "id": "path3253", "value": 1 },
+                { "id": "path3255", "value": 1 },
+                { "id": "path3257", "value": 1 }
             ],
 
         };
 
-    
-
-    const imageUrls = {
-        "Empty": "",
-        "Linea 1": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_1.png",
-        "Linea 2": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_2.png",
-        "Linea 3": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_3.png",
-        "Linea 4": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_4.png",
-        "Linea 5": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_5.png",
-        "Linea 6": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_6.png",
-        "Linea 7": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_7.png",
-        "Linea 8": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_8.png",
-        "Linea 9": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_9.png",
-        "Linea 12": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_12.png",
-        "Linea A": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_A.png",
-        "Linea B": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_B.png",
-        "2021": "https://upload.wikimedia.org/wikipedia/commons/5/50/Mapa_del_Metro_de_la_Ciudad_de_M%C3%A9xico.png"
-    };
 
 
-        
-    const ctx = document.getElementById('myChart').getContext('2d');
+        const imageUrls = {
+            "Empty": "",
+            "Linea 1": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_1.png",
+            "Linea 2": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_2.png",
+            "Linea 3": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_3.png",
+            "Linea 4": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_4.png",
+            "Linea 5": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_5.png",
+            "Linea 6": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_6.png",
+            "Linea 7": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_7.png",
+            "Linea 8": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_8.png",
+            "Linea 9": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_9.png",
+            "Linea 12": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_12.png",
+            "Linea A": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_A.png",
+            "Linea B": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_B.png",
+            "2021": "https://upload.wikimedia.org/wikipedia/commons/5/50/Mapa_del_Metro_de_la_Ciudad_de_M%C3%A9xico.png"
+        };
+
+
+
+        const ctx = document.getElementById('myChart').getContext('2d');
         let myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        datasets: [{
-            label: 'Afluencia',
-            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            backgroundColor: [
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)',
-                'rgba(255, 0, 0, 1)'
-            ],
-            borderColor: [
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)',
-                'rgba(255, 255, 255, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-            ticks: {
-                    color: 'black' // Cambia el color de las etiquetas del eje y a blanco
-                },
-                grid: {
-                    color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
-                }
+            type: 'bar',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                datasets: [{
+                    label: 'Afluencia',
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)',
+                        'rgba(255, 0, 0, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)',
+                        'rgba(255, 255, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
             },
-            x: {
-                ticks: {
-                    color: 'black' // Cambia el color de las etiquetas del eje x a blanco
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'black' // Cambia el color de las etiquetas del eje y a blanco
+                        },
+                        grid: {
+                            color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'black' // Cambia el color de las etiquetas del eje x a blanco
+                        },
+                        grid: {
+                            color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                        }
+                    }
                 },
-                grid: {
-                    color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black' // Cambia el color de las etiquetas de la leyenda a blanco
+                        }
+                    }
                 }
             }
-        },
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'black' // Cambia el color de las etiquetas de la leyenda a blanco
-                }
-            }
-        }
-    }
-})
-        function handleChange(value) {
-            updateChart(value);
-            updateColors(value);
-            console.log("Selected value: " + value);
-        }
+        })
+
 
         function updateChart(option) {
             let data;
-            switch(option) {
+            switch (option) {
                 case 'Empty':
                     data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                     break;
                 case 'Linea 1':
-                    data = [22478385,22478385,22478385, 31709870,31709870,31709870, 37190915,37190915,37190915, 40274245,40274245,40274245];
+                    data = [22478385, 22478385, 22478385, 31709870, 31709870, 31709870, 37190915, 37190915, 37190915, 40274245, 40274245, 40274245];
                     break;
                 case 'Linea 2':
-                    data = [16288868,16288868,16288868, 28138915,28138915,28138915, 31388259,31388259,31388259, 37715411,37715411,37715411];
+                    data = [16288868, 16288868, 16288868, 28138915, 28138915, 28138915, 31388259, 31388259, 31388259, 37715411, 37715411, 37715411];
                     break;
                 case 'Linea 3':
-                    data = [15971452,15971452,15971452, 26478247,26478247,26478247, 30235377,30235377,30235377, 34849508,34849508,34849508];
+                    data = [15971452, 15971452, 15971452, 26478247, 26478247, 26478247, 30235377, 30235377, 30235377, 34849508, 34849508, 34849508];
                     break;
                 case 'Linea 4':
-                    data = [3078276,3078276,3078276, 3381775,3381775,3381775, 4291572,4291572,4291572, 5181019,5181019,5181019];
+                    data = [3078276, 3078276, 3078276, 3381775, 3381775, 3381775, 4291572, 4291572, 4291572, 5181019, 5181019, 5181019];
                     break;
                 case 'Linea 5':
-                    data = [9872396,9872396,9872396, 11897163,11897163,11897163, 12726317,12726317,12726317, 14595077,14595077,14595077];
+                    data = [9872396, 9872396, 9872396, 11897163, 11897163, 11897163, 12726317, 12726317, 12726317, 14595077, 14595077, 14595077];
                     break;
                 case 'Linea 6':
-                    data = [4374468,4374468,4374468, 5653367,5653367,5653367, 6131265,6131265,6131265, 7374345,7374345,7374345];
+                    data = [4374468, 4374468, 4374468, 5653367, 5653367, 5653367, 6131265, 6131265, 6131265, 7374345, 7374345, 7374345];
                     break;
                 case 'Linea 7':
-                    data = [10786822,10786822,10786822, 12402188,12402188,12402188, 13545219,13545219,13545219, 15180868,15180868,15180868];
+                    data = [10786822, 10786822, 10786822, 12402188, 12402188, 12402188, 13545219, 13545219, 13545219, 15180868, 15180868, 15180868];
                     break;
                 case 'Linea 8':
-                    data = [16031484,16031484,16031484, 18861014,18861014,18861014, 21455407,21455407,21455407, 26387043,26387043,26387043];
+                    data = [16031484, 16031484, 16031484, 18861014, 18861014, 18861014, 21455407, 21455407, 21455407, 26387043, 26387043, 26387043];
                     break;
                 case 'Linea 9':
-                    data = [15762841,15762841,15762841, 15574018,15574018,15574018, 19473027,19473027,19473027, 21588534,21588534,21588534];
+                    data = [15762841, 15762841, 15762841, 15574018, 15574018, 15574018, 19473027, 19473027, 19473027, 21588534, 21588534, 21588534];
                     break;
                 case 'Linea 12':
-                    data = [15940452,15940452,15940452, 6130906,6130906,6130906, 0,0,0, 0,0,0];
+                    data = [15940452, 15940452, 15940452, 6130906, 6130906, 6130906, 0, 0, 0, 0, 0, 0];
                     break;
                 case 'Linea A':
-                    data = [18208226,18208226,18208226, 19738024,19738024,19738024, 20048628,20048628,20048628, 21563218,21563218,21563218];
+                    data = [18208226, 18208226, 18208226, 19738024, 19738024, 19738024, 20048628, 20048628, 20048628, 21563218, 21563218, 21563218];
                     break;
                 case 'Linea B':
-                    data = [18175760,18175760,18175760, 19569033,19569033,19569033, 22405666,22405666,22405666, 27368543,27368543,27368543];
+                    data = [18175760, 18175760, 18175760, 19569033, 19569033, 19569033, 22405666, 22405666, 22405666, 27368543, 27368543, 27368543];
                     break;
                 case 'Todas las lineas':
-                    data = [166969430,166969430,166969430, 199534520,199534520,199534520, 218891652,218891652,218891652, 252077811,252077811,252077811];
+                    data = [166969430, 166969430, 166969430, 199534520, 199534520, 199534520, 218891652, 218891652, 218891652, 252077811, 252077811, 252077811];
                     break;
                 default:
-                    data = [166969430,166969430,166969430, 199534520,199534520,199534520, 218891652,218891652,218891652, 252077811,252077811,252077811];
+                    data = [166969430, 166969430, 166969430, 199534520, 199534520, 199534520, 218891652, 218891652, 218891652, 252077811, 252077811, 252077811];
             }
             myChart.data.datasets[0].data = data;
             myChart.update();
@@ -601,10 +1491,166 @@
         }
 
         // Inicializar con el año 2021 seleccionado por defecto
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById('yearSelect').value = 'Empty';
             updateColors('Empty');
         };
+
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        function closeAllModals() {
+            var modals = document.getElementsByClassName('modal');
+            for (var i = 0; i < modals.length; i++) {
+                modals[i].style.display = "none";
+            }
+        }
+
+        // Cerrar el modal cuando el usuario hace clic fuera de él
+        window.onclick = function (event) {
+            var modals = document.getElementsByClassName('modal');
+            for (var i = 0; i < modals.length; i++) {
+                if (event.target == modals[i]) {
+                    modals[i].style.display = "none";
+                }
+            }
+        }
+        
+        function handleChange(value) {
+            // Ocultar todos los formularios
+            document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+        
+            // Limpiar los campos
+            document.querySelectorAll('.modal input').forEach(input => input.value = '');
+        
+            let datos;
+            switch (value) {
+                case "Empty":
+                        updateChart(value);
+                        updateColors(value);
+
+                        break;
+                case "Linea 1":
+                    datos = datosLinea1;
+                    document.getElementById('modalLinea1').style.display = 'block';
+                    break;
+                case "Linea 2":
+                    datos = datosLinea2;
+                    document.getElementById('modalLinea2').style.display = 'block';
+                    break;
+                case "Linea 3":
+                    datos = datosLinea3;
+                    document.getElementById('modalLinea3').style.display = 'block';
+                    break;
+                case "Linea 4":
+                    datos = datosLinea4;
+                    document.getElementById('modalLinea4').style.display = 'block';
+                    break;
+                case "Linea 5":
+                    datos = datosLinea5;
+                    document.getElementById('modalLinea5').style.display = 'block'
+                    break;
+                case "Linea 6":
+                    datos = datosLinea6;
+                    document.getElementById('modalLinea6').style.display = 'block'
+                    break;    
+                case "Linea 7":
+                    datos = datosLinea7;
+                    document.getElementById('modalLinea7').style.display = 'block'
+                    break;    
+                case "Linea 8":
+                    datos = datosLinea8;
+                    document.getElementById('modalLinea8').style.display = 'block'
+                    break;
+                case "Linea 9":
+                    datos = datosLinea9;
+                    document.getElementById('modalLinea9').style.display = 'block'
+                    break;        
+                case "Linea A":
+                    datos = datosLineaA;
+                    document.getElementById('modalLineaA').style.display = 'block'
+                    break;    
+                case "Linea B":
+                    datos = datosLineaB;
+                    document.getElementById('modalLineaB').style.display = 'block'
+                    break;    
+                case "Linea 12":
+                    datos = datosLinea12;
+                    document.getElementById('modalLinea12').style.display = 'block'
+                    break;
+                case "2021":
+                    datos = DatosTodas;
+                    document.getElementById('modal2021').style.display = 'block'
+                    break;            
+                default:
+                    return; 
+            }
+        
+            // Rellenar los campos del formulario
+            for (const [key, val] of Object.entries(datos)) {
+                document.getElementById(key).value = val;
+            }
+        
+            updateChart(value);
+            updateColors(value);
+            console.log("Selected value: " + value);
+        }
+
+        function enviarDatos() {
+            const datos = {
+                Estacion: [],
+                Cantidad: []
+            };
+        
+            // Recolectar los datos del formulario
+            const estaciones = ['Pantitlan', 'Zaragoza', 'GomezFarias', 'BoulevardPuertoAereo', 'Balbuena', 
+                                'Moctezuma', 'SanLazaro', 'Candelaria', 'Merced', 'PinoSuarez', 
+                                'IsabelLaCatolica', 'SaltoDelAgua', 'Balderas', 'Cuauhtemoc', 
+                                'Insurgentes', 'Sevilla', 'Chapultepec', 'Juanacatlan', 'Tacubaya', 
+                                'Observatorio'];
+            
+            estaciones.forEach(estacion => {
+                const inputValue = document.getElementById(estacion).value;
+                if (inputValue) {
+                    datos.Estacion.push(estacion);
+                    datos.Cantidad.push(inputValue);
+                }
+            });
+        
+            fetch('conexion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                alert('Datos enviados correctamente');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
     </script>
 </body>
+
 </html>
