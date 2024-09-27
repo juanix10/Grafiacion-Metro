@@ -12,6 +12,11 @@
             stroke: #000;
             stroke-width: 1px;
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         .logoMetro {
             position: absolute;
@@ -39,7 +44,7 @@
 
         .logoUAEM {
             position: absolute;
-            top: 83vh;
+            top: 83%;
             left: 3vh;
             width: 100px;
             height: auto;
@@ -70,11 +75,11 @@
         }
 
         #chartContainer {
-            width: 400px;
+            width: 470px;
             height: 400px;
             position: absolute;
-            top: 400px;
-            left: 560px;
+            top: 53%;
+            left: 37%;
         }
 
         #map-area {
@@ -92,9 +97,9 @@
 
         select {
             position: relative;
-            background-color: #8888884b;
-            backdrop-filter: blur(100px);
-            color: rgb(5, 5, 5);
+            background-color:  #555;
+            backdrop-filter: blur(20px);
+            color: rgb(255, 255, 255);
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -103,15 +108,26 @@
             -webkit-appearance: none; /* Para navegadores WebKit */
             -moz-appearance: none; /* Para navegadores Firefox */
         }
+         /* Estilo para el estado desplegado (cuando se abre) */
+         select:focus {
+            background-color: #555; /* Color de fondo al enfocarse */
+            color: #fff; /* Color de texto al enfocarse */
+            outline: none; /* Elimina el borde de enfoque por defecto */
+        }
 
-        select::after {
+        /* Agrega un indicador para el desplegable */
+        .select-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .select-container::after {
             content: '▼';
             position: absolute;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
-            z-index: 1;
         }
 
         .modal {
@@ -124,8 +140,6 @@
             height: 100%;
             overflow: hidden;
             padding-top: 0%;
-            
-            
         }
 
         .modal-content  {
@@ -134,15 +148,14 @@
             margin: 2% auto;
             padding: 20px;
             border: 1px solid #7c7b7b;
-            width: 80%;
-            height: 96%; /* Asegúrate de que ocupe el 100% de altura */
+            width: 90%;
+            height: 99%; /* Asegúrate de que ocupe el 100% de altura */
             overflow-y: scroll;
+
         }
-                /* Ocultar barra de desplazamiento en navegadores WebKit */
-.modal-content::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento */
-}
-   
+        .modal-content::-webkit-scrollbar {
+            display: none; /* Oculta la barra de desplazamiento */
+        }
      .close {
             color: #000000;
             float: right;
@@ -190,7 +203,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/CDMX_Logo.png" class="logoCDMX" alt="LogoCDMX" />
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Logo_de_la_UAEMex.svg/971px-Logo_de_la_UAEMex.svg.png"
             class="logoUAEM" alt="Escudo de la UAEM" />
-        <label for="yearSelect" style="color: rgb(5, 5, 5);">Selecciona La Opcion:</label>
+        <label for="yearSelect" style="color: rgb(255, 255, 255);">Selecciona La Opcion:</label>
         <select id="yearSelect" onchange="handleChange(this.value)">
             <option value="Empty">Empty</option>
             <option value="Linea 1">Linea 1</option>
