@@ -1,60 +1,69 @@
 import matplotlib.pyplot as plt
+import tkinter as tk
+from tkinter import simpledialog
 
-def bresenham(x1, y1, x2, y2):
-    # Calcular las diferencias
-    dx = abs(x2 - x1)
-    dy = abs(y2 - y1)
+# Función Bresenham modificada
+def bresenham(x0, y0, x1, y1):
+    dx = abs(x1 - x0)
+    dy = abs(y1 - y0)
     
-    # Determinar la dirección de incremento
-    sx = 1 if x1 < x2 else -1
-    sy = 1 if y1 < y2 else -1
-
-    # Inicializar el parámetro de decisión
-    err = dx - dy
-
-    # Crear una lista para almacenar los puntos de la línea
+    sx = 1 if x0 < x1 else -1  # Dirección en X
+    sy = 1 if y0 < y1 else -1  # Dirección en Y
+    
+    err = dx - dy  # Error inicial
+    
     points = []
-
+    
     while True:
-        # Añadir el punto actual a la lista
-        points.append((x1, y1))
+        points.append((x0, y0))  # Almacenar el punto actual
         
-        # Si el punto inicial es igual al punto final, terminar el algoritmo
-        if x1 == x2 and y1 == y2:
+        if x0 == x1 and y0 == y1:
             break
         
-        # Calcular el doble del error
-        e2 = 2 * err
+        e2 = 2 * err  # Multiplicar el error por 2
         
-        # Ajustar el error y mover en x o y según corresponda
         if e2 > -dy:
             err -= dy
-            x1 += sx
+            x0 += sx
+        
         if e2 < dx:
             err += dx
-            y1 += sy
-
+            y0 += sy
+    
     return points
 
-def plot_line(points):
-    # Separar las coordenadas x e y
-    x_coords, y_coords = zip(*points)
-    
-    # Crear un gráfico donde se simulen los píxeles
-    plt.figure(figsize=(5, 5))
-    plt.plot(x_coords, y_coords, marker='o', color='black', linestyle='None')
+# Función para solicitar los puntos y graficar
+def solicitar_datos_y_graficar():
+    # Crear ventana raíz
+    root = tk.Tk()
+    root.withdraw()  # Ocultar la ventana principal
+
+    # Solicitar los valores al usuario
+    x_inicial = int(simpledialog.askstring("Entrada", "Ingresa el valor de x0:"))
+    y_inicial = int(simpledialog.askstring("Entrada", "Ingresa el valor de y0:"))
+    x_final = int(simpledialog.askstring("Entrada", "Ingresa el valor de x1:"))
+    y_final = int(simpledialog.askstring("Entrada", "Ingresa el valor de y1:"))
+
+    # Obtener la línea usando Bresenham
+    linea = bresenham(x_inicial, y_inicial, x_final, y_final)
+
+    # Extraer los puntos X e Y para graficar
+    x_vals, y_vals = zip(*linea)
+
+    # Graficar los puntos generados con anotaciones
+    plt.figure(figsize=(6,6))
+    plt.scatter(x_vals, y_vals, color='blue', s=100)  # Graficar los puntos individuales
+    plt.plot(x_vals, y_vals, color='lightblue', linestyle='--')  # Línea punteada que conecta los puntos
+
+    # Añadir etiquetas a cada punto
+    for x, y in linea:
+        plt.text(x, y, f"({x},{y})", fontsize=12, ha='right')
+
+    plt.title("Línea usando el algoritmo de Bresenham")
+    plt.xlabel("X")
+    plt.ylabel("Y")
     plt.grid(True)
-    plt.xticks(range(min(x_coords) - 1, max(x_coords) + 2))
-    plt.yticks(range(min(y_coords) - 1, max(y_coords) + 2))
-    plt.gca().invert_yaxis()  # Invertir el eje y para simular coordenadas de píxeles
     plt.show()
 
-# Coordenadas del punto inicial y final
-x1, y1 = 2, 3
-x2, y2 = 10, 7
-
-# Trazar la línea usando el algoritmo de Bresenham
-line_points = bresenham(x1, y1, x2, y2)
-
-# Mostrar la línea en una cuadrícula
-plot_line(line_points)
+# Llamar a la función para solicitar datos y graficar
+solicitar_datos_y_graficar()
