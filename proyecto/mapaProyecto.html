@@ -12,6 +12,7 @@
             stroke: #000;
             stroke-width: 1px;
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -55,31 +56,31 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('https://www.eluniversal.com.mx/resizer/v2/EO6O6CVDXREZDLVRRGACU6G564.jpg?auth=c8324342379d144c34a13d6ce61a960406b4fb6339784f6fec8559e1ec3673d7&smart=true&width=1100&height=666') no-repeat center center fixed;
+            background: url('https://www.capital21.cdmx.gob.mx/noticias/wp-content/uploads/2021/01/metro-cdmx-vagon.jpg') no-repeat center center fixed;
             background-size: cover;
             z-index: -1;
         }
 
         img {
             position: absolute;
-            /* Para posicionar la imagen de manera relativa a la ventana */
             top: 0vh;
-            /* Alinea la imagen en la parte superior */
-            left: 75vh;
-            /* Alinea la imagen en la parte izquierda */
+            left: 40%;
             width: 350px;
-            /* Redimensiona el ancho de la imagen (puedes ajustar el tamaño) */
             height: auto;
-            /* Mantiene la proporción de la imagen */
             z-index: 1000;
+        }
+
+        .linea1-img {
+            width: 300px;
+            height: auto;
         }
 
         #chartContainer {
             width: 470px;
             height: 400px;
             position: absolute;
-            top: 53%;
-            left: 37%;
+            top: 53.5%;
+            left: 35%;
         }
 
         #map-area {
@@ -97,7 +98,7 @@
 
         select {
             position: relative;
-            background-color:  #555;
+            background-color: #555;
             backdrop-filter: blur(20px);
             color: rgb(255, 255, 255);
             padding: 10px;
@@ -105,14 +106,20 @@
             border-radius: 5px;
             font-size: 16px;
             appearance: none;
-            -webkit-appearance: none; /* Para navegadores WebKit */
-            -moz-appearance: none; /* Para navegadores Firefox */
+            -webkit-appearance: none;
+            /* Para navegadores WebKit */
+            -moz-appearance: none;
+            /* Para navegadores Firefox */
         }
-         /* Estilo para el estado desplegado (cuando se abre) */
-         select:focus {
-            background-color: #555; /* Color de fondo al enfocarse */
-            color: #fff; /* Color de texto al enfocarse */
-            outline: none; /* Elimina el borde de enfoque por defecto */
+
+        /* Estilo para el estado desplegado (cuando se abre) */
+        select:focus {
+            background-color: #555;
+            /* Color de fondo al enfocarse */
+            color: #fff;
+            /* Color de texto al enfocarse */
+            outline: none;
+            /* Elimina el borde de enfoque por defecto */
         }
 
         /* Agrega un indicador para el desplegable */
@@ -142,22 +149,26 @@
             padding-top: 0%;
         }
 
-        .modal-content  {
+        .modal-content {
             background: transparent;
             backdrop-filter: blur(10px);
             margin: 2% auto;
             padding: 20px;
-            border: 1px solid #7c7b7b;
+            border: 1px solid #ffffff;
             width: 90%;
-            height: 99%; /* Asegúrate de que ocupe el 100% de altura */
+            height: 99%;
+            /* Asegúrate de que ocupe el 100% de altura */
             overflow-y: scroll;
 
         }
+
         .modal-content::-webkit-scrollbar {
-            display: none; /* Oculta la barra de desplazamiento */
+            display: none;
+            /* Oculta la barra de desplazamiento */
         }
-     .close {
-            color: #000000;
+
+        .close {
+            color: #ffffff;
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -165,32 +176,49 @@
 
         .close:hover,
         .close:focus {
-            color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
             text-decoration: none;
             cursor: pointer;
         }
+
         input {
-            width: calc(100% - 20px); /* Ancho total menos el padding */
+            width: calc(100% - 20px);
+            /* Ancho total menos el padding */
             padding: 10px;
-            margin: 5px 0; /* Espaciado entre campos */
-            border: 2px solid #000000; /* Borde gris claro */
-            border-radius: 20px; /* Bordes redondeados */
-            transition: border 0.3s; 
+            margin: 5px 0;
+            /* Espaciado entre campos */
+            border: 2px solid #ffffff;
+            /* Borde gris claro */
+            border-radius: 20px;
+            /* Bordes redondeados */
+            transition: border 0.3s;
             background: transparent;
+            color: #ffffff;
 
         }
+
         button {
-            background: transparent; /* Color de fondo azul */
-            color: rgb(0, 0, 0); /* Texto blanco */
-            border: none; /* Sin borde */
-            padding: 10px 15px; /* Espaciado interno */
-            border-radius: 5px; /* Bordes redondeados */
-            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+            background: transparent;
+            /* Color de fondo azul */
+            color: rgb(255, 255, 255);
+            /* Texto blanco */
+            border: none;
+            /* Sin borde */
+            padding: 10px 15px;
+            /* Espaciado interno */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            cursor: pointer;
+            /* Cambia el cursor al pasar el ratón */
             transition: background-color 0.3s;
-            border: 2px solid #000000;
+            border: 2px solid #ffffff;
             border-radius: 20px;
         }
 
+        label {
+            color: #ffffff;
+            /* Cambia el color del texto a blanco */
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -227,7 +255,7 @@
                 <form id="modalLinea1">
                     <label for="Linea1">LINEA 1 PANTITLAN / OBSERVATORIO</label><br>
                     <label for="Pantitlan">Pantitlan:</label><br>
-                    <input type="text" id="Pantitlan" name="Pantitlan" ><br>
+                    <input type="text" id="Pantitlan" name="Pantitlan"><br>
                     <label for="Zaragoza">Zaragoza:</label><br>
                     <input type="text" id="Zaragoza" name="Zaragoza"><br>
                     <label for="GomezFarias">Gómez Farías:</label><br>
@@ -266,11 +294,11 @@
                     <input type="text" id="Tacubaya" name="Tacubaya"><br>
                     <label for="Observatorio">Observatorio:</label><br>
                     <input type="text" id="Observatorio" name="Observatorio"><br>
-                    <button type="button" onclick="enviarDatos()">Enviar Datos</button><br>
+                    <button type="button" onclick="enviarDatos('linea1')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
-        
+
         <div id="modalLinea2" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal('modalLinea2')">&times;</span>
@@ -324,6 +352,7 @@
                     <input type="text" id="GeneralAnaya" name="GeneralAnaya"><br>
                     <label for="Tasquena">Tasqueña:</label><br>
                     <input type="text" id="Tasquena" name="Tasquena"><br>
+                    <button type="button" onclick="enviarDatos('linea2')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -375,6 +404,7 @@
                     <input type="text" id="Copilco" name="Copilco"><br>
                     <label for="Universidad">Universidad:</label><br>
                     <input type="text" id="Universidad" name="Universidad"><br>
+                    <button type="button" onclick="enviarDatos('linea3')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -404,6 +434,7 @@
                     <input type="text" id="Jamaica" name="Jamaica"><br>
                     <label for="SantaAnita">Santa Anita:</label><br>
                     <input type="text" id="SantaAnita" name="SantaAnita"><br>
+                    <button type="button" onclick="enviarDatos('linea4')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -439,6 +470,7 @@
                     <input type="text" id="InstitutoDelPetroleo" name="InstitutoDelPetroleo"><br>
                     <label for="Politecnico">Politécnico:</label><br>
                     <input type="text" id="Politecnico" name="Politecnico"><br>
+                    <button type="button" onclick="enviarDatos('linea5')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -470,6 +502,7 @@
                     <input type="text" id="LaVillaBasilica" name="LaVillaBasilica"><br>
                     <label for="MartinCarrera1">Martín Carrera:</label><br>
                     <input type="text" id="MartinCarrera1" name="MartinCarrera1"><br>
+                    <button type="button" onclick="enviarDatos('linea6')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -507,6 +540,7 @@
                     <input type="text" id="Mixcoac" name="Mixcoac"><br>
                     <label for="BarrancaDelMuerto">Barranca del Muerto:</label><br>
                     <input type="text" id="BarrancaDelMuerto" name="BarrancaDelMuerto"><br>
+                    <button type="button" onclick="enviarDatos('linea7')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -554,6 +588,7 @@
                     <input type="text" id="UAMI" name="UAMI"><br>
                     <label for="ConstitucionDe1917">Constitución de 1917:</label><br>
                     <input type="text" id="ConstitucionDe1917" name="ConstitucionDe1917"><br>
+                    <button type="button" onclick="enviarDatos('linea8')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -587,6 +622,7 @@
                     <input type="text" id="Patriotismo" name="Patriotismo"><br>
                     <label for="Tacubaya9">Tacubaya:</label><br>
                     <input type="text" id="Tacubaya9" name="Tacubaya9"><br>
+                    <button type="button" onclick="enviarDatos('linea9')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -636,6 +672,7 @@
                     <input type="text" id="Tlaltenco" name="Tlaltenco"><br>
                     <label for="Tlahuac">Tláhuac:</label><br>
                     <input type="text" id="Tlahuac" name="Tlahuac"><br>
+                    <button type="button" onclick="enviarDatos('linea12')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -665,6 +702,7 @@
                     <input type="text" id="LosReyes" name="LosReyes"><br>
                     <label for="LaPaz">La Paz:</label><br>
                     <input type="text" id="LaPaz" name="LaPaz"><br>
+                    <button type="button" onclick="enviarDatos('lineaA')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -716,6 +754,7 @@
                     <input type="text" id="PlazaAragon" name="PlazaAragon"><br>
                     <label for="CiudadAzteca">Ciudad Azteca:</label><br>
                     <input type="text" id="CiudadAzteca" name="CiudadAzteca"><br>
+                    <button type="button" onclick="enviarDatos('lineaB')">Enviar Datos</button><br>
                 </form>
             </div>
         </div>
@@ -736,7 +775,7 @@
                     <label for="Linea5">Linea5:</label><br>
                     <input type="text" id="Linea5" name="Linea5"><br>
                     <label for="Linea6">Linea6:</label><br>
-                    <input type="text"id="Linea6" name="Linea6"><br>
+                    <input type="text" id="Linea6" name="Linea6"><br>
                     <label for="Linea7">Linea7:</label><br>
                     <input type="text" id="Linea7" name="Linea7"><br>
                     <label for="Linea8">Linea8:</label><br>
@@ -749,7 +788,8 @@
                     <input type="text" id="LineaB" name="LineaB"><br>
                     <label for="Linea12">Linea12:</label><br>
                     <input type="text" id="Linea12" name="Linea12"><br>
-                    
+                    <button type="button" onclick="enviarDatos('lineasT')">Enviar Datos</button><br>
+
                 </form>
             </div>
         </div>
@@ -845,240 +885,240 @@
 
     <script>
         const datosLinea1 = {
-            Pantitlan: "12,091,630",
-            Zaragoza: "8,708,578",
-            GomezFarias: "7,337,725",
-            BoulevardPuertoAereo: "5,468,560",
-            Balbuena: "2,246,042",
-            Moctezuma: "4,486,218",
-            SanLazaro: "4,977,454",
-            Candelaria: "6,457,461",
-            Merced: "11,449,206",
-            PinoSuarez: "8,849,949",
-            IsabelLaCatolica: "4,608,832",
-            SaltoDelAgua: "4,369,643",
-            Balderas: "3,532,268",
-            Cuauhtemoc: "4,054,718",
-            Insurgentes: "6,879,516",
-            Sevilla: "5,624,058",
-            Chapultepec: "9,091,332",
-            Juanacatlan: "1,859,621",
-            Tacubaya: "7,381,863",
-            Observatorio: "12,178,741"
+            Pantitlan: "Linea1- 12,091,630",
+            Zaragoza: "Linea1- 8,708,578",
+            GomezFarias: "Linea1- 7,337,725",
+            BoulevardPuertoAereo: "Linea1- 5,468,560",
+            Balbuena: "Linea1- 2,246,042",
+            Moctezuma: "Linea1- 4,486,218",
+            SanLazaro: "Linea1- 4,977,454",
+            Candelaria: "Linea1- 6,457,461",
+            Merced: "Linea1- 11,449,206",
+            PinoSuarez: "Linea1- 8,849,949",
+            IsabelLaCatolica: "Linea1- 4,608,832",
+            SaltoDelAgua: "Linea1- 4,369,643",
+            Balderas: "Linea1- 3,532,268",
+            Cuauhtemoc: "Linea1- 4,054,718",
+            Insurgentes: "Linea1- 6,879,516",
+            Sevilla: "Linea1- 5,624,058",
+            Chapultepec: "Linea1- 9,091,332",
+            Juanacatlan: "Linea1- 1,859,621",
+            Tacubaya: "Linea1- 7,381,863",
+            Observatorio: "Linea1- 12,178,741"
         };
         const datosLinea2 = {
-            CuatroCaminos: "15,156,149",
-            Panteones: "2,235,576",
-            Tacuba: "6,994,297",
-            Cuitlahuac: "3,213,123",
-            Popotla: "1,390,202",
-            ColegioMilitar: "2,118,471",
-            Normal: "5,211,134",
-            SanCosme: "3,407,301",
-            Revolucion: "4,495,227",
-            Hidalgo: "5,473,990",
-            BellasArtes: "4,305,045",
-            Allende: "4,250,192",
-            Zocalo: "6,390,406",
-            PinoSuarez1: "3,366,820",  
-            SanAntonioAbad: "3,533,270",
-            Chabacano: "4,497,267",
-            Viaducto: "3,287,377",
-            Xola: "3,267,474",
-            VillaDeCortes: "2,926,908",
-            Nativitas: "3,190,651",
-            Portales: "3,691,622",
-            Ermita: "3,363,619",
-            GeneralAnaya: "3,279,093",
-            Tasquena: "14,486,239"
+            CuatroCaminos: "Linea2- 15,156,149",
+            Panteones: "Linea2- 2,235,576",
+            Tacuba: "Linea2- 6,994,297",
+            Cuitlahuac: "Linea2- 3,213,123",
+            Popotla: "Linea2- 1,390,202",
+            ColegioMilitar: "Linea2- 2,118,471",
+            Normal: "Linea2- 5,211,134",
+            SanCosme: "Linea2- 3,407,301",
+            Revolucion: "Linea2- 4,495,227",
+            Hidalgo: "Linea2- 5,473,990",
+            BellasArtes: "Linea2- 4,305,045",
+            Allende: "Linea2- 4,250,192",
+            Zocalo: "Linea2- 6,390,406",
+            PinoSuarez1: "Linea2- 3,366,820",
+            SanAntonioAbad: "Linea2- 3,533,270",
+            Chabacano: "Linea2- 4,497,267",
+            Viaducto: "Linea2- 3,287,377",
+            Xola: "Linea2- 3,267,474",
+            VillaDeCortes: "Linea2- 2,926,908",
+            Nativitas: "Linea2- 3,190,651",
+            Portales: "Linea2- 3,691,622",
+            Ermita: "Linea2- 3,363,619",
+            GeneralAnaya: "Linea2- 3,279,093",
+            Tasquena: "Linea2- 14,486,239"
         };
         const datosLinea3 = {
-            IndiosVerdes: "23,449,776",
-            Deportivo18DeMarzo: "5,936,737",
-            Potrero: "2,998,686",
-            LaRaza: "6,278,397",
-            Tlatelolco: "3,424,240",
-            Guerrero: "2,134,844",
-            Hidalgo1: "2,578,964",
-            Juarez: "2,956,795",
-            Balderas1: "1,290,882",
-            NinosHeroes: "3,626,376",
-            HospitalGeneral: "3,421,978",
-            CentroMedico: "3,695,180",
-            Etiopia: "4,693,331",
-            Eugenia: "2,823,476",
-            DivisionDelNorte:"2,815,721",
-            Zapata: "6,909,278",
-            Coyoacan:"3,793,860",
-            Viveros: "4,009,630",
-            MiguelAngelDeQuevedo:"6,631,245",
-            Copilco:"4,626,936",
-            Universidad: "9,438,252"
+            IndiosVerdes: "Linea3- 23,449,776",
+            Deportivo18DeMarzo: "Linea3- 5,936,737",
+            Potrero: "Linea3- 2,998,686",
+            LaRaza: "Linea3- 6,278,397",
+            Tlatelolco: "Linea3- 3,424,240",
+            Guerrero: "Linea3- 2,134,844",
+            Hidalgo1: "Linea3- 2,578,964",
+            Juarez: "Linea3- 2,956,795",
+            Balderas1: "Linea3- 1,290,882",
+            NinosHeroes: "Linea3- 3,626,376",
+            HospitalGeneral: "Linea3- 3,421,978",
+            CentroMedico: "Linea3- 3,695,180",
+            Etiopia: "Linea3- 4,693,331",
+            Eugenia: "Linea3- 2,823,476",
+            DivisionDelNorte: "Linea3- 2,815,721",
+            Zapata: "Linea3- 6,909,278",
+            Coyoacan: "Linea3- 3,793,860",
+            Viveros: "Linea3- 4,009,630",
+            MiguelAngelDeQuevedo: "Linea3- 6,631,245",
+            Copilco: "Linea3- 4,626,936",
+            Universidad: "Linea3- 9,438,252"
         };
         const datosLinea4 = {
-            MartinCarrera: "3,870,053",
-            Talisman: "895,738",
-            Bondojito: "1,242,891",
-            Consulado: "757,318",
-            CanalDelNorte: "1,714,787",
-            Morelos: "1,770,575",
-            Candelaria1: "1,912,281",
-            FrayServando: "1,827,514",
-            Jamaica: "1,550,480",
-            SantaAnita: "391,005"
+            MartinCarrera: "Linea4- 3,870,053",
+            Talisman: "Linea4- 895,738",
+            Bondojito: "Linea4- 1,242,891",
+            Consulado: "Linea4- 757,318",
+            CanalDelNorte: "Linea4- 1,714,787",
+            Morelos: "Linea4- 1,770,575",
+            Candelaria1: "Linea4- 1,912,281",
+            FrayServando: "Linea4- 1,827,514",
+            Jamaica: "Linea4- 1,550,480",
+            SantaAnita: "Linea4- 391,005"
         };
         const datosLinea5 = {
-            Pantitlan1: "21,339,443",
-            Hangares: "946,994",
-            TerminalAerea: "4,419,693",
-            Oceania: "2,002,185",
-            Aragon: "1,605,655",
-            EduardoMolina: "1,293,750",
-            Consulado1:"1,213,863",
-            ValleGomez: "912,959",
-            Misterios: "1,696,494",
-            LaRaza1: "2,414,062",
-            AutobusesDelNorte: "4,322,667",
-            InstitutoDelPetroleo: "1,133,656",
-            Politecnico: "5,789,532",
+            Pantitlan1: "Linea5- 21,339,443",
+            Hangares: "Linea5- 946,994",
+            TerminalAerea: "Linea5- 4,419,693",
+            Oceania: "Linea5- 2,002,185",
+            Aragon: "Linea5- 1,605,655",
+            EduardoMolina: "Linea5- 1,293,750",
+            Consulado1: "Linea5- 1,213,863",
+            ValleGomez: "Linea5- 912,959",
+            Misterios: "Linea5- 1,696,494",
+            LaRaza1: "Linea5- 2,414,062",
+            AutobusesDelNorte: "Linea5- 4,322,667",
+            InstitutoDelPetroleo: "Linea5- 1,133,656",
+            Politecnico: "Linea5- 5,789,532",
         };
         const datosLinea6 = {
-            ElRosario: "2,983,811",
-            Tezozomoc: "1,093,928",
-            Azcapotzalco: "1,439,985",
-            Ferreria: "3,524,534",
-            Norte45: "1,619,693",
-            Vallejo: "1,955,966",
-            InstDelPetroleo: "506,888",
-            Lindavista: "2,411,708",
-            Deportivo18DeMarzo1: "323,811",
-            LaVillaBasilica: "2,292,984",
-            MartinCarrera1: "5,380,137"
+            ElRosario: "Linea6- 2,983,811",
+            Tezozomoc: "Linea6- 1,093,928",
+            Azcapotzalco: "Linea6- 1,439,985",
+            Ferreria: "Linea6- 3,524,534",
+            Norte45: "Linea6- 1,619,693",
+            Vallejo: "Linea6- 1,955,966",
+            InstDelPetroleo: "Linea6- 506,888",
+            Lindavista: "Linea6- 2,411,708",
+            Deportivo18DeMarzo1: "Linea6- 323,811",
+            LaVillaBasilica: "Linea6- 2,292,984",
+            MartinCarrera1: "Linea6- 5,380,137"
         };
         const datosLinea7 = {
-            ElRosario7: "6,245,113",
-            AquilesSerdan: "2,199,473",
-            Camarones: "3,021,762",
-            Refineria: "2,206,048",
-            Tacuba7: "2,081,340",
-            SanJoaquin: "4,896,923",
-            Polanco: "5,373,504",
-            Auditorio: "5,474,627",
-            Constituyentes: "1,153,246",
-            Tacubaya7: "1,144,856",
-            SanPedroDeLosPinos: "2,399,129",
-            SanAntonio: "2,429,723",
-            Mixcoac: "5,957,730",
-            BarrancaDelMuerto: "7,331,623"
+            ElRosario7: "Linea7- 6,245,113",
+            AquilesSerdan: "Linea7- 2,199,473",
+            Camarones: "Linea7- 3,021,762",
+            Refineria: "Linea7- 2,206,048",
+            Tacuba7: "Linea7- 2,081,340",
+            SanJoaquin: "Linea7- 4,896,923",
+            Polanco: "Linea7- 5,373,504",
+            Auditorio: "Linea7- 5,474,627",
+            Constituyentes: "Linea7- 1,153,246",
+            Tacubaya7: "Linea7- 1,144,856",
+            SanPedroDeLosPinos: "Linea7- 2,399,129",
+            SanAntonio: "Linea7- 2,429,723",
+            Mixcoac: "Linea7- 5,957,730",
+            BarrancaDelMuerto: "Linea7- 7,331,623"
         };
         const datosLinea8 = {
-            Garibaldi: "3,439,579",
-            BellasArtes8: "4,204,561",
-            SanJuanDeLetran: "6,320,155",
-            SaltoDelAgua8: "3,098,577",
-            Doctores: "2,988,875",
-            Obrera: "3,182,282",
-            Chabacano8: "988,177",
-            LaViga: "1,599,439",
-            SantaAnita8: "1,025,639",
-            Coyuya: "5,581,291",
-            Iztacalco: "4,365,189",
-            Apatlaco: "3,676,323",
-            Aculco: "2,316,884",
-            Escuadron201: "4,527,035",
-            Atlalilco: "4,615,611",
-            Iztapalapa: "2,443,580",
-            CerroDeLaEstrella: "2,606,672",
-            UAMI: "5,254,770",
-            ConstitucionDe1917: "20,500,309"
+            Garibaldi: "Linea8- 3,439,579",
+            BellasArtes8: "Linea8- 4,204,561",
+            SanJuanDeLetran: "Linea8- 6,320,155",
+            SaltoDelAgua8: "Linea8- 3,098,577",
+            Doctores: "Linea8- 2,988,875",
+            Obrera: "Linea8- 3,182,282",
+            Chabacano8: "Linea8- 988,177",
+            LaViga: "Linea8- 1,599,439",
+            SantaAnita8: "Linea8- 1,025,639",
+            Coyuya: "Linea8- 5,581,291",
+            Iztacalco: "Linea8- 4,365,189",
+            Apatlaco: "Linea8- 3,676,323",
+            Aculco: "Linea8- 2,316,884",
+            Escuadron201: "Linea8- 4,527,035",
+            Atlalilco: "Linea8- 4,615,611",
+            Iztapalapa: "Linea8- 2,443,580",
+            CerroDeLaEstrella: "Linea8- 2,606,672",
+            UAMI: "Linea8- 5,254,770",
+            ConstitucionDe1917: "Linea8- 20,500,309"
         };
         const datosLinea9 = {
-            Pantitlan9: "22,367,944",
-            Puebla: "7,068,973",
-            CiudadDeportiva: "1,275,094",
-            Velodromo: "1,770,000",
-            Mixiuhca: "4,387,575",
-            Jamaica9: "2,621,993",
-            Chabacano9: "2,813,390",
-            LazaroCardenas: "2,951,608",
-            CentroMedico9: "3,348,060",
-            Chilpancingo: "9,430,276",
-            Patriotismo:"3,795,726",
-            Tacubaya9: "10,567,781"
+            Pantitlan9: "Linea9- 22,367,944",
+            Puebla: "Linea9- 7,068,973",
+            CiudadDeportiva: "Linea9- 1,275,094",
+            Velodromo: "Linea9- 1,770,000",
+            Mixiuhca: "Linea9- 4,387,575",
+            Jamaica9: "Linea9- 2,621,993",
+            Chabacano9: "Linea9- 2,813,390",
+            LazaroCardenas: "Linea9- 2,951,608",
+            CentroMedico9: "Linea9- 3,348,060",
+            Chilpancingo: "Linea9- 9,430,276",
+            Patriotismo: "Linea9- 3,795,726",
+            Tacubaya9: "Linea9- 10,567,781"
         };
         const datosLineaA = {
-            PantitlanA: "33,368,107",
-            AgricolaOriental: "2,768,101",
-            CanalDeSanJuan: "3,282,914",
-            Tepalcates: "5,328,315",
-            Guelatao: "3,840,759",
-            PenonViejo: "3,310,816",
-            Acatitla: "3,640,691",
-            SantaMarta: "8,697,084",
-            LosReyes: "4,949,098",
-            LaPaz: "10,372,211"
+            PantitlanA: "LineaA- 33,368,107",
+            AgricolaOriental: "LineaA- 2,768,101",
+            CanalDeSanJuan: "LineaA- 3,282,914",
+            Tepalcates: "LineaA- 5,328,315",
+            Guelatao: "LineaA- 3,840,759",
+            PenonViejo: "LineaA- 3,310,816",
+            Acatitla: "LineaA- 3,640,691",
+            SantaMarta: "LineaA- 8,697,084",
+            LosReyes: "LineaA- 4,949,098",
+            LaPaz: "LineaA- 10,372,211"
         };
         const datosLineaB = {
-            Buenavista: "12,114,410",
-            GuerreroB: "1,493,722",
-            GaribaldiB: "1,363,736",
-            Lagunilla: "4,862,989",
-            Tepito: "5,518,062",
-            MorelosB: "995,579",
-            SanLazaroB: "3,217,040",
-            RicardoFloresMagon: "1,406,335",
-            RomeroRubio: "2,257,035",
-            OceaniaB: "2,109,569",
-            DeportivoOceania: "2,903,706",
-            BosqueDeAragon: "1,069,381",
-            VillaDeAragon: "2,590,343",
-            Nezahualcoyotl: "4,258,836",
-            Impulsora: "5,109,318",
-            RioDeLosRemedios: "4,785,870",
-            Muzquiz: "7,202,836",
-            Ecatepec: "4,853,732",
-            Olimpica: "4,040,957",
-            PlazaAragon: "4,412,715",
-            CiudadAzteca: "10,952,831"
+            Buenavista: "LineaB- 12,114,410",
+            GuerreroB: "LineaB- 1,493,722",
+            GaribaldiB: "LineaB- 1,363,736",
+            Lagunilla: "LineaB- 4,862,989",
+            Tepito: "LineaB- 5,518,062",
+            MorelosB: "LineaB- 995,579",
+            SanLazaroB: "LineaB- 3,217,040",
+            RicardoFloresMagon: "LineaB- 1,406,335",
+            RomeroRubio: "LineaB- 2,257,035",
+            OceaniaB: "LineaB- 2,109,569",
+            DeportivoOceania: "LineaB- 2,903,706",
+            BosqueDeAragon: "LineaB- 1,069,381",
+            VillaDeAragon: "LineaB- 2,590,343",
+            Nezahualcoyotl: "LineaB- 4,258,836",
+            Impulsora: "LineaB- 5,109,318",
+            RioDeLosRemedios: "LineaB- 4,785,870",
+            Muzquiz: "LineaB- 7,202,836",
+            Ecatepec: "LineaB- 4,853,732",
+            Olimpica: "LineaB- 4,040,957",
+            PlazaAragon: "LineaB- 4,412,715",
+            CiudadAzteca: "LineaB- 10,952,831"
         };
         const datosLinea12 = {
-            Mixcoac12: "693,814",
-            InsurgentesSur: "1,807,375",
-            Hospital20DeNoviembre: "593,128",
-            Zapata12: "895,128",
-            ParqueDeLosVenados: "567,984",
-            EjeCentral: "664,899",
-            Ermita12: "847,698",
-            Mexicaltzingo: "1,030,856",
-            Atlalilco12: "847,723",
-            Culhuacan: "1,179,625",
-            SanAndresTomatlan: "628,588",
-            LomasEstrella: "545,971",
-            Calle11: "994,257",
-            PerifericoOriente: "1,916,407",
-            Tezonco: "1,623,999",
-            Olivos: "1,105,981",
-            Nopalera: "1,619,653",
-            Zapotitlan: "960,815",
-            Tlaltenco: "301,594",
-            Tlahuac: "3,245,863"
+            Mixcoac12: "Linea12- 693,814",
+            InsurgentesSur: "Linea12- 1,807,375",
+            Hospital20DeNoviembre: "Linea12- 593,128",
+            Zapata12: "Linea12- 895,128",
+            ParqueDeLosVenados: "Linea12- 567,984",
+            EjeCentral: "Linea12- 664,899",
+            Ermita12: "Linea12- 847,698",
+            Mexicaltzingo: "Linea12- 1,030,856",
+            Atlalilco12: "Linea12- 847,723",
+            Culhuacan: "Linea12- 1,179,625",
+            SanAndresTomatlan: "Linea12- 628,588",
+            LomasEstrella: "Linea12- 545,971",
+            Calle11: "Linea12- 994,257",
+            PerifericoOriente: "Linea12- 1,916,407",
+            Tezonco: "Linea12- 1,623,999",
+            Olivos: "Linea12- 1,105,981",
+            Nopalera: "Linea12- 1,619,653",
+            Zapotitlan: "Linea12- 960,815",
+            Tlaltenco: "Linea12- 301,594",
+            Tlahuac: "Linea12- 3,245,863"
         };
         const DatosTodas = {
 
-              Linea1: "131653415",
-              Linea2: "113531453",
-              Linea3: "107534584",
-              Linea4: "15932642",
-              Linea5: "49090953",
-              Linea6: "23533445",
-              Linea7: "51915097",
-              Linea8: "82734948",
-              Linea9: "72398420",
-              LineaA: "79558096",
-              LineaB: "87519002",
-              Linea12: "22071358"
-            
-          };
+            Linea1: "Linea1- 131,653,415",
+            Linea2: "Linea2- 113,531,453",
+            Linea3: "Linea3- 107,534,584",
+            Linea4: "Linea4- 15,932,642",
+            Linea5: "Linea5- 49,090,953",
+            Linea6: "Linea6- 23,533,445",
+            Linea7: "Linea7- 51,915,097",
+            Linea8: "Linea8- 82,734,948",
+            Linea9: "Linea9- 72,398,420",
+            LineaA: "LineaA- 79,558,096",
+            LineaB: "LineaB- 87,519,002",
+            Linea12: "Linea12- 22,071,358"
+
+        };
 
 
         // Datos de valores por año
@@ -1355,7 +1395,7 @@
             "Linea 12": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_12.png",
             "Linea A": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_A.png",
             "Linea B": "https://www.viajabonito.mx/wp-content/uploads/2020/04/LINEA_B.png",
-            "2021": "https://upload.wikimedia.org/wikipedia/commons/5/50/Mapa_del_Metro_de_la_Ciudad_de_M%C3%A9xico.png"
+            "2021": "https://mexicocity.cdmx.gob.mx/wp-content/uploads/2019/10/plano_redconcalles19-764x1024.jpg"
         };
 
 
@@ -1383,18 +1423,18 @@
                         'rgba(255, 0, 0, 1)'
                     ],
                     borderColor: [
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)',
-                        'rgba(255, 255, 255, 1)'
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)'
                     ],
                     borderWidth: 1
                 }]
@@ -1404,25 +1444,25 @@
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: 'black' // Cambia el color de las etiquetas del eje y a blanco
+                            color: 'white' // Cambia el color de las etiquetas del eje y a blanco
                         },
                         grid: {
-                            color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                            color: 'white' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
                         }
                     },
                     x: {
                         ticks: {
-                            color: 'black' // Cambia el color de las etiquetas del eje x a blanco
+                            color: 'white' // Cambia el color de las etiquetas del eje x a blanco
                         },
                         grid: {
-                            color: 'black' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
+                            color: 'white' // Cambia el color de las líneas de la cuadrícula del eje x a blanco
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: 'black' // Cambia el color de las etiquetas de la leyenda a blanco
+                            color: 'white' // Cambia el color de las etiquetas de la leyenda a blanco
                         }
                     }
                 }
@@ -1501,7 +1541,94 @@
             // Cambia la imagen según la opción seleccionada
             var image = document.getElementById("displayImage");
             image.src = imageUrls[year] || imageUrls["Empty"];
+            // Ajusta el tamaño de la imagen según la opción seleccionada
+            switch (year) {
+                case "Linea 1":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 2":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 3":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 4":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 5":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 6":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 7":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 8":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 9":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea 12":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea A":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "Linea B":
+                    image.style.width = "27%";
+                    image.style.height = "25%";
+                    image.style.top = "10%";
+                    image.style.left = "37%";
+                    break;
+                case "2021":
+                    image.style.width = "27%";
+                    image.style.height = "53%";
+                    image.style.top = "0%";
+                    image.style.left = "37%";
+                    break;
+
+
+                // Agrega más casos según sea necesario
+                default:
+                    break;
+            }
         }
+
 
         // Inicializar con el año 2021 seleccionado por defecto
         window.onload = function () {
@@ -1535,21 +1662,21 @@
                 }
             }
         }
-        
+
         function handleChange(value) {
             // Ocultar todos los formularios
             document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
-        
+
             // Limpiar los campos
             document.querySelectorAll('.modal input').forEach(input => input.value = '');
-        
+
             let datos;
             switch (value) {
                 case "Empty":
-                        updateChart(value);
-                        updateColors(value);
+                    updateChart(value);
+                    updateColors(value);
 
-                        break;
+                    break;
                 case "Linea 1":
                     datos = datosLinea1;
                     document.getElementById('modalLinea1').style.display = 'block';
@@ -1573,11 +1700,11 @@
                 case "Linea 6":
                     datos = datosLinea6;
                     document.getElementById('modalLinea6').style.display = 'block'
-                    break;    
+                    break;
                 case "Linea 7":
                     datos = datosLinea7;
                     document.getElementById('modalLinea7').style.display = 'block'
-                    break;    
+                    break;
                 case "Linea 8":
                     datos = datosLinea8;
                     document.getElementById('modalLinea8').style.display = 'block'
@@ -1585,15 +1712,15 @@
                 case "Linea 9":
                     datos = datosLinea9;
                     document.getElementById('modalLinea9').style.display = 'block'
-                    break;        
+                    break;
                 case "Linea A":
                     datos = datosLineaA;
                     document.getElementById('modalLineaA').style.display = 'block'
-                    break;    
+                    break;
                 case "Linea B":
                     datos = datosLineaB;
                     document.getElementById('modalLineaB').style.display = 'block'
-                    break;    
+                    break;
                 case "Linea 12":
                     datos = datosLinea12;
                     document.getElementById('modalLinea12').style.display = 'block'
@@ -1601,68 +1728,229 @@
                 case "2021":
                     datos = DatosTodas;
                     document.getElementById('modal2021').style.display = 'block'
-                    break;            
+                    break;
                 default:
-                    return; 
+                    return;
             }
-        
+
             // Rellenar los campos del formulario
             for (const [key, val] of Object.entries(datos)) {
                 document.getElementById(key).value = val;
             }
-        
+
             updateChart(value);
             updateColors(value);
             console.log("Selected value: " + value);
         }
 
-        function enviarDatos() {
+        function enviarDatos(linea) {
             const datos = {
                 Estacion: [],
                 Cantidad: []
             };
-        
-            // Recolectar los datos del formulario
-            const estaciones = ['Pantitlan', 'Zaragoza', 'GomezFarias', 'BoulevardPuertoAereo', 'Balbuena', 
-                                'Moctezuma', 'SanLazaro', 'Candelaria', 'Merced', 'PinoSuarez', 
-                                'IsabelLaCatolica', 'SaltoDelAgua', 'Balderas', 'Cuauhtemoc', 
-                                'Insurgentes', 'Sevilla', 'Chapultepec', 'Juanacatlan', 'Tacubaya', 
-                                'Observatorio'];
-            
-            estaciones.forEach(estacion => {
-                const inputValue = document.getElementById(estacion).value;
-                if (inputValue) {
-                    datos.Estacion.push(estacion);
-                    datos.Cantidad.push(inputValue);
-                }
-            });
-        
-            fetch('conexion.php', {
+
+            if (linea === 'linea1') {
+                const estacionesLinea1 = ['Pantitlan', 'Zaragoza', 'GomezFarias', 'BoulevardPuertoAereo', 'Balbuena',
+                    'Moctezuma', 'SanLazaro', 'Candelaria', 'Merced', 'PinoSuarez',
+                    'IsabelLaCatolica', 'SaltoDelAgua', 'Balderas', 'Cuauhtemoc',
+                    'Insurgentes', 'Sevilla', 'Chapultepec', 'Juanacatlan', 'Tacubaya',
+                    'Observatorio'];
+
+                estacionesLinea1.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea2') {
+                const estacionesLinea2 = ['CuatroCaminos', 'Panteones', 'Tacuba', 'Cuitlahuac', 'Popotla',
+                    'ColegioMilitar', 'Normal', 'SanCosme', 'Revolucion', 'Hidalgo',
+                    'BellasArtes', 'Allende', 'Zocalo', 'PinoSuarez1', 'SanAntonioAbad',
+                    'Chabacano', 'Viaducto', 'Xola', 'VillaDeCortes', 'Nativitas',
+                    'Portales', 'Ermita', 'GeneralAnaya', 'Tasquena'];
+
+                estacionesLinea2.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea3') {
+                const estacionesLinea3 = ['IndiosVerdes', 'Deportivo18DeMarzo', 'Potrero', 'LaRaza', 'Tlatelolco',
+                    'Guerrero', 'Hidalgo1', 'Juarez', 'Balderas1', 'NinosHeroes',
+                    'HospitalGeneral', 'CentroMedico', 'Etiopia', 'Eugenia',
+                    'DivisionDelNorte', 'Zapata', 'Coyoacan', 'Viveros',
+                    'MiguelAngelDeQuevedo', 'Copilco', 'Universidad'];
+
+                estacionesLinea3.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea4') {
+                const estacionesLinea4 = ['MartinCarrera', 'Talisman', 'Bondojito', 'Consulado', 'CanalDelNorte',
+                    'Morelos', 'Candelaria1', 'FrayServando', 'Jamaica', 'SantaAnita'];
+
+                estacionesLinea4.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea5') {
+                const estacionesLinea5 = ['Pantitlan1', 'Hangares', 'TerminalAerea', 'Oceania', 'Aragon',
+                    'EduardoMolina', 'Consulado1', 'ValleGomez', 'Misterios',
+                    'LaRaza1', 'AutobusesDelNorte', 'InstitutoDelPetroleo', 'Politecnico'];
+
+                estacionesLinea5.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea6') {
+                const estacionesLinea6 = ['ElRosario', 'Tezozomoc', 'Azcapotzalco', 'Ferreria', 'Norte45',
+                    'Vallejo', 'InstDelPetroleo', 'Lindavista', 'Deportivo18DeMarzo1',
+                    'LaVillaBasilica', 'MartinCarrera1'];
+
+                estacionesLinea6.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea7') {
+                const estacionesLinea7 = ['ElRosario7', 'AquilesSerdan', 'Camarones', 'Refineria', 'Tacuba7',
+                    'SanJoaquin', 'Polanco', 'Auditorio', 'Constituyentes', 'Tacubaya7',
+                    'SanPedroDeLosPinos', 'SanAntonio', 'Mixcoac', 'BarrancaDelMuerto'];
+
+                estacionesLinea7.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            }
+            else if (linea === 'linea8') {
+                const estacionesLinea8 = ['Garibaldi', 'BellasArtes8', 'SanJuanDeLetran', 'SaltoDelAgua8', 'Doctores',
+                    'Obrera', 'Chabacano8', 'LaViga', 'SantaAnita8', 'Coyuya', 'Iztacalco',
+                    'Apatlaco', 'Aculco', 'Escuadron201', 'Atlalilco', 'Iztapalapa',
+                    'CerroDeLaEstrella', 'UAMI', 'ConstitucionDe1917'];
+
+                estacionesLinea8.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea9') {
+                const estacionesLinea9 = ['Pantitlan9', 'Puebla', 'CiudadDeportiva', 'Velodromo', 'Mixiuhca',
+                    'Jamaica9', 'Chabacano9', 'LazaroCardenas', 'CentroMedico9',
+                    'Chilpancingo', 'Patriotismo', 'Tacubaya9'];
+
+                estacionesLinea9.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'lineaA') {
+                const estacionesLineaA = ['PantitlanA', 'AgricolaOriental', 'CanalDeSanJuan', 'Tepalcates',
+                    'Guelatao', 'PenonViejo', 'Acatitla', 'SantaMarta', 'LosReyes', 'LaPaz'];
+
+                estacionesLineaA.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'lineaB') {
+                const estacionesLineaB = ['Buenavista', 'GuerreroB', 'GaribaldiB', 'Lagunilla', 'Tepito',
+                    'MorelosB', 'SanLazaroB', 'RicardoFloresMagon', 'RomeroRubio',
+                    'OceaniaB', 'DeportivoOceania', 'BosqueDeAragon', 'VillaDeAragon',
+                    'Nezahualcoyotl', 'Impulsora', 'RioDeLosRemedios', 'Muzquiz',
+                    'Ecatepec', 'Olimpica', 'PlazaAragon', 'CiudadAzteca'];
+
+                estacionesLineaB.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            } else if (linea === 'linea12') {
+                const estacionesLinea12 = ['Mixcoac12', 'InsurgentesSur', 'Hospital20DeNoviembre', 'Zapata12',
+                    'ParqueDeLosVenados', 'EjeCentral', 'Ermita12', 'Mexicaltzingo',
+                    'Atlalilco12', 'Culhuacan', 'SanAndresTomatlan', 'LomasEstrella',
+                    'Calle11', 'PerifericoOriente', 'Tezonco', 'Olivos', 'Nopalera',
+                    'Zapotitlan', 'Tlaltenco', 'Tlahuac'];
+
+                estacionesLinea12.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            }
+            else if (linea === 'lineasT') {
+                const estacionesTodas = ['Linea1', 'Linea2', 'Linea3', 'Linea4',
+                    'Linea5', 'Linea6', 'Linea7', 'Linea8',
+                    'Linea9', 'LineaA', 'LineaB', 'Linea12'];
+
+                estacionesTodas.forEach(estacion => {
+                    const inputValue = document.getElementById(estacion).value;
+                    if (inputValue) {
+                        datos.Estacion.push(estacion);
+                        datos.Cantidad.push(inputValue);
+                    }
+                });
+            }
+
+            else {
+                console.error('Línea no válida');
+                return;
+            }
+
+            console.log('Datos a enviar:', datos);
+
+            fetch('http://localhost/proyecto/conexion.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(datos)
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                alert('Datos enviados correctamente');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    console.log('Respuesta del servidor:', response);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Datos recibidos del servidor:', data);
+                    alert('Datos enviados correctamente');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
-        
+
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
-        
     </script>
 </body>
 
