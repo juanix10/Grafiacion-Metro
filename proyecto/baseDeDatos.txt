@@ -1,0 +1,6 @@
+create database metro
+
+use metro
+
+create table afluencia(id int primary key auto_increment, 
+Estación varchar(50), Cantidad varchar (100));
